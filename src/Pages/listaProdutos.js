@@ -1,35 +1,32 @@
-const ListaProdutos = ({ products, onDelete }) => (
-    <table>
-        <thead>
-            <tr>
-                <th>Nome</th>
-                <th>Fabricante</th>
-                <th>Embalagem</th>
-                <th>Moeda</th>
-                <th>Preço (Dentro)</th>
-                <th>Preço (Fora)</th>
-                <th>IPI (%)</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            {products.map((product, index) => (
-                <tr key={index}>
-                    <td>{product.name}</td>
-                    <td>{product.manufacturer}</td> {/* Correção aqui */}
-                    <td>{product.package}</td>
-                    <td>{product.currency}</td>
-                    <td>{product.priceInside}</td>
-                    <td>{product.priceOutside}</td>
-                    <td>{product.ipi ? product.ipiRate : 'Isento'}</td>
-                    <td>
-                        <button onClick={() => console.log('Editar', product)}>Editar</button>
-                        <button onClick={() => onDelete(product.id)}>Excluir</button>
-                    </td>
-                </tr>
-            ))}
-        </tbody>
-    </table>
-);
+import React from "react";
+
+const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
+  const handleUpdateClick = (product) => {
+    const updatedProduct = { ...product, name: prompt("Novo nome:", product.name) || product.name };
+    onUpdateProduct(updatedProduct);
+  };
+
+  const handleDeleteClick = (id) => {
+    
+      onDeleteProduct(id);
+    
+  };
+
+  return (
+    <div>
+      <h1>Lista de Produtos</h1>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            {product.name} - {product.manufacturer} - {product.origin} - {product.package} -{" "}
+            {product.currency} - {product.priceInside} - {product.priceOutside} - {product.ipi ? "Com IPI" : "Sem IPI"}
+            <button onClick={() => handleUpdateClick(product)}>Editar</button>
+            <button onClick={() => handleDeleteClick(product.id)}>Remover</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default ListaProdutos;

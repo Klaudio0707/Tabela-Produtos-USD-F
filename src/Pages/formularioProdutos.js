@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
-
-const FormularioProdutos = ({ onAddProduct, onUpdateProduct, editingProduct }) => {
+const FormularioProdutos = ({ onAddProduct }) => {
   const [product, setProduct] = useState({
     name: "",
     manufacturer: "",
@@ -13,71 +12,80 @@ const FormularioProdutos = ({ onAddProduct, onUpdateProduct, editingProduct }) =
     ipi: false,
     ipiRate: 0,
   });
+
+  const [error, setError] = useState(""); // Mantendo o estado de erro
+
   const BASE_URL = "http://localhost:5001";
-
-
-
-  useEffect(() => {
-    if (editingProduct) {
-      setProduct(editingProduct); // Preenche o formulário com os dados do produto em edição
-    }
-  }, [editingProduct]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProduct({ ...product, [name]: value });
+    setProduct((prev) => ({
+      ...prev,
+      [name]: name === "ipiRate" || name === "priceInside" || name === "priceOutside"
+        ? parseFloat(value) || ""  // Converte para número, mas mantém string vazia se inválido
+        : value,
+    }));
   };
 
   const handleCheckboxChange = () => {
-    setProduct({ ...product, ipi: !product.ipi });
+    setProduct((prev) => ({ ...prev, ipi: !prev.ipi }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (editingProduct) {
-      // Se estiver editando, chama o método de atualização
-      onUpdateProduct(product);
-    } else {
-      // Caso contrário, chama o método de adição
-      try {
-        const response = await fetch(`${BASE_URL}/products`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(product),
-        });
+    // Verifica se os campos obrigatórios foram preenchidos
+    if (!product.name || !product.manufacturer || !product.priceInside) {
+      setError("Por favor, preencha todos os campos obrigatórios.");
+      return;
+    }
 
-        if (response.ok) {
-          const newProduct = await response.json();
-          onAddProduct(newProduct);
-          setProduct({
-            name: "",
-            manufacturer: "",
-            origin: "",
-            package: "",
-            currency: "BRL",
-            priceInside: "",
-            priceOutside: "",
-            ipi: false,
-            ipiRate: 0,
-          });
-        } else {
-          console.error("Erro ao adicionar produto");
-        }
-      } catch (error) {
-        console.error("Erro na requisição:", error);
+    const newProduct = {
+      ...product,
+      priceInside: parseFloat(product.priceInside).toFixed(4),
+      priceOutside: parseFloat(product.priceOutside).toFixed(4),
+    };
+
+    try {
+      const response = await fetch(`${BASE_URL}/products`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(newProduct),
+      });
+
+      if (response.ok) {
+        const savedProduct = await response.json();
+        onAddProduct(savedProduct);
+        setProduct({
+          name: "",
+          manufacturer: "",
+          origin: "",
+          package: "",
+          currency: "BRL",
+          priceInside: "",
+          priceOutside: "",
+          ipi: false,
+          ipiRate: 0,
+        });
+        setError(""); // Limpa o erro ao salvar com sucesso
+      } else {
+        setError("Erro ao salvar produto no servidor.");
       }
+    } catch (error) {
+      setError("Erro na requisição. Verifique a conexão com o servidor.");
+      console.error("Erro na requisição:", error);
     }
   };
 
   return (
     <form onSubmit={handleSubmit}>
-      <input name="name" placeholder="Nome" value={product.name} onChange={handleChange} />
+      <input name="name" placeholder="Nome" value={product.name} onChange={handleChange} required />
       <input
         name="manufacturer"
         placeholder="Fabricante"
         value={product.manufacturer}
         onChange={handleChange}
+        required
       />
       <input name="origin" placeholder="Origem" value={product.origin} onChange={handleChange} />
       <input
@@ -95,6 +103,7 @@ const FormularioProdutos = ({ onAddProduct, onUpdateProduct, editingProduct }) =
         placeholder="Preço Dentro"
         value={product.priceInside}
         onChange={handleChange}
+        required
       />
       <input
         name="priceOutside"
@@ -114,7 +123,8 @@ const FormularioProdutos = ({ onAddProduct, onUpdateProduct, editingProduct }) =
           onChange={handleChange}
         />
       )}
-      <button type="submit">{editingProduct ? "Atualizar" : "Salvar"}</button>
+      {error && <p style={{ color: "red" }}>{error}</p>} {/* Exibindo o erro aqui */}
+      <button type="submit">Salvar</button>
     </form>
   );
 };
