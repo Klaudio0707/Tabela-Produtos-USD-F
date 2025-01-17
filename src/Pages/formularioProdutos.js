@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 
-const FormularioProdutos = ({ onAddProduct }) => {
+const FormularioProdutos = ({ onAddProduct, onUpdateProduct, editingProduct }) => {
   const [product, setProduct] = useState({
     name: "",
     manufacturer: "",
@@ -13,9 +13,15 @@ const FormularioProdutos = ({ onAddProduct }) => {
     ipi: false,
     ipiRate: 0,
   });
-  const BASE_URL = "http://localhost:5001/products";
+  const BASE_URL = "http://localhost:5001";
 
 
+
+  useEffect(() => {
+    if (editingProduct) {
+      setProduct(editingProduct); // Preenche o formulário com os dados do produto em edição
+    }
+  }, [editingProduct]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,32 +35,38 @@ const FormularioProdutos = ({ onAddProduct }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    try {
-      const response = await fetch(`${BASE_URL}/products`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product),
-      });
+    if (editingProduct) {
+      // Se estiver editando, chama o método de atualização
+      onUpdateProduct(product);
+    } else {
+      // Caso contrário, chama o método de adição
+      try {
+        const response = await fetch(`${BASE_URL}/products`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(product),
+        });
 
-      if (response.ok) {
-        const newProduct = await response.json();
-        onAddProduct(newProduct); // Atualiza a lista de produtos no estado principal
-        setProduct({
-          name: "",
-          manufacturer: "",
-          origin: "",
-          package: "",
-          currency: "BRL",
-          priceInside: "",
-          priceOutside: "",
-          ipi: false,
-          ipiRate: 0,
-        }); // Limpa o formulário
-      } else {
-        console.error("Erro ao adicionar produto");
+        if (response.ok) {
+          const newProduct = await response.json();
+          onAddProduct(newProduct);
+          setProduct({
+            name: "",
+            manufacturer: "",
+            origin: "",
+            package: "",
+            currency: "BRL",
+            priceInside: "",
+            priceOutside: "",
+            ipi: false,
+            ipiRate: 0,
+          });
+        } else {
+          console.error("Erro ao adicionar produto");
+        }
+      } catch (error) {
+        console.error("Erro na requisição:", error);
       }
-    } catch (error) {
-      console.error("Erro na requisição:", error);
     }
   };
 
@@ -102,7 +114,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
           onChange={handleChange}
         />
       )}
-      <button type="submit">Salvar</button>
+      <button type="submit">{editingProduct ? "Atualizar" : "Salvar"}</button>
     </form>
   );
 };
