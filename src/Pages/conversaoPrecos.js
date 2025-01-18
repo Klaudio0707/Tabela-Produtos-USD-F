@@ -62,6 +62,12 @@ const ConversaoPrecos = ({ products }) => {
     }
   };
 
+  const handleCleanPrices = () => {
+    setConvertedProducts([]); // Limpa a lista de produtos convertidos
+    setDollarRate(null); // Opcional: limpar a cotação exibida
+    setError(""); // Opcional: limpar mensagens de erro
+  };
+
   return (
     <div>
       <h1>Conversão de Preços</h1>
@@ -74,14 +80,14 @@ const ConversaoPrecos = ({ products }) => {
         />
       </label>
       <button onClick={handleConvertPrices}>Exibir Preços Convertidos</button>
+      <button onClick={handleCleanPrices}>Limpar Lista</button>
       {error && <p style={{ color: "red" }}>{error}</p>}
       {dollarRate && <p>Cotação do Dólar: R$ {dollarRate.toFixed(4)}</p>}
       <h2>Produtos Convertidos</h2>
       <ul>
         {convertedProducts.map((product) => (
           <li key={product.id}>
-            {product.name} - Preço Dentro: {product.currency === "USD" ? `R$ ${product.priceInside}` : `R$ ${product.priceInside}`} 
-            - Preço Fora: {product.currency === "USD" ? `R$ ${product.priceOutside}` : `R$ ${product.priceOutside}`}
+            {product.name} - Preço Dentro: R$ {product.priceInside} - Preço Fora: R$ {product.priceOutside}
           </li>
         ))}
       </ul>
@@ -90,3 +96,4 @@ const ConversaoPrecos = ({ products }) => {
 };
 
 export default ConversaoPrecos;
+

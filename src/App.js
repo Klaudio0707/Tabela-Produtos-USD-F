@@ -23,6 +23,7 @@ const App = () => {
     }
   };
 
+  
   // Função para adicionar um novo produto
   const handleAddProduct = (newProduct) => {
     setProducts((prevProducts) => [...prevProducts, newProduct]);

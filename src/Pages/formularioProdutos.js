@@ -22,11 +22,10 @@ const FormularioProdutos = ({ onAddProduct }) => {
     setProduct((prev) => ({
       ...prev,
       [name]: name === "ipiRate" || name === "priceInside" || name === "priceOutside"
-        ? parseFloat(value) || ""  // Converte para número, mas mantém string vazia se inválido
+        ? value  // Mantém o valor como string para permitir entrada decimal
         : value,
     }));
   };
-
   const handleCheckboxChange = () => {
     setProduct((prev) => ({ ...prev, ipi: !prev.ipi }));
   };
@@ -42,8 +41,9 @@ const FormularioProdutos = ({ onAddProduct }) => {
 
     const newProduct = {
       ...product,
-      priceInside: parseFloat(product.priceInside).toFixed(4),
-      priceOutside: parseFloat(product.priceOutside).toFixed(4),
+      // Converte os preços para números com 2 casas decimais
+      priceInside: parseFloat(product.priceInside.replace(",", ".")).toFixed(2),
+      priceOutside: parseFloat(product.priceOutside.replace(",", ".")).toFixed(2),
     };
 
     try {
