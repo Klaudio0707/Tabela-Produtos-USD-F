@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "../style/Lista.css"
 
 const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const [editingProductId, setEditingProductId] = useState(null);
@@ -30,7 +31,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   };
 
   return (
-    <div>
+    <div className="lista-container">
       <h1>Lista de Produtos</h1>
       <ul>
         {products.map((product) =>
@@ -95,18 +96,24 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                   onChange={handleChange}
                 />
               )}
-              <button onClick={handleSaveEdit}>Salvar</button>
-              <button onClick={handleCancelEdit}>Cancelar</button>
+              <div>
+                <button onClick={handleSaveEdit}>Salvar</button>
+                <button onClick={handleCancelEdit}>Cancelar</button>
+              </div>
             </li>
           ) : (
             <li key={product.id}>
-              {product.name} - {product.manufacturer} - {product.origin} -{" "}
-              {product.package} - {product.currency} - {product.priceInside} -{" "}
-              {product.priceOutside} - {product.ipi ? "Com IPI" : "Sem IPI"}
-              <button onClick={() => handleEditClick(product)}>Editar</button>
-              <button onClick={() => handleDeleteClick(product.id)}>
-                Remover
-              </button>
+              <div>
+                {product.name} - {product.manufacturer} - {product.origin} -{" "}
+                {product.package} - {product.currency} - {product.priceInside} -{" "}
+                {product.priceOutside} - {product.ipi ? "Com IPI" : "Sem IPI"}
+              </div>
+              <div>
+                <button onClick={() => handleEditClick(product)}>Editar</button>
+                <button onClick={() => handleDeleteClick(product.id)}>
+                  Remover
+                </button>
+              </div>
             </li>
           )
         )}

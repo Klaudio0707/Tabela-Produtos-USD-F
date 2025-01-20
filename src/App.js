@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
+import Footer from "./Components/Footer";
+import Header from "./Components/Header";
 import "./App.css";
 
 const App = () => {
@@ -23,7 +25,7 @@ const App = () => {
     }
   };
 
-  
+
   // Função para adicionar um novo produto
   const handleAddProduct = (newProduct) => {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
@@ -75,14 +77,20 @@ const App = () => {
 
   return (
     <div className="App-header">
+    <Header />
+    <main>
+
       <h1>Cadastro e Conversão de Produtos</h1>
       <FormularioProdutos onAddProduct={handleAddProduct} />
       <ListaProdutos
         products={products}
         onUpdateProduct={handleUpdateProduct}
         onDeleteProduct={handleDeleteProduct}
-      />
+        />
       <ConversaoPrecos products={products} />
+        </main>
+        <Footer />
+      
     </div>
   );
 };

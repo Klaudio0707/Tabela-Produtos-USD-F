@@ -1,0 +1,40 @@
+.header {
+    background-color: #4caf50;
+    color: white;
+    padding: 15px 20px;
+  }
+  
+  .header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: bold;
+  }
+  
+  .nav a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .nav {
+      margin-top: 10px;
+    }
+  
+    .nav a {
+      display: block;
+      margin: 5px 0;
+    }
+  }
+  

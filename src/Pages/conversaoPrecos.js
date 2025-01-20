@@ -1,18 +1,17 @@
 import React, { useState } from "react";
+import "../style/ConversaoPrecos.css";
 
 const ConversaoPrecos = ({ products }) => {
-  const [selectedDate, setSelectedDate] = useState(""); // Data selecionada pelo usuário
-  const [dollarRate, setDollarRate] = useState(null); // Cotação do dólar
-  const [convertedProducts, setConvertedProducts] = useState([]); // Produtos convertidos
-  const [error, setError] = useState(""); // Para exibir erros
+  const [selectedDate, setSelectedDate] = useState("");
+  const [dollarRate, setDollarRate] = useState(null);
+  const [convertedProducts, setConvertedProducts] = useState([]);
+  const [error, setError] = useState("");
 
-  // Função para converter data no formato aceito pela API do Banco Central
   const formatDate = (date) => {
     const [year, month, day] = date.split("-");
     return `${month}-${day}-${year}`;
   };
 
-  // Buscar cotação do dólar pela API do Banco Central
   const fetchDollarRate = async (date) => {
     try {
       const formattedDate = formatDate(date);
@@ -24,7 +23,7 @@ const ConversaoPrecos = ({ products }) => {
       if (data.value && data.value.length > 0) {
         const rate = data.value[0].cotacaoVenda;
         setDollarRate(rate);
-        setError(""); // Limpa o erro se a cotação for encontrada
+        setError("");
         return rate;
       } else {
         setError("Cotação do dólar não encontrada para a data selecionada.");
@@ -63,37 +62,47 @@ const ConversaoPrecos = ({ products }) => {
   };
 
   const handleCleanPrices = () => {
-    setConvertedProducts([]); // Limpa a lista de produtos convertidos
-    setDollarRate(null); // Opcional: limpar a cotação exibida
-    setError(""); // Opcional: limpar mensagens de erro
+    setConvertedProducts([]);
+    setDollarRate(null);
+    setError("");
   };
 
   return (
-    <div>
-      <h1>Conversão de Preços</h1>
-      <label>
-        Data do Fechamento do Dólar:
-        <input
-          type="date"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        />
-      </label>
-      <button onClick={handleConvertPrices}>Exibir Preços Convertidos</button>
-      <button onClick={handleCleanPrices}>Limpar Lista</button>
-      {error && <p style={{ color: "red" }}>{error}</p>}
-      {dollarRate && <p>Cotação do Dólar: R$ {dollarRate.toFixed(4)}</p>}
-      <h2>Produtos Convertidos</h2>
-      <ul>
+    <section className="conversion-container">
+      <h1 className="conversion-title">Conversão de Preços</h1>
+      <div className="conversion-controls">
+        <label className="conversion-label">
+          Data do Fechamento do Dólar:
+          <input
+            type="date"
+            className="conversion-input"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+          />
+        </label>
+        <div className="conversion-buttons">
+          <button className="btn convert-btn" onClick={handleConvertPrices}>
+            Exibir Preços Convertidos
+          </button>
+          <button className="btn clean-btn" onClick={handleCleanPrices}>
+            Limpar Lista
+          </button>
+        </div>
+      </div>
+      {error && <p className="error-message">{error}</p>}
+      {dollarRate && (
+        <p className="rate-info">Cotação do Dólar: R$ {dollarRate.toFixed(4)}</p>
+      )}
+      <h2 className="converted-title">Produtos Convertidos</h2>
+      <ul className="product-list">
         {convertedProducts.map((product) => (
-          <li key={product.id}>
+          <li key={product.id} className="product-item">
             {product.name} - Preço Dentro: R$ {product.priceInside} - Preço Fora: R$ {product.priceOutside}
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 };
 
 export default ConversaoPrecos;
-

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import '../style/Formulario.css';
 
 const FormularioProdutos = ({ onAddProduct }) => {
   const [product, setProduct] = useState({
@@ -14,7 +15,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
   });
 
   const [error, setError] = useState(""); // Mantendo o estado de erro
-
+  const [successMessage, setSuccessMessage] = useState("");
   const BASE_URL = "http://localhost:5001";
 
   const handleChange = (e) => {
@@ -65,9 +66,10 @@ const FormularioProdutos = ({ onAddProduct }) => {
           priceInside: "",
           priceOutside: "",
           ipi: false,
-          ipiRate: 0,
+          ipiRate: "",
         });
-        setError(""); // Limpa o erro ao salvar com sucesso
+        setError("");
+        setSuccessMessage("Produto salvo com sucesso!");
       } else {
         setError("Erro ao salvar produto no servidor.");
       }
@@ -78,53 +80,82 @@ const FormularioProdutos = ({ onAddProduct }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input name="name" placeholder="Nome" value={product.name} onChange={handleChange} required />
+    <form onSubmit={handleSubmit} className="form-container">
+      <input
+        name="name"
+        placeholder="Nome (obrigatório)"
+        value={product.name}
+        onChange={handleChange}
+        required
+        className="input-field"
+      />
       <input
         name="manufacturer"
-        placeholder="Fabricante"
+        placeholder="Fabricante (obrigatório)"
         value={product.manufacturer}
         onChange={handleChange}
         required
+        className="input-field"
       />
-      <input name="origin" placeholder="Origem" value={product.origin} onChange={handleChange} />
+      <input
+        name="origin"
+        placeholder="Origem"
+        value={product.origin}
+        onChange={handleChange}
+        className="input-field"
+      />
       <input
         name="package"
         placeholder="Embalagem"
         value={product.package}
         onChange={handleChange}
+        className="input-field"
       />
-      <select name="currency" value={product.currency} onChange={handleChange}>
+      <select
+        name="currency"
+        value={product.currency}
+        onChange={handleChange}
+        className="select-field"
+      >
         <option value="BRL">Real</option>
         <option value="USD">Dólar</option>
       </select>
       <input
         name="priceInside"
-        placeholder="Preço Dentro"
+        placeholder="Preço Dentro (obrigatório)"
         value={product.priceInside}
         onChange={handleChange}
         required
+        className="input-field"
       />
       <input
         name="priceOutside"
         placeholder="Preço Fora"
         value={product.priceOutside}
         onChange={handleChange}
+        className="input-field"
       />
-      <label>
-        <input type="checkbox" checked={product.ipi} onChange={handleCheckboxChange} />
+      <label className="checkbox-label">
+        <input
+          type="checkbox"
+          checked={product.ipi}
+          onChange={handleCheckboxChange}
+          className="checkbox"
+        />
         Tem IPI
       </label>
       {product.ipi && (
         <input
           name="ipiRate"
-          placeholder="Alíquota (%)"
+          placeholder="Alíquota (%) (obrigatório)"
           value={product.ipiRate}
           onChange={handleChange}
+          className="input-field"
         />
       )}
-      {error && <p style={{ color: "red" }}>{error}</p>} {/* Exibindo o erro aqui */}
-      <button type="submit">Salvar</button>
+      {error && <p className="error-message">{error}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
+      <button type="submit" className="submit-button">Salvar</button>
     </form>
   );
 };

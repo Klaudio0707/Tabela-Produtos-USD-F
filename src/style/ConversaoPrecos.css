@@ -1,0 +1,105 @@
+.conversion-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .conversion-title {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+  }
+  
+  .conversion-controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+  }
+  
+  .conversion-label {
+    font-size: 16px;
+    color: #555;
+  }
+  
+  .conversion-input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .conversion-buttons {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .convert-btn {
+    background-color: #4caf50;
+    color: white;
+  }
+  
+  .clean-btn {
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .error-message {
+    color: red;
+    text-align: center;
+  }
+  
+  .rate-info {
+    font-size: 16px;
+    color: #333;
+    text-align: center;
+    margin: 10px 0;
+  }
+  
+  .converted-title {
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 15px;
+  }
+  
+  .product-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .product-item {
+    font-size: 16px;
+    color: #555;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  @media (max-width: 600px) {
+    .conversion-container {
+      padding: 10px;
+    }
+  
+    .btn {
+      font-size: 12px;
+      padding: 8px;
+    }
+  
+    .conversion-title,
+    .converted-title {
+      font-size: 18px;
+    }
+  }
+  

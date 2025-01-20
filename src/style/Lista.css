@@ -1,0 +1,46 @@
+.container {
+    display: flex;
+    justify-content: flex-start;
+    padding: 20px;
+    width: 100%;
+    gap: 20px;
+  }
+  
+  .lista-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 90%; /* Ajuste o tamanho conforme necessário */
+    margin-left: 2%;
+  }
+  
+  li {
+    display: flex;
+    justify-content: space-between; /* Alinha os itens à esquerda e os botões à direita */
+    align-items: center;
+    padding: 10px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+  }
+  
+  button {
+    padding: 6px 12px;
+    background-color: #4A90E2;
+    color: white;
+    font-size: 14px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #357ABD;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  
