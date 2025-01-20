@@ -94,14 +94,30 @@ const ConversaoPrecos = ({ products }) => {
         <p className="rate-info">Cotação do Dólar: R$ {dollarRate.toFixed(4)}</p>
       )}
       <h2 className="converted-title">Produtos Convertidos</h2>
-      <ul className="product-list">
-        {convertedProducts.map((product) => (
-          <li key={product.id} className="product-item">
-            {product.name} - {product.manufacturer} - Preço Dentro: R$ {product.priceInside} - Preço Fora: R$ {product.priceOutside} - IPI: {product.ipiRate}
-          
-          </li>
-        ))}
-      </ul>
+      {convertedProducts.length > 0 && (
+        <table className="product-table">
+          <thead>
+            <tr>
+              <th>Nome</th>
+              <th>Fabricante</th>
+              <th>Preço Dentro</th>
+              <th>Preço Fora</th>
+              <th>IPI (%)</th>
+            </tr>
+          </thead>
+          <tbody>
+            {convertedProducts.map((product) => (
+              <tr key={product.id}>
+                <td>{product.name}</td>
+                <td>{product.manufacturer}</td>
+                <td>R$ {product.priceInside}</td>
+                <td>R$ {product.priceOutside}</td>
+                <td>{product.ipiRate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
     </section>
   );
 };
