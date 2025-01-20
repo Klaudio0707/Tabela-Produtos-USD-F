@@ -1,19 +1,19 @@
 .form-container {
     display: flex;
-    flex-direction: column;
-    gap: 15px;
-    max-width: 500px;
+   flex-shrink: 2;
+    gap: 1px;
+    max-width: 99%;
     margin: 0 auto;
-    padding: 20px;
+    padding: 40px;
     background-color: #f9f9f9;
-    border-radius: 8px;
+    border-radius: 9px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
   .input-field, .select-field {
     padding: 10px;
     margin: 5px 0;
-    font-size: 16px;
+    font-size: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     width: 100%;
@@ -35,7 +35,7 @@
   }
   
   .error-message, .success-message {
-    font-size: 14px;
+    font-size: 10px;
     color: #fff;
     padding: 10px;
     border-radius: 4px;
@@ -50,12 +50,12 @@
   }
   
   .submit-button {
-    padding: 12px 20px;
+    padding: 1px 2px;
     background-color: #4A90E2;
     color: white;
     font-size: 16px;
     border: none;
-    border-radius: 4px;
+    border-radius: 2px;
     cursor: pointer;
     transition: background-color 0.3s;
     width: 100%;

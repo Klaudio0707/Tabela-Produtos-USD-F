@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
-import Footer from "./Components/Footer";
-import Header from "./Components/Header";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
 import "./App.css";
 
 const App = () => {
@@ -79,8 +79,6 @@ const App = () => {
     <div className="App-header">
     <Header />
     <main>
-
-      <h1>Cadastro e Conversão de Produtos</h1>
       <FormularioProdutos onAddProduct={handleAddProduct} />
       <ListaProdutos
         products={products}

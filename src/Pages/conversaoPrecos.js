@@ -97,7 +97,8 @@ const ConversaoPrecos = ({ products }) => {
       <ul className="product-list">
         {convertedProducts.map((product) => (
           <li key={product.id} className="product-item">
-            {product.name} - Preço Dentro: R$ {product.priceInside} - Preço Fora: R$ {product.priceOutside}
+            {product.name} - {product.manufacturer} - Preço Dentro: R$ {product.priceInside} - Preço Fora: R$ {product.priceOutside} - IPI: {product.ipiRate}
+          
           </li>
         ))}
       </ul>
