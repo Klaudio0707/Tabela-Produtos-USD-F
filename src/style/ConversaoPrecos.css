@@ -1,105 +1,171 @@
+
 .conversion-container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .conversion-title {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-  }
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.conversion-title {
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+/* Controles da conversão */
+.conversion-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.conversion-label {
+  font-size: 1rem;
+  color: #555;
+}
+
+.conversion-input {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 100%;
+  max-width: 250px;
+}
+
+.conversion-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.btn {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.convert-btn {
+  background-color: #28a745;
+}
+
+.clean-btn {
+  background-color: #dc3545;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Mensagens */
+.error-message {
+  color: #dc3545;
+  font-size: 0.9rem;
+}
+
+.rate-info {
+  font-size: 1rem;
+  color: #333;
+}
+
+/* Tabela de produtos convertidos */
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: white;
+}
+
+.product-table th,
+.product-table td {
+  border: transparent;
+  padding: 10px;
+  text-align: center;
+  font-size: 1rem;
+}
+
+.product-table th {
+  background-color: #f8f9fa;
+  color: #333;
+}
+
+.product-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Títulos */
+.converted-title {
+  font-size: 1.5rem;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
   .conversion-controls {
-    display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 20px 0;
+    align-items: flex-start;
   }
-  
-  .conversion-label {
-    font-size: 16px;
-    color: #555;
-  }
-  
-  .conversion-input {
-    width: 100%;
-    padding: 8px;
-    font-size: 16px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-  }
-  
-  .conversion-buttons {
-    display: flex;
-    justify-content: space-between;
-  }
-  
+
   .btn {
-    padding: 10px 15px;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+    font-size: 0.9rem;
+    padding: 8px 16px;
   }
-  
-  .convert-btn {
-    background-color: #4caf50;
-    color: white;
+
+  .product-table th,
+  .product-table td {
+    font-size: 0.9rem;
   }
-  
-  .clean-btn {
-    background-color: #f44336;
-    color: white;
-  }
-  
-  .error-message {
-    color: red;
-    text-align: center;
-  }
-  
-  .rate-info {
-    font-size: 16px;
-    color: #333;
-    text-align: center;
-    margin: 10px 0;
-  }
-  
+}
+
+@media (max-width: 768px) {
+  .conversion-title,
   .converted-title {
-    font-size: 20px;
-    color: #333;
-    margin-bottom: 15px;
+    font-size: 1.5rem;
   }
-  
-  .product-list {
-    list-style: none;
-    padding: 0;
+
+  .btn {
+    font-size: 0.8rem;
+    padding: 6px 12px;
   }
-  
-  .product-item {
-    font-size: 16px;
-    color: #555;
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
+
+  .conversion-input {
+    max-width: 100%;
   }
-  
-  @media (max-width: 600px) {
-    .conversion-container {
-      padding: 10px;
-    }
-  
-    .btn {
-      font-size: 12px;
-      padding: 8px;
-    }
-  
-    .conversion-title,
-    .converted-title {
-      font-size: 18px;
-    }
+
+  .product-table th,
+  .product-table td {
+    font-size: 0.8rem;
+    padding: 8px;
   }
-  
+}
+
+@media (max-width: 480px) {
+  .conversion-title,
+  .converted-title {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    font-size: 0.7rem;
+    padding: 5px 10px;
+  }
+
+  .conversion-controls {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .product-table th,
+  .product-table td {
+    font-size: 0.7rem;
+    padding: 5px;
+  }
+}

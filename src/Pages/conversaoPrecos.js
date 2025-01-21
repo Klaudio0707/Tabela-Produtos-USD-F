@@ -105,14 +105,15 @@ const ConversaoPrecos = ({ products }) => {
               <th>IPI (%)</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="tbody-convertidos">
             {convertedProducts.map((product) => (
               <tr key={product.id}>
                 <td>{product.name}</td>
                 <td>{product.manufacturer}</td>
+                <td>{product.currency}</td>
                 <td>R$ {product.priceInside}</td>
                 <td>R$ {product.priceOutside}</td>
-                <td>{product.ipiRate}</td>
+                <td>{product.ipi ? `${product.ipiRate}%` : "Não"}</td>
               </tr>
             ))}
           </tbody>

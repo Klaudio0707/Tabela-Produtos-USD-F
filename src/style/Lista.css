@@ -1,46 +1,141 @@
 .container {
-    display: flex;
-    justify-content: flex-start;
-    padding: 20px;
-    width: 100%;
-    gap: 20px;
+  display: flex;
+  justify-content: flex-start;
+  padding: 20px;
+  width: 100%;
+  gap: 20px;
+}
+
+.lista-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 1; /* Faz a largura se ajustar proporcionalmente */
+  max-width: 90%;
+  margin-left: 2%;
+}
+
+li {
+  display: flex;
+  justify-content: space-around; /* Alinha os itens e botões */
+  align-items: center;
+  padding: 1em; /* Usa unidade relativa para ajuste automático */
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em; /* Diminuirá automaticamente se o contêiner for menor */
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 0.5em 1em; /* Ajusta proporcionalmente */
+  background-color: #4A90E2;
+  color: white;
+  font-size: 1em; /* Diminuirá junto com o texto */
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #357ABD;
+}
+
+button:focus {
+  outline: none;
+}
+
+/* Tabela de produtos */
+.product-table {
+  width: 100%; /* Ocupa todo o espaço disponível */
+  font-size: 1em; /* Texto se ajusta conforme a tela */
+}
+
+.product-table th,
+.product-table td {
+  padding: 0.5em;
+  text-align: center;
+}
+
+
+.product-table {
+  overflow-x: auto; /* Evita que a tabela "quebre" */
+  white-space: nowrap; /* Impede quebra de texto */
+}
+
+.product-table th {
+  background-color: #f9f9f9;
+  position: sticky;
+  top: 0;
+}
+
+button {
+  font-size: 0.9em; /* Botões menores para tamanhos menores */
+}
+  /* Responsividade para dispositivos móveis */
+  @media (max-width: 768px) {
+    .product-table {
+      font-size: 14px;
+    }
+  
+    .product-table th,
+    .product-table td {
+      padding: 6px;
+    }
+  
+    .product-table td {
+      word-wrap: break-word;
+    }
+  
+    .product-table {
+      overflow-x: auto; /* Permite rolar horizontalmente */
+      white-space: nowrap;
+    }
+  
+    .product-table th,
+    .product-table td {
+ text-align: center;
+      text-align: right;
+      width: 100%;
+    }
+  
+    .product-table th {
+      text-align: center;
+      background-color: #f9f9f9;
+      position: sticky;
+      top: 0;
+    }
+  
+    .product-table tr {
+      text-align: center;
+      display: block;
+      margin-bottom: 15px;
+    }
+  
+    button {
+      font-size: 12px;
+      padding: 6px;
+    }
   }
   
-  .lista-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    max-width: 90%; /* Ajuste o tamanho conforme necessário */
-    margin-left: 2%;
-  }
+  @media (max-width: 600px) {
+    .product-table {
+      font-size: 12px;
+    }
   
-  li {
-    display: flex;
-    justify-content: space-between; /* Alinha os itens à esquerda e os botões à direita */
-    align-items: center;
-    padding: 10px;
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-bottom: 10px;
-  }
+    .product-table th,
+    .product-table td {
+      padding: 5px;
+    }
   
-  button {
-    padding: 6px 12px;
-    background-color: #4A90E2;
-    color: white;
-    font-size: 14px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-  }
+    .product-table {
+      display: block;
+      overflow-x: auto;
+    }
   
-  button:hover {
-    background-color: #357ABD;
+    button {
+      font-size: 10px;
+      padding: 5px;
+    }
   }
-  
-  button:focus {
-    outline: none;
-  }
-  
