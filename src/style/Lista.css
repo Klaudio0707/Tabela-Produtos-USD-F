@@ -1,10 +1,10 @@
 .container {
   display: flex;
-  justify-content: flex-start;
-  padding: 20px;
+  justify-content: center;
+  padding: 15px;
   width: 100%;
   gap: 20px;
-}
+} 
 
 .lista-container {
   display: flex;
@@ -78,6 +78,12 @@ button {
     .product-table {
       font-size: 14px;
     }
+    .lista-container {
+      flex-direction: column;
+      flex: 1; /* Faz a largura se ajustar proporcionalmente */
+     
+    }
+    
   
     .product-table th,
     .product-table td {

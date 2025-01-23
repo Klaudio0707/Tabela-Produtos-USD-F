@@ -77,18 +77,18 @@ const App = () => {
 
   return (
     <div className="App-header">
-    <Header />
-    <main>
-      <FormularioProdutos onAddProduct={handleAddProduct} />
-      <ListaProdutos
-        products={products}
-        onUpdateProduct={handleUpdateProduct}
-        onDeleteProduct={handleDeleteProduct}
+      <Header />
+      <main>
+        <FormularioProdutos onAddProduct={handleAddProduct} />
+        <ListaProdutos
+          products={products}
+          onUpdateProduct={handleUpdateProduct}
+          onDeleteProduct={handleDeleteProduct}
         />
-      <ConversaoPrecos products={products} />
-        </main>
-        <Footer />
-      
+        <ConversaoPrecos products={products} />
+      </main>
+      <Footer />
+
     </div>
   );
 };

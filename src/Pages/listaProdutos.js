@@ -35,7 +35,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
       <h1>Lista de Produtos</h1>
       <table className="product-table">
         <thead>
-          <tr className="th-Titulo">
+          <tr className="th-titulo">
             <th>Nome</th>
             <th>Fabricante</th>
             <th>Origem</th>
