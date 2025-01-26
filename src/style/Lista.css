@@ -1,149 +1,108 @@
-.container {
-  display: flex;
-  justify-content: center;
-  padding: 15px;
-  width: 100%;
-  gap: 20px;
-} 
+/* Estilo Geral da Tabela */
+.product-table {
+  width: 100%; /* Ocupa todo o espaço disponível */
+  border-collapse: collapse; /* Remove os espaços entre as bordas */
+  font-size: 1em; /* Texto ajustável */
+  background-color: #f9f9f9;
+  margin: 0 auto; /* Centraliza a tabela */
+  overflow-x: auto; /* Permite rolar horizontalmente em telas pequenas */
+}
+h1{
+text-align: center;
 
-.lista-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  flex: 1; /* Faz a largura se ajustar proporcionalmente */
-  max-width: 90%;
-  margin-left: 2%;
 }
 
-li {
-  display: flex;
-  justify-content: space-around; /* Alinha os itens e botões */
-  align-items: center;
-  padding: 1em; /* Usa unidade relativa para ajuste automático */
-  background-color: #fff;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  font-size: 1em; /* Diminuirá automaticamente se o contêiner for menor */
-  margin-bottom: 10px;
+/* Estilo para Células e Títulos */
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd; /* Borda sutil */
+  padding: 12px; /* Espaçamento interno */
+  text-align: center; /* Centraliza o texto horizontalmente */
+  vertical-align: middle; /* Centraliza o texto verticalmente */
+  white-space: nowrap; /* Impede quebra de texto */
 }
 
-button {
-  padding: 0.5em 1em; /* Ajusta proporcionalmente */
-  background-color: #4A90E2;
+/* Estilo para Títulos */
+.product-table th {
+  background-color: #4CAF50;
   color: white;
-  font-size: 1em; /* Diminuirá junto com o texto */
+  font-weight: bold;
+  position: sticky;
+  top: 0;
+  z-index: 2; /* Mantém os títulos acima dos dados */
+}
+
+/* Estilo para Linhas */
+.product-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.product-table tr:hover {
+  background-color: #ddd;
+}
+
+/* Estilo para Botões */
+button {
+  font-size: 0.9em;
+  padding: 8px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s;
+}
 
-  
+button:first-child {
+  background-color: #2196F3;
+  color: white;
+}
+
+button:last-child {
+  background-color: #f44336;
+  color: white;
 }
 
 button:hover {
-  background-color: #357ABD;
+  filter: brightness(90%);
 }
 
-button:focus {
-  outline: none;
-}
+/* Responsividade */
+@media (max-width: 768px) {
+  h1{
+text-align: center;
+font-size: 20px;
 
-/* Tabela de produtos */
-.product-table {
-  width: 100%; /* Ocupa todo o espaço disponível */
-  font-size: 1em; /* Texto se ajusta conforme a tela */
-}
-
-.product-table th,
-.product-table td {
-  padding: 0.5em;
-  text-align: center;
-}
-
-
-.product-table {
-  overflow-x: auto; /* Evita que a tabela "quebre" */
-  white-space: nowrap; /* Impede quebra de texto */
-}
-
-.product-table th {
-  background-color: #f9f9f9;
-  position: sticky;
-  top: 0;
-}
-
-button {
-  font-size: 0.9em; /* Botões menores para tamanhos menores */
-}
-  /* Responsividade para dispositivos móveis */
-  @media (max-width: 768px) {
-    .product-table {
-      font-size: 14px;
-    }
-    .lista-container {
-      flex-direction: column;
-      flex: 1; /* Faz a largura se ajustar proporcionalmente */
-     
-    }
-    
-  
-    .product-table th,
-    .product-table td {
-      padding: 6px;
-    }
-  
-    .product-table td {
-      word-wrap: break-word;
-    }
-  
-    .product-table {
-      overflow-x: auto; /* Permite rolar horizontalmente */
-      white-space: nowrap;
-    }
-  
-    .product-table th,
-    .product-table td {
- text-align: center;
-      text-align: right;
-      width: 100%;
-    }
-  
-    .product-table th {
-      text-align: center;
-      background-color: #f9f9f9;
-      position: sticky;
-      top: 0;
-    }
-  
-    .product-table tr {
-      text-align: center;
-      display: block;
-      margin-bottom: 15px;
-    }
-  
-    button {
-      font-size: 12px;
-      padding: 6px;
-    }
   }
-  
-  @media (max-width: 600px) {
-    .product-table {
-      font-size: 12px;
-    }
-  
-    .product-table th,
-    .product-table td {
-      padding: 5px;
-    }
-  
-    .product-table {
-      display: block;
-      overflow-x: auto;
-    }
-  
-    button {
-      font-size: 10px;
-      padding: 5px;
-    }
+  .product-table {
+    font-size: 8px;
+    overflow-x: auto;
   }
+
+  .product-table th,
+  .product-table td {
+    padding: 8px;
+  }
+
+  button {
+    font-size: 0.8em;
+    padding: 6px 10px;
+   
+    background-color: black;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-table {
+    font-size: 7px;
+    display: block; /* Permite rolar horizontalmente */
+  }
+
+  .product-table th,
+  .product-table td {
+    padding: 6px;
+  }
+
+  button {
+    font-size: 0.7em;
+    padding: 5px;
+  }
+}
