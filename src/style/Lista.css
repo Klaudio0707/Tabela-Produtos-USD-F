@@ -65,44 +65,99 @@ button:hover {
   filter: brightness(90%);
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  h1{
+@media (max-width: 768px){
+h1{
 text-align: center;
-font-size: 20px;
+font-size: 16px;
+margin-bottom: 15px;
+}
+.product-table{
+font-size: 5px;
+overflow-x: auto;
+white-space: nowrap;
+}
+.product-table th, .product-table td{
+padding: 5px;
+text-align: center;
+}
+button{
+font-size: 0.8em;
+padding: 5px 6px;
 
-  }
-  .product-table {
-    font-size: 8px;
-    overflow-x: auto;
-  }
+}
+}
+@media (max-width: 600px) {
+h1{
+font-size: 12px;
+margin-bottom: 4px;
+}
+.product-table{
+display: block;
+font-size: 3px;
+overflow: auto;
+align-content: center;
 
-  .product-table th,
-  .product-table td {
-    padding: 8px;
-  }
+}
+.product-table th, .product-table td{
+padding: 6px;
 
-  button {
-    font-size: 0.8em;
-    padding: 6px 10px;
-   
-    background-color: black;
-  }
+}
+.product-table tr{
+display: flex;
+flex-direction: column;
+border-bottom: 1px solid #ddd;
+margin-bottom: 10px;
 }
 
-@media (max-width: 600px) {
-  .product-table {
-    font-size: 7px;
-    display: block; /* Permite rolar horizontalmente */
-  }
+.product-table th{
+display: none;
+}  
+.product-table td{
+display: flex;
+justify-content: space-between;
+align-items: center;
 
-  .product-table th,
-  .product-table td {
-    padding: 6px;
-  }
+}
+.product-table td::before{
+content: attr(data-label);
+font-weight: bold;
+text-transform: uppercase;
+margin-right: 10px;
+}
+button{
+font-size: 0.8em;
+padding: 4px 6px;
+background-color:#4CAF50; 
 
-  button {
-    font-size: 0.7em;
-    padding: 5px;
-  }
+}
+}
+@media (max-width: 500px){
+.product-table{
+display: block;
+
+
+}
+.product-table thead{
+display: none;
+
+}
+.product-table tr{
+display: grid;
+grid-template-columns:  1fr 1fr;
+gap: 5px;
+}
+.product-table td{
+display: flex;
+justify-content: space-between;
+padding: 5px 10px;
+border-bottom: 1px solid #eee;
+
+}
+.product-table td::before {
+  content: attr(data-label); /* Usa o atributo data-label como título */
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-right: 10px;
+  color: #474747;
+}
 }

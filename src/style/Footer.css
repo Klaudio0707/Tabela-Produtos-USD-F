@@ -1,11 +1,11 @@
 .footer {
-    background-color: #333;
+    background-color: #461515;
     display: flex;
     flex-direction: column;
     align-items: center;
     color: white;
     padding: 10px 20px;
-  
+  position: fixed;
     bottom: 0;
     width: 100%;
  
@@ -19,7 +19,9 @@
   /* Responsividade */
   @media (max-width: 768px) {
     .footer {
-      font-size: 0.8rem;
+      font-size: 5px;
+      text-align: center;
     }
   }
+
   

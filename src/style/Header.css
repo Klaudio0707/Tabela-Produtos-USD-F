@@ -1,5 +1,5 @@
 .header {
-    background-color: #4caf50;
+    background-color: #120ef3;
     color: white;
     padding: 15px 20px;
   }
@@ -13,7 +13,32 @@
 
   
   /* Responsividade */
-  @media (max-width: 768px) {
+  @media (max-width: 775px) {
+    .header{
+      padding:auto;
+
+    }
+    .header-content {
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+    @media (max-width: 600px) {
+      .header{
+        padding:auto;
+  
+      }
+      .header-content {
+        flex-direction: column;
+        text-align: center;
+      }
+
+  }
+  @media (max-width: 500px) {
+    .header{
+      padding:auto;
+
+    }
     .header-content {
       flex-direction: column;
       text-align: center;
@@ -21,4 +46,3 @@
   
 
   }
-  
