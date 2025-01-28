@@ -1,6 +1,6 @@
 /* Estilo Geral da Tabela */
 .product-table {
-  width: 100%; /* Ocupa todo o espaço disponível */
+  width: 95%; /* Ocupa todo o espaço disponível */
   border-collapse: collapse; /* Remove os espaços entre as bordas */
   font-size: 0.8em; /* Texto ajustável */
   background-color: #f9f9f9;
@@ -15,7 +15,7 @@ h1 {
 .product-table th,
 .product-table td {
   border: 1px solid #ddd; /* Borda sutil */
-  padding: 5px; /* Espaçamento interno */
+  padding: px; /* Espaçamento interno */
   text-align: center; /* Centraliza o texto horizontalmente */
   vertical-align: middle; /* Centraliza o texto verticalmente */
   word-wrap: break-word; /* Quebra palavras longas */
@@ -40,7 +40,7 @@ h1 {
 }
 
 /* Estilo para Botões */
-button {
+.lista-container button {
   font-size: 0.9em;
   padding: 8px 12px;
   border: none;
@@ -49,17 +49,17 @@ button {
   transition: background-color 0.3s;
 }
 
-button:first-child {
+.lista-container button:first-child {
   background-color: #2196f3;
   color: white;
 }
 
-button:last-child {
-  background-color: #f44336;
+.lista-container button:last-child {
+  background-color: #db1d10;
   color: white;
 }
 
-button:hover {
+.lista-container button:hover {
   filter: brightness(90%);
 }
 
@@ -70,22 +70,36 @@ button:hover {
     margin-bottom: 15px;
   }
   .product-table {
-    display: block;
-    font-size: 0.9rem;
-    overflow-x: auto;
-    white-space: nowrap;
+    display: flex;
+    flex-direction: column; /* Exibe os itens em coluna */
   }
-   .product-table th,
+
+  .product-table thead {
+    display: none; /* Esconde os cabeçalhos */
+  }
+
+  .product-table tr {
+    display: flex;
+    flex-direction: column; /* Cada linha vira uma "caixa" */
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
+
   .product-table td {
-    padding: 9px;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ddd;
   }
-  /*
-  button {
-    font-size: 0.8em;
-    padding: 5px 6px;
+
+  .product-table td::before {
+    content: attr(data-label); /* Adiciona rótulos às células */
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 10px;
+    color: #4CAF50;
   }
-  */
 }
 @media (max-width: 600px) {
   .product-table {

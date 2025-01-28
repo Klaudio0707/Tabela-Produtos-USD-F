@@ -142,7 +142,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
           onChange={handleCheckboxChange}
           className="checkbox"
         />
-        Tem IPI
+        IPI?
       </label>
       {product.ipi && (
         <input
@@ -150,7 +150,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
           placeholder="Alíquota (%) (obrigatório)"
           value={product.ipiRate}
           onChange={handleChange}
-          className="input-field"
+          className="input-field-IPI"
         />
       )}
       {error && <p className="error-message">{error}</p>}
