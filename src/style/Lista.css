@@ -15,7 +15,7 @@ h1 {
 .product-table th,
 .product-table td {
   border: 1px solid #ddd; /* Borda sutil */
-  padding: px; /* Espaçamento interno */
+  padding: 10px; /* Espaçamento interno */
   text-align: center; /* Centraliza o texto horizontalmente */
   vertical-align: middle; /* Centraliza o texto verticalmente */
   word-wrap: break-word; /* Quebra palavras longas */
@@ -62,11 +62,17 @@ h1 {
 .lista-container button:hover {
   filter: brightness(90%);
 }
+.lista-container input{
+width: 100px;
+height: 25px;
+align-items: center;
+text-align: center;
+}
 
 @media (max-width: 768px) {
   h1 {
     text-align: center;
-    font-size: 14px;
+    font-size: 20px;
     margin-bottom: 15px;
   }
   .product-table {
