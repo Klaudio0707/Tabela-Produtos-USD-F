@@ -2,33 +2,31 @@
 .product-table {
   width: 100%; /* Ocupa todo o espaço disponível */
   border-collapse: collapse; /* Remove os espaços entre as bordas */
-  font-size: 1em; /* Texto ajustável */
+  font-size: 0.8em; /* Texto ajustável */
   background-color: #f9f9f9;
   margin: 0 auto; /* Centraliza a tabela */
-  overflow-x: auto; /* Permite rolar horizontalmente em telas pequenas */
+  table-layout: auto; /* Ajusta o tamanho das colunas automaticamente */
 }
-h1{
-text-align: center;
-
+h1 {
+  text-align: center;
 }
 
 /* Estilo para Células e Títulos */
 .product-table th,
 .product-table td {
   border: 1px solid #ddd; /* Borda sutil */
-  padding: 12px; /* Espaçamento interno */
+  padding: 5px; /* Espaçamento interno */
   text-align: center; /* Centraliza o texto horizontalmente */
   vertical-align: middle; /* Centraliza o texto verticalmente */
-  white-space: nowrap; /* Impede quebra de texto */
+  word-wrap: break-word; /* Quebra palavras longas */
 }
+
 
 /* Estilo para Títulos */
 .product-table th {
-  background-color: #4CAF50;
+  background-color: #4caf50;
   color: white;
   font-weight: bold;
-  position: sticky;
-  top: 0;
   z-index: 2; /* Mantém os títulos acima dos dados */
 }
 
@@ -52,7 +50,7 @@ button {
 }
 
 button:first-child {
-  background-color: #2196F3;
+  background-color: #2196f3;
   color: white;
 }
 
@@ -65,99 +63,60 @@ button:hover {
   filter: brightness(90%);
 }
 
-@media (max-width: 768px){
-h1{
-text-align: center;
-font-size: 16px;
-margin-bottom: 15px;
-}
-.product-table{
-font-size: 5px;
-overflow-x: auto;
-white-space: nowrap;
-}
-.product-table th, .product-table td{
-padding: 5px;
-text-align: center;
-}
-button{
-font-size: 0.8em;
-padding: 5px 6px;
-
-}
+@media (max-width: 768px) {
+  h1 {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 15px;
+  }
+  .product-table {
+    display: block;
+    font-size: 0.9rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+   .product-table th,
+  .product-table td {
+    padding: 9px;
+    text-align: center;
+  }
+  /*
+  button {
+    font-size: 0.8em;
+    padding: 5px 6px;
+  }
+  */
 }
 @media (max-width: 600px) {
-h1{
-font-size: 12px;
-margin-bottom: 4px;
-}
-.product-table{
-display: block;
-font-size: 3px;
-overflow: auto;
-align-content: center;
+  .product-table {
+    display: flex;
+    flex-direction: column; /* Exibe os itens em coluna */
+  }
 
-}
-.product-table th, .product-table td{
-padding: 6px;
+  .product-table thead {
+    display: none; /* Esconde os cabeçalhos */
+  }
 
-}
-.product-table tr{
-display: flex;
-flex-direction: column;
-border-bottom: 1px solid #ddd;
-margin-bottom: 10px;
-}
+  .product-table tr {
+    display: flex;
+    flex-direction: column; /* Cada linha vira uma "caixa" */
+    border-bottom: 1px solid #ddd;
+    margin-bottom: 10px;
+  }
 
-.product-table th{
-display: none;
-}  
-.product-table td{
-display: flex;
-justify-content: space-between;
-align-items: center;
+  .product-table td {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
 
-}
-.product-table td::before{
-content: attr(data-label);
-font-weight: bold;
-text-transform: uppercase;
-margin-right: 10px;
-}
-button{
-font-size: 0.8em;
-padding: 4px 6px;
-background-color:#4CAF50; 
-
-}
-}
-@media (max-width: 500px){
-.product-table{
-display: block;
-
-
-}
-.product-table thead{
-display: none;
-
-}
-.product-table tr{
-display: grid;
-grid-template-columns:  1fr 1fr;
-gap: 5px;
-}
-.product-table td{
-display: flex;
-justify-content: space-between;
-padding: 5px 10px;
-border-bottom: 1px solid #eee;
-
-}
-.product-table td::before {
-  content: attr(data-label); /* Usa o atributo data-label como título */
-  font-weight: bold;
-  text-transform: uppercase;
-  margin-right: 10px;
-  color: #474747;
-}
+  .product-table td::before {
+    content: attr(data-label); /* Adiciona rótulos às células */
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-right: 10px;
+    color: #4CAF50;
+  }
 }
