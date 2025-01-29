@@ -16,7 +16,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
 
   const [error, setError] = useState(""); // Mantendo o estado de erro
   const [successMessage, setSuccessMessage] = useState("");
-  const BASE_URL = "http://localhost:5001";
+  const BASE_URL = "http://localhost:5002";
 
   const handleChange = (e) => {
     const { name, value } = e.target;

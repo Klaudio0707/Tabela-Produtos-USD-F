@@ -93,13 +93,14 @@ const ConversaoPrecos = ({ products }) => {
       {dollarRate && (
         <p className="rate-info">Cotação do Dólar: R$ {dollarRate.toFixed(4)}</p>
       )}
-      <h2 className="converted-title">Produtos Convertidos</h2>
+      
       {convertedProducts.length > 0 && (
         <table className="product-table">
-          <thead>
+                 <thead>
             <tr>
               <th>Nome</th>
               <th>Fabricante</th>
+              <th>Moeda</th>
               <th>Preço Dentro</th>
               <th>Preço Fora</th>
               <th>IPI (%)</th>

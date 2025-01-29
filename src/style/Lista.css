@@ -1,5 +1,5 @@
 /* Estilo Geral da Tabela */
-.product-table {
+.product-table-list{
   width: 95%; /* Ocupa todo o espaço disponível */
   border-collapse: collapse; /* Remove os espaços entre as bordas */
   font-size: 0.8em; /* Texto ajustável */
@@ -12,8 +12,8 @@ h1 {
 }
 
 /* Estilo para Células e Títulos */
-.product-table th,
-.product-table td {
+.product-table-list th,
+.product-table-list td {
   border: 1px solid #ddd; /* Borda sutil */
   padding: 10px; /* Espaçamento interno */
   text-align: center; /* Centraliza o texto horizontalmente */
@@ -23,19 +23,19 @@ h1 {
 
 
 /* Estilo para Títulos */
-.product-table th {
-  background-color: #4caf50;
+.product-table-list th {
+  background-color: #4e59ec;
   color: white;
   font-weight: bold;
   z-index: 2; /* Mantém os títulos acima dos dados */
 }
 
 /* Estilo para Linhas */
-.product-table tr:nth-child(even) {
+.product-table-list tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 
-.product-table tr:hover {
+.product-table-list tr:hover {
   background-color: #ddd;
 }
 
@@ -75,23 +75,23 @@ text-align: center;
     font-size: 20px;
     margin-bottom: 15px;
   }
-  .product-table {
+  .product-table-list{
     display: flex;
     flex-direction: column; /* Exibe os itens em coluna */
   }
 
-  .product-table thead {
+  .product-table-list thead {
     display: none; /* Esconde os cabeçalhos */
   }
 
-  .product-table tr {
+  .product-table-list tr {
     display: flex;
     flex-direction: column; /* Cada linha vira uma "caixa" */
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
   }
 
-  .product-table td {
+  .product-table-list td {
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -99,32 +99,32 @@ text-align: center;
     border-bottom: 1px solid #ddd;
   }
 
-  .product-table td::before {
+  .product-table-list td::before {
     content: attr(data-label); /* Adiciona rótulos às células */
     font-weight: bold;
     text-transform: uppercase;
     margin-right: 10px;
-    color: #4CAF50;
+    color: #133f14;
   }
 }
 @media (max-width: 600px) {
-  .product-table {
+  .product-table-list {
     display: flex;
     flex-direction: column; /* Exibe os itens em coluna */
   }
 
-  .product-table thead {
+  .product-table-list thead {
     display: none; /* Esconde os cabeçalhos */
   }
 
-  .product-table tr {
+  .product-table-list tr {
     display: flex;
     flex-direction: column; /* Cada linha vira uma "caixa" */
     border-bottom: 1px solid #ddd;
     margin-bottom: 10px;
   }
 
-  .product-table td {
+  .product-table-list td {
     display: flex;
     justify-content: space-between;
     padding: 10px;
@@ -132,7 +132,7 @@ text-align: center;
     border-bottom: 1px solid #ddd;
   }
 
-  .product-table td::before {
+  .product-table-list td::before {
     content: attr(data-label); /* Adiciona rótulos às células */
     font-weight: bold;
     text-transform: uppercase;

@@ -8,7 +8,7 @@ import "./App.css";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const BASE_URL = "http://localhost:5001";
+  const BASE_URL = "http://localhost:5002";
 
   // Função para obter os produtos do backend
   const fetchProducts = async () => {

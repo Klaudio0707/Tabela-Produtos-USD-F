@@ -33,7 +33,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   return (
     <div className="lista-container">
       <h1>Lista de Produtos</h1>
-      <table className="product-table">
+      <table className="product-table-list">
         <thead>
           <tr className="th-titulo">
             <th>Nome</th>
@@ -56,6 +56,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
             name="name"
             value={editedProduct.name}
             onChange={handleChange}
+            placeholder="Nome"
           />
         </td>
         <td data-label="Fabricante">
@@ -63,6 +64,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
             name="manufacturer"
             value={editedProduct.manufacturer}
             onChange={handleChange}
+            placeholder="Fabricante"
           />
         </td>
         <td data-label="Origem">
@@ -70,6 +72,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
             name="origin"
             value={editedProduct.origin}
             onChange={handleChange}
+            placeholder="Origem"
           />
         </td>
         <td data-label="Embalagem">
@@ -77,6 +80,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
             name="package"
             value={editedProduct.package}
             onChange={handleChange}
+            placeholder="Embalagem"
           />
         </td>
         <td data-label="Moeda">
@@ -84,6 +88,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
             name="currency"
             value={editedProduct.currency}
             onChange={handleChange}
+            placeholder="Moeda"
           >
             <option value="BRL">Real</option>
             <option value="USD">Dólar</option>
@@ -94,6 +99,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
             name="priceInside"
             value={editedProduct.priceInside}
             onChange={handleChange}
+            placeholder="Preço D"
           />
         </td>
         <td data-label="Preço Fora">
@@ -101,6 +107,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
             name="priceOutside"
             value={editedProduct.priceOutside}
             onChange={handleChange}
+            placeholder="Preço F"
           />
         </td>
         <td data-label="IPI">
@@ -121,6 +128,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 name="ipiRate"
                 value={editedProduct.ipiRate}
                 onChange={handleChange}
+                placeholder="IPI"
               />
             )}
           </label>

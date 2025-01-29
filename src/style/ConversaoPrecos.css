@@ -2,8 +2,9 @@
 .conversion-container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 20px;
+  padding: 30px;
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 20px;
 
@@ -30,11 +31,11 @@
 }
 
 .conversion-input {
-  padding: 10px;
+  padding: 5px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 100%;
+  width: 10.0 rem;
   max-width: 250px;
 }
 
@@ -86,14 +87,17 @@
 .product-table th,
 .product-table td {
   border: transparent;
+  border: 1px solid #ddd; /* Borda sutil */
   padding: 10px;
   text-align: center;
   font-size: 1rem;
 }
 
 .product-table th {
-  background-color: #f8f9fa;
-  color: #333;
+  background-color: #4e59ec;
+  color: white;
+  font-weight: bold;
+  z-index: 2; /* Mantém os títulos acima dos dados */
 }
 
 .product-table tbody tr:hover {
@@ -107,12 +111,16 @@
   text-align: center;
   margin-top: 20px;
 }
+.tbody-convertidos{
+
+
+}
 
 /* Responsividade */
 @media (max-width: 1024px) {
   .conversion-controls {
+    display: flex;
     flex-direction: column;
-    align-items: flex-start;
   }
 
   .btn {
@@ -123,6 +131,7 @@
   .product-table th,
   .product-table td {
     font-size: 0.9rem;
+    
   }
 }
 
