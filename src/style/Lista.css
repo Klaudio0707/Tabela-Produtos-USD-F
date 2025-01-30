@@ -9,25 +9,25 @@
 }
 h1 {
   text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
 }
 
 /* Estilo para Células e Títulos */
 .product-table-list th,
 .product-table-list td {
-  border: 1px solid #ddd; /* Borda sutil */
-  padding: 10px; /* Espaçamento interno */
-  text-align: center; /* Centraliza o texto horizontalmente */
+  border: 0.0625rem solid #ddd; /* Borda sutil */
+  padding: 0.625rem; /* Espaçamento interno */
+  text-align: center;
   vertical-align: middle; /* Centraliza o texto verticalmente */
   word-wrap: break-word; /* Quebra palavras longas */
 }
-
 
 /* Estilo para Títulos */
 .product-table-list th {
   background-color: #4e59ec;
   color: white;
   font-weight: bold;
-  z-index: 2; /* Mantém os títulos acima dos dados */
 }
 
 /* Estilo para Linhas */
@@ -42,16 +42,16 @@ h1 {
 /* Estilo para Botões */
 .lista-container button {
   font-size: 0.9em;
-  padding: 8px 12px;
+  padding: 0.5rem 0.75rem;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem;
   cursor: pointer;
   transition: background-color 0.3s;
 }
 
 .lista-container button:first-child {
   background-color: #2196f3;
-  color: white;
+  color: rgb(44, 6, 6);
 }
 
 .lista-container button:last-child {
@@ -62,55 +62,26 @@ h1 {
 .lista-container button:hover {
   filter: brightness(90%);
 }
-.lista-container input{
-width: 100px;
-height: 25px;
-align-items: center;
-text-align: center;
+.lista-container input {
+  width: 80%;
+  height: 1.25rem;
+  text-align: center;
 }
-
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem; /* Espaço entre checkbox e texto */
+  font-size: 1rem;
+}
 @media (max-width: 768px) {
   h1 {
-    text-align: center;
-    font-size: 20px;
-    margin-bottom: 15px;
-  }
-  .product-table-list{
-    display: flex;
-    flex-direction: column; /* Exibe os itens em coluna */
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
   }
 
-  .product-table-list thead {
-    display: none; /* Esconde os cabeçalhos */
-  }
-
-  .product-table-list tr {
-    display: flex;
-    flex-direction: column; /* Cada linha vira uma "caixa" */
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
-  }
-
-  .product-table-list td {
-    display: flex;
-    justify-content: space-between;
-    padding: 10px;
-    border: none;
-    border-bottom: 1px solid #ddd;
-  }
-
-  .product-table-list td::before {
-    content: attr(data-label); /* Adiciona rótulos às células */
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-right: 10px;
-    color: #133f14;
-  }
-}
-@media (max-width: 600px) {
   .product-table-list {
     display: flex;
-    flex-direction: column; /* Exibe os itens em coluna */
+    flex-direction: column;
   }
 
   .product-table-list thead {
@@ -119,24 +90,37 @@ text-align: center;
 
   .product-table-list tr {
     display: flex;
-    flex-direction: column; /* Cada linha vira uma "caixa" */
-    border-bottom: 1px solid #ddd;
-    margin-bottom: 10px;
+    flex-direction: column;
+    border-bottom: 0.0625rem solid #ddd;
+    margin-bottom: 0.625rem;
   }
 
   .product-table-list td {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
+    padding: 0.625rem;
     border: none;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 0.0625rem solid #ddd;
   }
 
   .product-table-list td::before {
-    content: attr(data-label); /* Adiciona rótulos às células */
+    content: attr(data-label);
     font-weight: bold;
     text-transform: uppercase;
-    margin-right: 10px;
-    color: #4CAF50;
+    margin-right: 0.625rem;
+    color: #133f14;
+  }
+
+  .lista-container input {
+    width: 7rem;
+    height: 1.25rem;
+    text-align: center;
+    border-radius: 0.375rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .product-table-list td::before {
+    font-size: 0.9rem; /* Ajusta o tamanho do texto do rótulo */
   }
 }

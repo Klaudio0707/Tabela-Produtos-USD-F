@@ -48,117 +48,118 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
           </tr>
         </thead>
         <tbody>
-  {products.map((product) =>
-    editingProductId === product.id ? (
-      <tr key={product.id} className="input-lista">
-        <td data-label="Nome">
-          <input
-            name="name"
-            value={editedProduct.name}
-            onChange={handleChange}
-            placeholder="Nome"
-          />
-        </td>
-        <td data-label="Fabricante">
-          <input
-            name="manufacturer"
-            value={editedProduct.manufacturer}
-            onChange={handleChange}
-            placeholder="Fabricante"
-          />
-        </td>
-        <td data-label="Origem">
-          <input
-            name="origin"
-            value={editedProduct.origin}
-            onChange={handleChange}
-            placeholder="Origem"
-          />
-        </td>
-        <td data-label="Embalagem">
-          <input
-            name="package"
-            value={editedProduct.package}
-            onChange={handleChange}
-            placeholder="Embalagem"
-          />
-        </td>
-        <td data-label="Moeda">
-          <select
-            name="currency"
-            value={editedProduct.currency}
-            onChange={handleChange}
-            placeholder="Moeda"
-          >
-            <option value="BRL">Real</option>
-            <option value="USD">Dólar</option>
-          </select>
-        </td>
-        <td data-label="Preço Dentro">
-          <input
-            name="priceInside"
-            value={editedProduct.priceInside}
-            onChange={handleChange}
-            placeholder="Preço D"
-          />
-        </td>
-        <td data-label="Preço Fora">
-          <input
-            name="priceOutside"
-            value={editedProduct.priceOutside}
-            onChange={handleChange}
-            placeholder="Preço F"
-          />
-        </td>
-        <td data-label="IPI">
-          <label>
-            <input
-              type="checkbox"
-              name="ipi"
-              checked={editedProduct.ipi}
-              onChange={(e) =>
-                setEditedProduct((prev) => ({
-                  ...prev,
-                  ipi: e.target.checked,
-                }))
-              }
-            />
-            {editedProduct.ipi && (
-              <input
-                name="ipiRate"
-                value={editedProduct.ipiRate}
-                onChange={handleChange}
-                placeholder="IPI"
-              />
-            )}
-          </label>
-        </td>
-        <td data-label="Ações">
-          <button onClick={handleSaveEdit}>Salvar</button>
-          <button onClick={handleCancelEdit}>Cancelar</button>
-        </td>
-      </tr>
-    ) : (
-      <tr key={product.id} className="tr-lista">
-        <td data-label="Nome">{product.name}</td>
-        <td data-label="Fabricante">{product.manufacturer}</td>
-        <td data-label="Origem">{product.origin}</td>
-        <td data-label="Embalagem">{product.package}</td>
-        <td data-label="Moeda">{product.currency}</td>
-        <td data-label="Preço Dentro">{product.priceInside}</td>
-        <td data-label="Preço Fora">{product.priceOutside}</td>
-        <td data-label="IPI">{product.ipi ? `Sim (${product.ipiRate}%)` : "Não"}</td>
-        <div className="button-acoes">
+          {products.map((product) =>
+            editingProductId === product.id ? (
+              <tr key={product.id} className="input-lista">
+                <td data-label="Nome">
+                  <input
+                    name="name"
+                    value={editedProduct.name}
+                    onChange={handleChange}
+                    placeholder="Nome"
+                  />
+                </td>
+                <td data-label="Fabricante">
+                  <input
+                    name="manufacturer"
+                    value={editedProduct.manufacturer}
+                    onChange={handleChange}
+                    placeholder="Fabricante"
+                  />
+                </td>
+                <td data-label="Origem">
+                  <input
+                    name="origin"
+                    value={editedProduct.origin}
+                    onChange={handleChange}
+                    placeholder="Origem"
+                  />
+                </td>
+                <td data-label="Embalagem">
+                  <input
+                    name="package"
+                    value={editedProduct.package}
+                    onChange={handleChange}
+                    placeholder="Embalagem"
+                  />
+                </td>
+                <td data-label="Moeda">
+                  <select
+                    name="currency"
+                    value={editedProduct.currency}
+                    onChange={handleChange}
+                    placeholder="Moeda"
+                  >
+                    <option value="BRL">Real</option>
+                    <option value="USD">Dólar</option>
+                  </select>
+                </td>
+                <td data-label="Preço Dentro">
+                  <input
+                    name="priceInside"
+                    value={editedProduct.priceInside}
+                    onChange={handleChange}
+                    placeholder="Preço D"
+                  />
+                </td>
+                <td data-label="Preço Fora">
+                  <input
+                    name="priceOutside"
+                    value={editedProduct.priceOutside}
+                    onChange={handleChange}
+                    placeholder="Preço F"
+                  />
+                </td>
+                <td data-label="IPI">
+                  <label className="checkbox-container">
+                    <input
+                      className="checkbox-list"
+                      type="checkbox"
+                      name="ipi"
+                      checked={editedProduct.ipi}
+                      onChange={(e) =>
+                        setEditedProduct((prev) => ({
+                          ...prev,
+                          ipi: e.target.checked,
+                        }))
+                      }
+                    />
+                    {editedProduct.ipi && (
+                      <input
+                        name="ipiRate"
+                        value={editedProduct.ipiRate}
+                        onChange={handleChange}
+                        placeholder="IPI"
+                      />
+                    )}
+                  </label>
+                </td>
+                <td data-label="Ações">
+                  <button onClick={handleSaveEdit}>Salvar</button>
+                  <button onClick={handleCancelEdit}>Cancelar</button>
+                </td>
+              </tr>
+            ) : (
+              <tr key={product.id} className="tr-lista">
+                <td data-label="Nome">{product.name}</td>
+                <td data-label="Fabricante">{product.manufacturer}</td>
+                <td data-label="Origem">{product.origin}</td>
+                <td data-label="Embalagem">{product.package}</td>
+                <td data-label="Moeda">{product.currency}</td>
+                <td data-label="Preço Dentro">{product.priceInside}</td>
+                <td data-label="Preço Fora">{product.priceOutside}</td>
+                <td data-label="IPI">{product.ipi ? `Sim (${product.ipiRate}%)` : "Não"}</td>
+                <div className="button-acoes">
 
-        <td data-label="Ações">
-          <button onClick={() => handleEditClick(product)}>Editar</button>
-          <button onClick={() => handleDeleteClick(product.id)}>Remover</button>
-        </td>
-        </div>
-      </tr>
-    )
-  )}
-</tbody>
+                  <td data-label="Ações">
+                    <button onClick={() => handleEditClick(product)}>Editar</button>
+                    <button onClick={() => handleDeleteClick(product.id)}>Remover</button>
+                  </td>
+                </div>
+              </tr>
+            )
+          )}
+        </tbody>
       </table>
     </div>
   );
@@ -166,4 +167,3 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
 
 export default ListaProdutos;
 
-  

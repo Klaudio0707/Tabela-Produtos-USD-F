@@ -1,12 +1,16 @@
+:root {
+  font-size: 16px; /* Tamanho base padrão */
+}
+
 
 .conversion-container {
-  max-width: 1200px;
+  max-width: 75rem;
   margin: 0 auto;
-  padding: 30px;
+  padding: 1.875rem; 
   display: flex;
   align-items: center;
   flex-direction: column;
-  gap: 20px;
+  gap: 1.25rem;
 
 }
 
@@ -20,7 +24,7 @@
 .conversion-controls {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1.25rem;
   justify-content: space-between;
   align-items: center;
 }
@@ -31,25 +35,25 @@
 }
 
 .conversion-input {
-  padding: 5px;
+  padding: 0.3125rem;
   font-size: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 10.0 rem;
-  max-width: 250px;
+  border: 0.0625rem solid #ccc;
+  border-radius: 0.25rem;
+  width: 10 rem;
+  max-width: 15.625rem; /* 250px */
 }
 
 .conversion-buttons {
   display: flex;
-  gap: 10px;
+  gap: 0.625rem;
 }
 
 .btn {
-  padding: 10px 20px;
+  padding: 0.625rem 1.25rem;
   font-size: 1rem;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 0.25rem; /* 4px */
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -86,8 +90,8 @@
 
 .product-table th,
 .product-table td {
-  border: transparent;
-  border: 1px solid #ddd; /* Borda sutil */
+  border: 0.0625rem solid #ddd; /* 1px */
+  padding: 0.625rem; /* 10px */
   padding: 10px;
   text-align: center;
   font-size: 1rem;
@@ -154,7 +158,7 @@
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .conversion-title,
   .converted-title {
     font-size: 1.2rem;
