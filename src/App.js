@@ -34,7 +34,7 @@ const App = () => {
   // Atualizar um produto no backend
   const handleUpdateProduct = async (updatedProduct) => {
     try {
-      const response = await fetch(`${BASE_URL}/products/${updatedProduct.id}`, {
+      const response = await fetch(`${BASE_URL}/products/${updatedProduct._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(updatedProduct),
@@ -43,7 +43,7 @@ const App = () => {
       if (response.ok) {
         setProducts((prevProducts) =>
           prevProducts.map((product) =>
-            product.id === updatedProduct.id ? updatedProduct : product
+            product._id === updatedProduct._id ? updatedProduct : product
           )
         );
       } else {
@@ -62,7 +62,7 @@ const App = () => {
       });
 
       if (response.ok) {
-        setProducts((prevProducts) => prevProducts.filter((product) => product.id !== id));
+        setProducts((prevProducts) => prevProducts.filter((product) => product._id !== id));
       } else {
         console.error("Erro ao remover produto");
       }

@@ -3,22 +3,22 @@ import "../style/Lista.css";
 
 const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const [editingProductId, setEditingProductId] = useState(null);
-  const [editedProduct, setEditedProduct] = useState(null);
+  const [editedProduct, setEditedProduct] = useState({});
 
   const handleEditClick = (product) => {
-    setEditingProductId(product.id);
+    setEditingProductId(product._id);
     setEditedProduct({ ...product }); // Carrega os dados do produto no estado de edição
   };
 
   const handleCancelEdit = () => {
     setEditingProductId(null);
-    setEditedProduct(null);
+    setEditedProduct({});
   };
 
   const handleSaveEdit = () => {
     onUpdateProduct(editedProduct); // Chama o callback com os dados editados
     setEditingProductId(null);
-    setEditedProduct(null);
+    setEditedProduct({});
   };
 
   const handleChange = (e) => {
@@ -49,8 +49,8 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
         </thead>
         <tbody>
           {products.map((product) =>
-            editingProductId === product.id ? (
-              <tr key={product.id} className="input-lista">
+            editingProductId === product._id ? (
+              <tr key={product._id} className="input-lista">
                 <td data-label="Nome">
                   <input
                     name="name"
@@ -88,7 +88,6 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     name="currency"
                     value={editedProduct.currency}
                     onChange={handleChange}
-                    placeholder="Moeda"
                   >
                     <option value="BRL">Real</option>
                     <option value="USD">Dólar</option>
@@ -99,7 +98,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     name="priceInside"
                     value={editedProduct.priceInside}
                     onChange={handleChange}
-                    placeholder="Preço D"
+                    placeholder="Preço Dentro"
                   />
                 </td>
                 <td data-label="Preço Fora">
@@ -107,7 +106,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     name="priceOutside"
                     value={editedProduct.priceOutside}
                     onChange={handleChange}
-                    placeholder="Preço F"
+                    placeholder="Preço Fora"
                   />
                 </td>
                 <td data-label="IPI">
@@ -129,7 +128,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                         name="ipiRate"
                         value={editedProduct.ipiRate}
                         onChange={handleChange}
-                        placeholder="IPI"
+                        placeholder="IPI Rate"
                       />
                     )}
                   </label>
@@ -140,7 +139,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
               </tr>
             ) : (
-              <tr key={product.id} className="tr-lista">
+              <tr key={product._id} className="tr-lista">
                 <td data-label="Nome">{product.name}</td>
                 <td data-label="Fabricante">{product.manufacturer}</td>
                 <td data-label="Origem">{product.origin}</td>
@@ -148,14 +147,13 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Moeda">{product.currency}</td>
                 <td data-label="Preço Dentro">{product.priceInside}</td>
                 <td data-label="Preço Fora">{product.priceOutside}</td>
-                <td data-label="IPI">{product.ipi ? `Sim (${product.ipiRate}%)` : "Não"}</td>
-                <div className="button-acoes">
-
-                  <td data-label="Ações">
-                    <button onClick={() => handleEditClick(product)}>Editar</button>
-                    <button onClick={() => handleDeleteClick(product.id)}>Remover</button>
-                  </td>
-                </div>
+                <td data-label="IPI">
+                  {product.ipi ? `Sim (${product.ipiRate}%)` : "Não"}
+                </td>
+                <td data-label="Ações">
+                  <button onClick={() => handleEditClick(product)}>Editar</button>
+                  <button onClick={() => handleDeleteClick(product._id)}>Remover</button>
+                </td>
               </tr>
             )
           )}
@@ -166,4 +164,3 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
 };
 
 export default ListaProdutos;
-
