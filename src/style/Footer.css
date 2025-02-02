@@ -18,9 +18,13 @@
   /* Responsividade */
   @media (max-width: 768px) {
     .footer {
-      padding:auto;
+      width: 100%;
       font-size: 5px;
       text-align: center;
+    }
+    .footer p {
+      margin: 0;
+      font-size: 0.7rem;
     }
   }
 

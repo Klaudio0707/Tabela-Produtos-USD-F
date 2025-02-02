@@ -1,6 +1,6 @@
 /* Estilo Geral da Tabela */
 .product-table-list {
-  width: 95%; /* Ocupa a maior parte da largura da tela */
+  width: 90%; /* Ocupa a maior parte da largura da tela */
   border-collapse: collapse; /* Remove os espaços entre as bordas */
   font-size: 0.6rem; /* Texto ajustável para telas menores */
   background-color: #f9f9f9; /* Cor de fundo padrão */
@@ -18,7 +18,7 @@ h1 {
 .product-table-list th,
 .product-table-list td {
   border: 0.0425rem solid #ddd; /* Borda sutil para separar células */
-  padding: 0.025rem; /* Espaçamento interno nas células */
+  padding: 0.165rem; /* Espaçamento interno nas células */
   text-align: center; /* Centraliza o texto horizontalmente */
   vertical-align: middle; /* Centraliza o texto verticalmente */
   word-wrap: break-word; /* Quebra palavras longas para evitar overflow */
@@ -40,8 +40,8 @@ h1 {
 
 /* Estilo para Botões */
 .lista-container button {
-  font-size: 0.6rem; /* Ajuste do texto do botão */
-  padding: 0.5rem 0.75rem; /* Espaçamento interno */
+  font-size: 0.5rem; /* Ajuste do texto do botão */
+  padding: 0.4rem 0.45rem; /* Espaçamento interno */
   border: none; /* Remove bordas padrão */
   border-radius: 0.25rem; /* Bordas arredondadas */
   cursor: pointer; /* Indica que o botão é clicável */
@@ -64,7 +64,7 @@ h1 {
 
 .lista-container input {
   font-size: 0.6rem; /* Tamanho do texto */
-  width: 80%; /* Largura adaptável */
+  width: 70%; /* Largura adaptável */
   height: 0.8rem; /* Altura do campo */
   text-align: center; /* Centraliza o texto */
 }
@@ -80,15 +80,16 @@ h1 {
 /* Estilização Responsiva */
 
 /* Tablets e smartphones (até 768px) */
-@media (max-width: 768px) {
+@media (max-width: 500px) {
   h1 {
-    font-size: 1.2rem; /* Reduz o tamanho do título */
-    margin-bottom: 0.8rem; /* Ajusta o espaçamento inferior */
+    font-size: 0.6rem; /* Reduz o tamanho do título */
+    margin-bottom: 0.6rem; /* Ajusta o espaçamento inferior */
   }
 
   .product-table-list {
     display: flex;
     flex-direction: column; /* Alinha os elementos verticalmente */
+    font-size: 0.8rem;
   }
 
   .product-table-list thead {
@@ -98,14 +99,14 @@ h1 {
   .product-table-list tr {
     display: flex;
     flex-direction: column; /* Cada linha é exibida como um bloco */
-    border-bottom: 0.0625rem solid #ddd; /* Separação entre as linhas */
-    margin-bottom: 0.425rem; /* Espaço entre os blocos */
+    border-bottom: 0.0425rem solid #ddd; /* Separação entre as linhas */
+    margin-bottom: 0.0425rem; /* Espaço entre os blocos */
   }
 
   .product-table-list td {
     display: flex;
     justify-content: space-between; /* Espaço entre rótulo e valor */
-    padding: 0.625rem; /* Espaçamento interno */
+    padding: 0.325rem; /* Espaçamento interno */
     border: none; /* Remove bordas internas */
     border-bottom: 0.0625rem solid #ddd; /* Linha divisória inferior */
   }
@@ -114,23 +115,19 @@ h1 {
     content: attr(data-label); /* Rótulo antes do valor */
     font-weight: bold; /* Destaca o rótulo */
     text-transform: uppercase; /* Transforma texto em maiúsculas */
-    margin-right: 0.525rem; /* Espaço após o rótulo */
-    color: #133f14; /* Cor do rótulo */
+    margin-right: 11rem; /* Espaço após o rótulo */
+    color: #050505; /* Cor do rótulo */
   }
 
   .lista-container input {
-    width: 7rem; /* Reduz largura do campo de entrada */
-    height: 2rem; /* Aumenta altura */
-    border-radius: 0.375rem; /* Bordas arredondadas */
+    font-size: 0.5rem;
+    width: 0.5rem; /* Reduz largura do campo de entrada */
+    height: 0.02rem; /* Aumenta altura */
+    border-radius: 0.275rem; /* Bordas arredondadas */
   }
 }
 
-/* Smartphones menores (até 600px) */
-@media (max-width: 600px) {
-  .product-table-list td::before {
-    font-size: 0.6rem; /* Reduz o texto do rótulo */
-  }
-}
+
 
 /* Smartphones muito pequenos (até 480px) */
 @media (max-width: 480px) {
@@ -140,11 +137,16 @@ h1 {
   }
 
   .product-table-list tr {
-    margin-bottom: 0.325rem; /* Menor espaço entre linhas */
+    margin-bottom: 0.225rem; /* Menor espaço entre linhas */
   }
 
   .lista-container input {
     width: 4rem; /* Reduz largura do campo */
-    height: 1.5rem; /* Altura menor */
+    height: 1rem; /* Altura menor */
+  }
+  input[type="checkbox"] {
+    /* Estilizações específicas */
+    width: 0.8rem;
+    height: 0.7rem;
   }
 }
