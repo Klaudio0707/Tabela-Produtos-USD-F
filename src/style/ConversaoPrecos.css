@@ -2,20 +2,18 @@
   font-size: 16px; /* Tamanho base padrão */
 }
 
-
 .conversion-container {
   max-width: 75rem;
   margin: 0 auto;
-  padding: 1.875rem; 
+  padding: 1.875rem;
   display: flex;
   align-items: center;
   flex-direction: column;
   gap: 1.25rem;
-
 }
 
 .conversion-title {
-  font-size: 1.4rem;
+  font-size: 1.1rem;
   color: #050505;
   text-align: center;
 }
@@ -49,8 +47,8 @@
 }
 
 .btn {
-  padding: 0.625rem 1.25rem;
-  font-size: 0.1rem;
+  padding: 0.625rem 0.8rem;
+  font-size: 0.6rem;
   color: white;
   border: none;
   border-radius: 0.25rem; /* 4px */
@@ -60,12 +58,10 @@
 
 .convert-btn {
   background-color: #28a745;
- 
 }
 
 .clean-btn {
   background-color: #dc3545;
-
 }
 
 .btn:hover {
@@ -75,7 +71,7 @@
 /* Mensagens */
 .error-message {
   color: #ddd;
-   font-size: 0.9rem;
+  font-size: 0.9rem;
 }
 
 .rate-info {
@@ -85,18 +81,18 @@
 
 /* Tabela de produtos convertidos */
 .product-table {
-  width: 100%;
+  width: 80%;
   border-collapse: collapse;
   background-color: white;
 }
 
 .product-table th,
 .product-table td {
-  border: 0.0625rem solid #ddd; /* 1px */
-  padding: 0.625rem; /* 10px */
+  border: 0.0425rem solid #ddd; /* 1px */
+  padding: 0.425rem; /* 10px */
   padding: 10px;
   text-align: center;
-  font-size: 0.7rem;
+  font-size: 0.6rem;
 }
 
 .product-table th {
@@ -112,31 +108,13 @@
 
 /* Títulos */
 .converted-title {
-  font-size: 1.0rem;
+  font-size: 1rem;
   color: #333;
   text-align: center;
   margin-top: 20px;
 }
 
-
 /* Responsividade */
-@media (max-width: 1024px) {
-  .conversion-controls {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .btn {
-    font-size: 0.6rem;
-    padding: 8px 16px;
-  }
-
-  .product-table th,
-  .product-table td {
-    font-size: 0.9rem;
-    
-  }
-}
 
 @media (max-width: 768px) {
   .conversion-title,

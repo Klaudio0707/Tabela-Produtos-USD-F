@@ -18,7 +18,7 @@ h1 {
 .product-table-list th,
 .product-table-list td {
   border: 0.0425rem solid #ddd; /* Borda sutil para separar células */
-  padding: 0.165rem; /* Espaçamento interno nas células */
+  padding: 0.325rem; /* Espaçamento interno nas células */
   text-align: center; /* Centraliza o texto horizontalmente */
   vertical-align: middle; /* Centraliza o texto verticalmente */
   word-wrap: break-word; /* Quebra palavras longas para evitar overflow */
@@ -63,9 +63,9 @@ h1 {
 }
 
 .lista-container input {
-  font-size: 0.6rem; /* Tamanho do texto */
+  font-size: 0.4rem; /* Tamanho do texto */
   width: 70%; /* Largura adaptável */
-  height: 0.8rem; /* Altura do campo */
+  height: 0.5rem; /* Altura do campo */
   text-align: center; /* Centraliza o texto */
 }
 
@@ -126,8 +126,6 @@ h1 {
     border-radius: 0.275rem; /* Bordas arredondadas */
   }
 }
-
-
 
 /* Smartphones muito pequenos (até 480px) */
 @media (max-width: 480px) {

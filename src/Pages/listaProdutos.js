@@ -147,12 +147,16 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Moeda">{product.currency}</td>
                 <td data-label="Preço Dentro">{product.priceInside}</td>
                 <td data-label="Preço Fora">{product.priceOutside}</td>
-                <td data-label="IPI">
+                <td data-label="IPI" className="td-ipi">
                   {product.ipi ? `Sim ${product.ipiRate}%` : "Não"}
                 </td>
                 <td data-label="Ações">
-                  <button onClick={() => handleEditClick(product)}>Editar</button>
-                  <button onClick={() => handleDeleteClick(product._id)}>Remover</button>
+                  <button onClick={() => handleEditClick(product)}>
+                    Editar
+                  </button>
+                  <button onClick={() => handleDeleteClick(product._id)}>
+                    Remover
+                  </button>
                 </td>
               </tr>
             )

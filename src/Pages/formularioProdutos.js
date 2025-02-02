@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import '../style/Formulario.css';
+import "../style/Formulario.css";
 
 const FormularioProdutos = ({ onAddProduct }) => {
   const [product, setProduct] = useState({
@@ -22,9 +22,10 @@ const FormularioProdutos = ({ onAddProduct }) => {
     const { name, value } = e.target;
     setProduct((prev) => ({
       ...prev,
-      [name]: name === "ipiRate" || name === "priceInside" || name === "priceOutside"
-        ? value  // Mantém o valor como string para permitir entrada decimal
-        : value,
+      [name]:
+        name === "ipiRate" || name === "priceInside" || name === "priceOutside"
+          ? value // Mantém o valor como string para permitir entrada decimal
+          : value,
     }));
   };
   const handleCheckboxChange = () => {
@@ -44,7 +45,9 @@ const FormularioProdutos = ({ onAddProduct }) => {
       ...product,
       // Converte os preços para números com 2 casas decimais
       priceInside: parseFloat(product.priceInside.replace(",", ".")).toFixed(2),
-      priceOutside: parseFloat(product.priceOutside.replace(",", ".")).toFixed(2),
+      priceOutside: parseFloat(product.priceOutside.replace(",", ".")).toFixed(
+        2
+      ),
     };
 
     try {
@@ -155,7 +158,9 @@ const FormularioProdutos = ({ onAddProduct }) => {
       )}
       {error && <p className="error-message">{error}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
-      <button type="submit" className="submit-button">Salvar</button>
+      <button type="submit" className="submit-button">
+        Salvar
+      </button>
     </form>
   );
 };

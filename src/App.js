@@ -4,7 +4,6 @@ import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
-import "./App.css";
 
 const App = () => {
   const [products, setProducts] = useState([]);
@@ -25,7 +24,6 @@ const App = () => {
     }
   };
 
-
   // Função para adicionar um novo produto
   const handleAddProduct = (newProduct) => {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
@@ -34,11 +32,14 @@ const App = () => {
   // Atualizar um produto no backend
   const handleUpdateProduct = async (updatedProduct) => {
     try {
-      const response = await fetch(`${BASE_URL}/products/${updatedProduct._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedProduct),
-      });
+      const response = await fetch(
+        `${BASE_URL}/products/${updatedProduct._id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedProduct),
+        }
+      );
 
       if (response.ok) {
         setProducts((prevProducts) =>
@@ -62,7 +63,9 @@ const App = () => {
       });
 
       if (response.ok) {
-        setProducts((prevProducts) => prevProducts.filter((product) => product._id !== id));
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product._id !== id)
+        );
       } else {
         console.error("Erro ao remover produto");
       }
@@ -88,7 +91,6 @@ const App = () => {
         <ConversaoPrecos products={products} />
       </main>
       <Footer />
-
     </div>
   );
 };

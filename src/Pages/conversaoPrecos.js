@@ -31,7 +31,9 @@ const ConversaoPrecos = ({ products }) => {
         return null;
       }
     } catch (error) {
-      setError("Erro ao buscar cotação do dólar. Verifique a data e tente novamente.");
+      setError(
+        "Erro ao buscar cotação do dólar. Verifique a data e tente novamente."
+      );
       console.error("Erro ao buscar cotação do dólar:", error);
       return null;
     }
@@ -91,7 +93,9 @@ const ConversaoPrecos = ({ products }) => {
       </div>
       {error && <p className="error-message">{error}</p>}
       {dollarRate && (
-        <p className="rate-info">Cotação do Dólar: R$ {dollarRate.toFixed(4)}</p>
+        <p className="rate-info">
+          Cotação do Dólar: R$ {dollarRate.toFixed(4)}
+        </p>
       )}
 
       {convertedProducts.length > 0 && (
