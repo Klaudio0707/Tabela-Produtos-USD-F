@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
@@ -7,10 +7,10 @@ import Header from "./Components/Header";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const BASE_URL = "http://localhost:5002";
+  const BASE_URL = process.env.API_URL;
 
   // Função para obter os produtos do backend
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       const response = await fetch(`${BASE_URL}/products`);
       if (response.ok) {
@@ -22,7 +22,7 @@ const App = () => {
     } catch (error) {
       console.error("Erro na requisição:", error);
     }
-  };
+  }, [BASE_URL]);
 
   // Função para adicionar um novo produto
   const handleAddProduct = (newProduct) => {
@@ -76,7 +76,7 @@ const App = () => {
 
   useEffect(() => {
     fetchProducts();
-  }, []);
+  }, [fetchProducts]);
 
   return (
     <div className="App-header">
@@ -96,3 +96,4 @@ const App = () => {
 };
 
 export default App;
+
