@@ -7,12 +7,12 @@ import Header from "./Components/Header";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const BASE_URL = process.env.API_URL;
+  const API_URL = process.env.API_BACKEND;
 
   // Função para obter os produtos do backend
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await fetch(`${BASE_URL}/products`);
+      const response = await fetch(`${API_URL}/products`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
@@ -22,7 +22,7 @@ const App = () => {
     } catch (error) {
       console.error("Erro na requisição:", error);
     }
-  }, [BASE_URL]);
+  }, [API_URL]);
 
   // Função para adicionar um novo produto
   const handleAddProduct = (newProduct) => {
@@ -33,7 +33,7 @@ const App = () => {
   const handleUpdateProduct = async (updatedProduct) => {
     try {
       const response = await fetch(
-        `${BASE_URL}/products/${updatedProduct._id}`,
+        `${API_URL}/products/${updatedProduct._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ const App = () => {
   // Remover um produto do backend
   const handleDeleteProduct = async (id) => {
     try {
-      const response = await fetch(`${BASE_URL}/products/${id}`, {
+      const response = await fetch(`${API_URL}/products/${id}`, {
         method: "DELETE",
       });
 
