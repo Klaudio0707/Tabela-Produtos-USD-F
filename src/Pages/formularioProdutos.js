@@ -16,7 +16,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
 
   const [error, setError] = useState(""); // Mantendo o estado de erro
   const [successMessage, setSuccessMessage] = useState("");
-  const BASE_URL = "http://localhost:5002";
+  const API_BACKEND = process.env.API_BACKEND;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,7 +51,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
     };
 
     try {
-      const response = await fetch(`${BASE_URL}/products`, {
+      const response = await fetch(`${API_BACKEND}/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
