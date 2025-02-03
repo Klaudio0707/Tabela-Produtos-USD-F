@@ -112,7 +112,7 @@ const ConversaoPrecos = ({ products }) => {
           </thead>
           <tbody className="tbody-convertidos">
             {convertedProducts.map((product) => (
-              <tr key={product.id}>
+              <tr key={product._id || product.id}>
                 <td>{product.name}</td>
                 <td>{product.manufacturer}</td>
                 <td>{product.currency}</td>

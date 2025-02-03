@@ -2,7 +2,7 @@
 .product-table-list {
   width: 90%; /* Ocupa a maior parte da largura da tela */
   border-collapse: collapse; /* Remove os espaços entre as bordas */
-  font-size: 0.6rem; /* Texto ajustável para telas menores */
+  font-size: 0.7rem; /* Texto ajustável para telas menores */
   background-color: #f9f9f9; /* Cor de fundo padrão */
   margin: 0 auto; /* Centraliza a tabela */
   table-layout: auto; /* Ajusta automaticamente o tamanho das colunas */
