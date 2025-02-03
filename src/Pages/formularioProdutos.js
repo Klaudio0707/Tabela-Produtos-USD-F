@@ -16,7 +16,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
 
   const [error, setError] = useState(""); // Mantendo o estado de erro
   const [successMessage, setSuccessMessage] = useState("");
-  const API_BACKEND = process.env.API_BACKEND;
+  const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -51,12 +51,12 @@ const FormularioProdutos = ({ onAddProduct }) => {
     };
 
     try {
-      const response = await fetch(`${API_BACKEND}/products`, {
+      const response = await fetch(`${REACT_APP_API_BACKEND}/products`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
       });
-
+console.log(response);
       if (response.ok) {
         const savedProduct = await response.json();
         onAddProduct(savedProduct);

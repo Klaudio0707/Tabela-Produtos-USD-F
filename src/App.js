@@ -7,12 +7,12 @@ import Header from "./Components/Header";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const API_BACKEND = process.env.API_BACKEND;
+  const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
   // Função para obter os produtos do backend
   const fetchProducts = useCallback(async () => {
     try {
-      const response = await fetch(`${API_BACKEND}/products`);
+      const response = await fetch(`${REACT_APP_API_BACKEND}/products`);
       if (response.ok) {
         const data = await response.json();
         setProducts(data);
@@ -22,7 +22,7 @@ const App = () => {
     } catch (error) {
       console.error("Erro na requisição:", error);
     }
-  }, [API_BACKEND]);
+  }, [REACT_APP_API_BACKEND]);
 
   // Função para adicionar um novo produto
   const handleAddProduct = (newProduct) => {
@@ -33,7 +33,7 @@ const App = () => {
   const handleUpdateProduct = async (updatedProduct) => {
     try {
       const response = await fetch(
-        `${API_BACKEND}/products/${updatedProduct._id}`,
+        `${REACT_APP_API_BACKEND}/products/${updatedProduct._id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },
@@ -58,7 +58,7 @@ const App = () => {
   // Remover um produto do backend
   const handleDeleteProduct = async (id) => {
     try {
-      const response = await fetch(`${API_BACKEND}/products/${id}`, {
+      const response = await fetch(`${REACT_APP_API_BACKEND}/products/${id}`, {
         method: "DELETE",
       });
 
