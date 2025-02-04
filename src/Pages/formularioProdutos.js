@@ -56,7 +56,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
       });
-console.log(response);
+      console.log(response);
       if (response.ok) {
         const savedProduct = await response.json();
         onAddProduct(savedProduct);
@@ -84,84 +84,84 @@ console.log(response);
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
-      <input
-        name="name"
-        placeholder="Nome (obrigatório)"
-        value={product.name}
-        onChange={handleChange}
-        required
-        className="input-field"
-      />
-      <input
-        name="manufacturer"
-        placeholder="Fabricante (obrigatório)"
-        value={product.manufacturer}
-        onChange={handleChange}
-        required
-        className="input-field"
-      />
-      <input
-        name="origin"
-        placeholder="Origem"
-        value={product.origin}
-        onChange={handleChange}
-        className="input-field"
-      />
-      <input
-        name="package"
-        placeholder="Embalagem"
-        value={product.package}
-        onChange={handleChange}
-        className="input-field"
-      />
-      <select
-        name="currency"
-        value={product.currency}
-        onChange={handleChange}
-        className="select-field"
-      >
-        <option value="BRL">Real</option>
-        <option value="USD">Dólar</option>
-      </select>
-      <input
-        name="priceInside"
-        placeholder="Preço Dentro (obrigatório)"
-        value={product.priceInside}
-        onChange={handleChange}
-        required
-        className="input-field"
-      />
-      <input
-        name="priceOutside"
-        placeholder="Preço Fora"
-        value={product.priceOutside}
-        onChange={handleChange}
-        className="input-field"
-      />
-      <label className="checkbox-label">
-        <input
-          type="checkbox"
-          checked={product.ipi}
-          onChange={handleCheckboxChange}
-          className="checkbox"
-        />
-        IPI?
-      </label>
-      {product.ipi && (
-        <input
-          name="ipiRate"
-          placeholder="Alíquota (%) (obrigatório)"
-          value={product.ipiRate}
-          onChange={handleChange}
-          className="input-field-IPI"
-        />
-      )}
-      {error && <p className="error-message">{error}</p>}
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      <button type="submit" className="submit-button">
-        Salvar
-      </button>
-    </form>
+  <input
+    name="name"
+    placeholder="Nome (obrigatório)"
+    value={product.name}
+    onChange={handleChange}
+    required
+    className="input-field input-name"
+  />
+  <input
+    name="manufacturer"
+    placeholder="Fabricante (obrigatório)"
+    value={product.manufacturer}
+    onChange={handleChange}
+    required
+    className="input-field input-manufacturer"
+  />
+  <input
+    name="origin"
+    placeholder="Origem"
+    value={product.origin}
+    onChange={handleChange}
+    className="input-field input-origin"
+  />
+  <input
+    name="package"
+    placeholder="Embalagem"
+    value={product.package}
+    onChange={handleChange}
+    className="input-field input-package"
+  />
+  <input
+    name="priceInside"
+    placeholder="Preço Dentro (obrigatório)"
+    value={product.priceInside}
+    onChange={handleChange}
+    required
+    className="input-field input-priceInside"
+  />
+  <input
+    name="priceOutside"
+    placeholder="Preço Fora"
+    value={product.priceOutside}
+    onChange={handleChange}
+    className="input-field input-priceOutside"
+  />
+  <select
+    name="currency"
+    value={product.currency}
+    onChange={handleChange}
+    className="select-field"
+  >
+    <option value="BRL">Real</option>
+    <option value="USD">Dólar</option>
+  </select>
+  <label className="checkbox-label">
+    IPI? 
+    <input
+      type="checkbox"
+      checked={product.ipi}
+      onChange={handleCheckboxChange}
+      className="checkbox"
+    />
+  </label>
+  {product.ipi && (
+    <input
+      name="ipiRate"
+      placeholder="Alíquota (%) (obrigatório)"
+      value={product.ipiRate}
+      onChange={handleChange}
+      className="input-field-IPI"
+    />
+  )}
+  {error && <p className="error-message">{error}</p>}
+  {successMessage && <p className="success-message">{successMessage}</p>}
+  <button type="submit" className="submit-button">
+    Salvar
+  </button>
+</form>
   );
 };
 
