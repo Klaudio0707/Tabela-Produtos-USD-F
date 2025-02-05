@@ -86,7 +86,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
     <form onSubmit={handleSubmit} className="form-container">
   <input
     name="name"
-    placeholder="Nome (obrigatório)"
+    placeholder="Nome"
     value={product.name}
     onChange={handleChange}
     required
@@ -94,7 +94,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
   />
   <input
     name="manufacturer"
-    placeholder="Fabricante (obrigatório)"
+    placeholder="Fabricante"
     value={product.manufacturer}
     onChange={handleChange}
     required
@@ -116,7 +116,8 @@ const FormularioProdutos = ({ onAddProduct }) => {
   />
   <input
     name="priceInside"
-    placeholder="Preço Dentro (obrigatório)"
+    type="number"
+    placeholder="Preço Dentro"
     value={product.priceInside}
     onChange={handleChange}
     required
@@ -124,6 +125,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
   />
   <input
     name="priceOutside"
+    type="number"
     placeholder="Preço Fora"
     value={product.priceOutside}
     onChange={handleChange}
@@ -146,21 +148,22 @@ const FormularioProdutos = ({ onAddProduct }) => {
       onChange={handleCheckboxChange}
       className="checkbox"
     />
-  </label>
+    </label>
   {product.ipi && (
     <input
-      name="ipiRate"
-      placeholder="Alíquota (%) (obrigatório)"
-      value={product.ipiRate}
-      onChange={handleChange}
-      className="input-field-IPI"
+    type="number"
+    name="ipiRate"
+    placeholder="%"
+    value={product.ipiRate}
+    onChange={handleChange}
+    className="input-field-IPI"
     />
   )}
-  {error && <p className="error-message">{error}</p>}
-  {successMessage && <p className="success-message">{successMessage}</p>}
   <button type="submit" className="submit-button">
     Salvar
   </button>
+  {error && <p className="error-message">{error}</p>}
+  {successMessage && <p className="success-message">{successMessage}</p>}
 </form>
   );
 };
