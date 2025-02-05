@@ -100,9 +100,10 @@ body {
 .success-message {
   font-size: 0.675rem; /* Tamanho menor */
   grid-column: span 3/5;
-  padding: 0.7rem;
+  padding: 0.4rem;
   color: var(--font-color);
   text-align: center;
+  border-radius: 5px;
   justify-content: center;
 }
 
