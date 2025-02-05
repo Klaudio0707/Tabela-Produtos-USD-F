@@ -58,15 +58,18 @@
 }
 
 /* Responsividade para telas médias (por exemplo, de 360px a 576px) */
-@media (min-width: 360px) and (max-width: 576px) {
+@media (min-width: 320px) and (max-width: 576px) {
   .footer {
+
     flex-direction: row; /* Coloca os itens em linha para telas médias */
+    padding: 0.5rem;
+    margin-top: 100px;
     justify-content: center;
     text-align: center;
   }
 
   .footer p {
-    font-size: 1rem;
+    font-size: 0.6rem;
     margin-right: 1px;
   }
 

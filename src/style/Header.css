@@ -33,6 +33,10 @@
   .header {
     padding: auto;
   }
+  .title-header{
+font-size: 1.3rem;
+
+  }
   .header-content {
     flex-direction: column;
     text-align: center;

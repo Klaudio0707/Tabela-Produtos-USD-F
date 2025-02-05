@@ -10,6 +10,8 @@
   align-items: center;
   flex-direction: column;
   gap: 1.25rem;
+  margin-bottom: 30px ;
+  
 }
 
 .conversion-title {
@@ -111,7 +113,7 @@
   font-size: 1rem;
   color: #333;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 /* Responsividade */
@@ -142,6 +144,7 @@
   .conversion-title,
   .converted-title {
     font-size: 1.2rem;
+    margin-bottom: 1px;
   }
 
   .btn {
