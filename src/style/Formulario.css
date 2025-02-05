@@ -1,7 +1,7 @@
 :root {
   font-size: 16px; /* Tamanho base para rem */
-  --primary-color: #4A90E2;
-  --success-color: #4CAF50;
+  --primary-color: #4a90e2;
+  --success-color: #4caf50;
   --error-color: #f44336;
   --bg-color: #f9f9f9;
   --font-color: #333;
@@ -25,7 +25,6 @@ body {
   padding: 0.8rem;
   align-items: center;
   justify-content: center;
-  
 }
 .checkbox-label {
   display: flex;
@@ -34,7 +33,6 @@ body {
   gap: 0.3rem;
   font-size: 1rem;
 }
-
 
 .submit-button {
   width: 60%;
@@ -49,7 +47,6 @@ body {
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
-
 
 .select-field {
   font-size: 0.7em; /* Tamanho da fonte */
@@ -88,8 +85,6 @@ body {
   box-shadow: 0 0 4px rgba(74, 144, 226, 0.5);
 }
 
-
-
 .submit-button:hover {
   background-color: #2a7c19;
   transform: translateY(-2px);
@@ -107,7 +102,6 @@ body {
   color: var(--font-color);
   text-align: center;
   justify-content: center;
- 
 }
 
 .error-message {
@@ -129,7 +123,6 @@ body {
     margin: 0 auto;
     padding: 0.5rem;
     box-sizing: border-box;
-
   }
 
   .input-field {
@@ -138,7 +131,6 @@ body {
     padding: 0.3rem;
     box-sizing: border-box;
     margin: 0 auto;
-    
   }
   .input-field-IPI {
     width: 40%; /* Ocupa toda a largura da coluna */
@@ -146,7 +138,6 @@ body {
     padding: 0.3rem;
     box-sizing: border-box;
     margin: 0 auto;
-    
   }
   .select-field {
     width: 30%; /* Ocupa toda a largura da coluna */
@@ -157,8 +148,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    
-    
   }
 
   .submit-button {
@@ -169,7 +158,6 @@ body {
     padding: 0.6rem; /* Ajusta o espaçamento interno */
     text-align: center; /* Centraliza o texto no botão */
     font-size: 0.6rem;
-
   }
 
   .error-message,
@@ -190,7 +178,6 @@ body {
     margin: 0 auto;
     padding: 0.5rem;
     box-sizing: border-box;
-
   }
 
   .input-field {
@@ -199,7 +186,6 @@ body {
     padding: 0.3rem;
     box-sizing: border-box;
     margin: 0 auto;
-    
   }
   .input-field-IPI {
     width: 40%; /* Ocupa toda a largura da coluna */
@@ -220,8 +206,6 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-
-    
   }
 
   .submit-button {
@@ -232,7 +216,6 @@ body {
     padding: 0.6rem; /* Ajusta o espaçamento interno */
     text-align: center; /* Centraliza o texto no botão */
     font-size: 0.6rem;
-
   }
 
   .error-message,
