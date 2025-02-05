@@ -7,6 +7,9 @@
   margin: 0 auto; /* Centraliza a tabela */
   table-layout: auto; /* Ajusta automaticamente o tamanho das colunas */
 }
+.lista-container{
+margin-bottom: 3rem;
+}
 
 h1 {
   text-align: center; /* Centraliza o título */
