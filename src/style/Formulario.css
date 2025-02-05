@@ -35,13 +35,13 @@ body {
 }
 
 .submit-button {
-  width: 5rem;
+  width: 6rem;
   grid-column: span 1;
-  padding: 0.25rem;
+  padding: 0.35rem;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  background-color: #10a330;
+  background-color: #28a745;
   color: #fff;
   border: none;
   cursor: pointer;
