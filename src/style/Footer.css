@@ -1,6 +1,6 @@
 /* Footer */
 .footer {
-  display: absolute;
+  display: flex;
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -16,48 +16,62 @@
 /* Texto do footer */
 .footer p {
   margin: 0; /* Remove margens padrão */
-  font-size: 1.5rem;
+  font-size: 1rem; /* Tamanho de fonte mais confortável */
+  text-align: center;
 }
 
 /* Links dos ícones */
 .footer a {
-  display: flexbox;
-  flex-direction: row;
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
+  display: flex;
   align-items: center;
-
-  margin-left: 1rem; /* Espaço entre texto e ícones */
+  margin-left: 1rem; /* Espaço entre o texto e os ícones */
   color: white;
   font-size: 1.5rem;
   transition: transform 0.3s ease; /* Animação ao passar o mouse */
+  text-decoration: none;
 }
 
 .footer a:hover {
-  transform: scale(1.2); /* aumenta o ícone ao passar o mouse */
+  transform: scale(1.2); /* Aumenta o ícone ao passar o mouse */
   color: #f0f0f0;
 }
 
-/* Responsividade para telas menores */
-@media (min-width: 360px) and (max-width: 576px) {
+/* Responsividade para telas pequenas */
+@media (max-width: 576px) {
   .footer {
-    display: flex;
-    position: relative;
-    font-size: 0.05rem;
-    flex-direction: row; /* Coloca itens em coluna para telas pequenas */
+    flex-direction: column; /* Coloca itens em coluna para telas pequenas */
     text-align: center; /* Centraliza o texto */
     justify-content: center;
+    padding: 0.5rem; /* Ajusta o padding para telas menores */
   }
+
   .footer p {
     font-size: 1rem;
-    margin-right: 10px;
-    padding: auto;
+    margin: 0.5rem 0;
   }
 
   .footer a {
-    margin-left: 0.1rem; /* Remove margens laterais */
+    margin-left: 0; /* Remove margem esquerda */
     margin-top: 0.3rem; /* Adiciona espaço entre os ícones verticalmente */
+    font-size: 2rem; /* Aumenta o tamanho dos ícones */
+  }
+}
+
+/* Responsividade para telas médias (por exemplo, de 360px a 576px) */
+@media (min-width: 360px) and (max-width: 576px) {
+  .footer {
+    flex-direction: row; /* Coloca os itens em linha para telas médias */
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer p {
     font-size: 1rem;
+    margin-right: 1px;
+  }
+
+  .footer a {
+    margin-left: 0.5rem; /* Espaço entre os ícones */
+    font-size: 1.3rem;
   }
 }
