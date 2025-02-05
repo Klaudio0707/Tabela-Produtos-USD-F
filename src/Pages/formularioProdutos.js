@@ -105,6 +105,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         placeholder="Origem"
         value={product.origin}
         onChange={handleChange}
+        required
         className="input-field input-origin"
       />
       <input
@@ -112,6 +113,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         placeholder="Embalagem"
         value={product.package}
         onChange={handleChange}
+        required
         className="input-field input-package"
       />
       <input
@@ -128,6 +130,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         type="number"
         placeholder="Preço Fora"
         value={product.priceOutside}
+        required
         onChange={handleChange}
         className="input-field input-priceOutside"
       />
