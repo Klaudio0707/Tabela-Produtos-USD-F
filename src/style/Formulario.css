@@ -144,8 +144,8 @@ body {
   }
   .select-field {
     width: 30%; /* Ocupa toda a largura da coluna */
-    font-size: 0.275rem; /* Reduz tamanho da fonte */
-    padding: 0.3rem;
+    font-size: 0.475rem; /* Reduz tamanho da fonte */
+    padding: 0.4rem;
     box-sizing: border-box;
     margin: 0 auto;
     justify-content: center;
