@@ -165,7 +165,7 @@ body {
   .error-message,
   .success-message {
     grid-column: 1; /* Ocupa toda a linha após o botão */
-    font-size: 0.6rem; /* Tamanho ajustado */
+    font-size: 0.7rem; /* Tamanho ajustado */
     text-align: center;
     margin-top: 0.5rem; /* Espaçamento entre o botão e as mensagens */
   }
