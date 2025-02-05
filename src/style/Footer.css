@@ -1,32 +1,54 @@
+/* Footer */
 .footer {
-  background-color: #461515;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  color: white;
-  padding: 20px;
-  width: 100%;
-  
- 
+  display: flex; /* Alinha itens em linha */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+  align-items: center; /* Centraliza os itens verticalmente */
+  position: fixed; /* Fixa o footer na parte inferior da tela */
+  bottom: 0; /* Sempre no final da página */
+  left: 0;
+  width: 100%; /* Ocupa toda a largura da tela */
+  background-color: #4e59ec; /* Cor de fundo */
+  color: white; /* Cor do texto */
+  padding: 1rem 0; /* Espaçamento interno */
+  z-index: 10; /* Garante que estará acima de outros elementos */
 }
 
-/* Mantenha o resto do seu CSS original */
+/* Texto do footer */
 .footer p {
-  margin: 0;
-  font-size: 0.9rem;
+  margin: 0; /* Remove margens padrão */
+  font-size: 1.5rem; /* Tamanho do texto */
 }
-  /* Responsividade */
-  @media (max-width: 768px) {
-    .footer {
-      width: 100%;
-      padding: 20px;
-      font-size: 5px;
-      text-align: center;
-    }
-    .footer p {
-      margin: 0;
-      font-size: 0.7rem;
-    }
+
+/* Links dos ícones */
+.footer a {
+  display: flexbox;
+  flex-direction: row;
+  text-decoration: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+
+  margin-left: 1rem; /* Espaço entre texto e ícones */
+  color: white; /* Cor dos ícones */
+  font-size: 1.5rem; /* Tamanho grande para os ícones */
+  transition: transform 0.3s ease; /* Animação ao passar o mouse */
+}
+
+.footer a:hover {
+  transform: scale(1.2); /* aumenta o ícone ao passar o mouse */
+  color: #f0f0f0; /* Altera levemente a cor */
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 576px) {
+  .footer {
+    font-size: 0.06rem;
+    flex-direction: row; /* Coloca itens em coluna para telas pequenas */
+    text-align: center; /* Centraliza o texto */
   }
 
-  
+  .footer a {
+    margin-left: 0; /* Remove margens laterais */
+    margin-top: 0.5rem; /* Adiciona espaço entre os ícones verticalmente */
+  }
+}

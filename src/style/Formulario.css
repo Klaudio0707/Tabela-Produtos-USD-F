@@ -212,8 +212,8 @@ body {
     justify-content: center;
   }
   .select-field {
-    width: 30%; /* Ocupa toda a largura da coluna */
-    font-size: 0.275rem; /* Reduz tamanho da fonte */
+    width: 20%; /* Ocupa toda a largura da coluna */
+    font-size: 0.375rem; /* Reduz tamanho da fonte */
     padding: 0.3rem;
     box-sizing: border-box;
     margin: 0 auto;
