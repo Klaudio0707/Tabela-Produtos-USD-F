@@ -99,6 +99,7 @@
 
 .product-table th {
   background-color: #4e59ec;
+  border-radius: 0.1rem;
   color: white;
   font-weight: bold;
   z-index: 2; /* Mantém os títulos acima dos dados */

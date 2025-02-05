@@ -31,6 +31,7 @@ h1 {
   background-color: #4e59ec; /* Fundo azul para cabeçalhos */
   color: white; /* Texto branco para contraste */
   font-weight: bold; /* Destaca os cabeçalhos */
+  border-radius: 0.1rem;
 }
 
 .product-table-list tr:nth-child(even) {
