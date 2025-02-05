@@ -32,9 +32,10 @@
 @media (max-width: 500px) {
   .header {
     padding: auto;
+    padding: 0.4rem;
   }
   .title-header{
-font-size: 1.3rem;
+font-size: 1.0rem;
 
   }
   .header-content {

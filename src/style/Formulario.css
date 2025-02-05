@@ -51,7 +51,7 @@ body {
 }
 
 .select-field {
-  font-size: 0.7em; /* Tamanho da fonte */
+  font-size: 0.9em; /* Tamanho da fonte */
   padding: 0.6rem;
   border: 1px solid var(--border-color);
   border-radius: 0.25rem;

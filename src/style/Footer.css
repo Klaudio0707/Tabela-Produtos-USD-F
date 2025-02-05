@@ -63,7 +63,7 @@
 
     flex-direction: row; /* Coloca os itens em linha para telas médias */
     padding: 0.5rem;
-    margin-top: 100px;
+    margin-top: 3rem;
     justify-content: center;
     text-align: center;
   }
@@ -75,6 +75,9 @@
 
   .footer a {
     margin-left: 0.5rem; /* Espaço entre os ícones */
-    font-size: 1.3rem;
+    font-size: 1.1rem;
+    align-items: center;
+    align-content: center;
+
   }
 }

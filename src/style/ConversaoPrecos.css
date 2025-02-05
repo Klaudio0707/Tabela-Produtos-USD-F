@@ -145,7 +145,7 @@
   .conversion-title,
   .converted-title {
     font-size: 1.2rem;
-    margin-bottom: 1px;
+
   }
 
   .btn {
@@ -160,7 +160,7 @@
 
   .product-table th,
   .product-table td {
-    font-size: 0.7rem;
-    padding: 5px;
+    font-size: 0.5rem;
+    padding: 0.5rem;
   }
 }
