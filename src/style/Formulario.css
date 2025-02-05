@@ -132,14 +132,32 @@ body {
 
   }
 
-  .input-field,
-  .input-field-IPI,
-  .select-field {
+  .input-field {
     width: 70%; /* Ocupa toda a largura da coluna */
     font-size: 0.575rem; /* Reduz tamanho da fonte */
     padding: 0.3rem;
     box-sizing: border-box;
     margin: 0 auto;
+    
+  }
+  .input-field-IPI {
+    width: 40%; /* Ocupa toda a largura da coluna */
+    font-size: 0.575rem; /* Reduz tamanho da fonte */
+    padding: 0.3rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    
+  }
+  .select-field {
+    width: 30%; /* Ocupa toda a largura da coluna */
+    font-size: 0.275rem; /* Reduz tamanho da fonte */
+    padding: 0.3rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    
     
   }
 
@@ -175,14 +193,34 @@ body {
 
   }
 
-  .input-field,
-  .input-field-IPI,
-  .select-field {
+  .input-field {
     width: 70%; /* Ocupa toda a largura da coluna */
     font-size: 0.575rem; /* Reduz tamanho da fonte */
     padding: 0.3rem;
     box-sizing: border-box;
     margin: 0 auto;
+    
+  }
+  .input-field-IPI {
+    width: 40%; /* Ocupa toda a largura da coluna */
+    font-size: 0.575rem; /* Reduz tamanho da fonte */
+    padding: 0.3rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+  }
+  .select-field {
+    width: 30%; /* Ocupa toda a largura da coluna */
+    font-size: 0.275rem; /* Reduz tamanho da fonte */
+    padding: 0.3rem;
+    box-sizing: border-box;
+    margin: 0 auto;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
     
   }
 
