@@ -30,17 +30,18 @@
 }
 
 .conversion-label {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: #555;
 }
 
 .conversion-input {
   padding: 0.3125rem;
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   border: 0.0625rem solid #ccc;
   border-radius: 0.25rem;
   width: 10 rem;
   max-width: 15.625rem; /* 250px */
+  text-align: center;
 }
 
 .conversion-buttons {
@@ -50,7 +51,7 @@
 
 .btn {
   padding: 0.625rem 0.8rem;
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   color: white;
   border: none;
   border-radius: 0.25rem; /* 4px */

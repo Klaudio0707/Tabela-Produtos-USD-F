@@ -35,7 +35,7 @@ body {
 }
 
 .submit-button {
-  width: 60%;
+  width: 5rem;
   grid-column: span 1;
   padding: 0.25rem;
   font-size: 1rem;
@@ -63,7 +63,7 @@ body {
   padding: 0.6rem;
   border: 1px solid var(--border-color);
   border-radius: 0.25rem;
-  width: 30%;
+  width: 4rem;
   text-align: center;
   box-sizing: border-box;
 }
@@ -133,7 +133,7 @@ body {
     margin: 0 auto;
   }
   .input-field-IPI {
-    width: 40%; /* Ocupa toda a largura da coluna */
+    width: 35%; /* Ocupa toda a largura da coluna */
     font-size: 0.575rem; /* Reduz tamanho da fonte */
     padding: 0.3rem;
     box-sizing: border-box;
@@ -188,9 +188,9 @@ body {
     margin: 0 auto;
   }
   .input-field-IPI {
-    width: 40%; /* Ocupa toda a largura da coluna */
+    width: 35%; /* Ocupa toda a largura da coluna */
     font-size: 0.575rem; /* Reduz tamanho da fonte */
-    padding: 0.3rem;
+    padding: 0.rem;
     box-sizing: border-box;
     margin: 0 auto;
     align-items: center;
