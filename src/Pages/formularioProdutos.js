@@ -57,7 +57,6 @@ const FormularioProdutos = ({ onAddProduct }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
       });
-      console.log(response);
       if (response.ok) {
         const savedProduct = await response.json();
         onAddProduct(savedProduct);

@@ -7,8 +7,10 @@ import Header from "./Components/Header";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  // const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
+
 const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
+
+
   // Função para obter os produtos do backend
   const fetchProducts = useCallback(async () => {
     try {
