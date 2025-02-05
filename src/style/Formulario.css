@@ -23,8 +23,8 @@ body {
   gap: 0.03rem; /* Espaçamento entre os campos */
   max-width: 80%;
   margin: 0 auto;
-  margin-bottom: 3rem;
-  padding: 0.8rem;
+  margin-bottom: 1rem;
+  padding: 0.7rem;
   align-items: center;
   justify-content: center;
 }
@@ -98,9 +98,9 @@ body {
 
 .error-message,
 .success-message {
-  font-size: 0.575rem; /* Tamanho menor */
+  font-size: 0.475rem; /* Tamanho menor */
   grid-column: span 3/5;
-  padding: 0.15rem;
+  padding: 0.01rem;
   color: var(--font-color);
   text-align: center;
   justify-content: center;

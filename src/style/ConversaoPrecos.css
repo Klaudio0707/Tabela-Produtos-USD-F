@@ -13,10 +13,10 @@
   margin-bottom: 10rem;
 }
 
-.conversion-title {
-  font-size: 1.1rem;
-  color: #050505;
-  text-align: center;
+h1 {
+  text-align: center; /* Centraliza o título */
+  font-size: 1.3rem; /* Tamanho padrão para o título */
+  margin-bottom: 1rem; /* Espaçamento abaixo do título */
 }
 
 /* Controles da conversão */

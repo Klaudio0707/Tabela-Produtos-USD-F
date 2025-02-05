@@ -8,12 +8,12 @@
   table-layout: auto; /* Ajusta automaticamente o tamanho das colunas */
 }
 .lista-container{
-margin-bottom: 3rem;
+margin-bottom: 1rem;
 }
 
 h1 {
   text-align: center; /* Centraliza o título */
-  font-size: 1.5rem; /* Tamanho padrão para o título */
+  font-size: 1.3rem; /* Tamanho padrão para o título */
   margin-bottom: 1rem; /* Espaçamento abaixo do título */
 }
 
