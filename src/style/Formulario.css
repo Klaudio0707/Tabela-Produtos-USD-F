@@ -98,9 +98,9 @@ body {
 
 .error-message,
 .success-message {
-  font-size: 0.0375rem; /* Tamanho menor */
+  font-size: 0.575rem; /* Tamanho menor */
   grid-column: span 3/5;
-  padding: 0.05rem;
+  padding: 0.15rem;
   color: var(--font-color);
   text-align: center;
   justify-content: center;
