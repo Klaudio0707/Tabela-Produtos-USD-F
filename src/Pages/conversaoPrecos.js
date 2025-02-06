@@ -86,11 +86,11 @@ const ConversaoPrecos = ({ products }) => {
         </label>
         <div className="conversion-buttons">
           <button className="btn convert-btn" onClick={handleConvertPrices}>
-            <DollarSign size={15} /> Exibir Preços Convertidos
+            <DollarSign size={12} /> Exibir Preços Convertidos
           </button>
 
           <button className="btn clean-btn" onClick={handleCleanPrices}>
-            <Trash2 size={15} /> Limpar Lista
+            <Trash2 size={12} /> Limpar
           </button>
         </div>
       </div>

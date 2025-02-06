@@ -162,10 +162,10 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Ações">
                   <button onClick={() => handleEditClick(product)}>
-                    <RefreshCw size={15} /> Editar
+                    <RefreshCw size={12} /> Editar
                   </button>
                   <button onClick={() => handleDeleteClick(product._id)}>
-                    <Trash2 size={15} />  Remover
+                    <Trash2 size={12} />  Remover
                   </button>
                 </td>
               </tr>
