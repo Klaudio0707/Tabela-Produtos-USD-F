@@ -90,11 +90,7 @@ h1 {
   gap: 0.3125rem; /* Espaço entre checkbox e rótulo */
   font-size: 0.7rem; /* Tamanho do texto */
 }
-.btn-list{
-  font-size: 0.4rem;
-  padding: 4px 9px;
 
-}
 /* Estilização Responsiva */
 
 /* Tablets e smartphones (até 768px) */
@@ -121,7 +117,11 @@ h1 {
     font-size: 0.5rem; /* Texto menor para telas muito pequenas */
     overflow-x: auto; /* Permite scroll horizontal */
   }
-
+  .btn-list{
+    font-size: 0.4rem;
+    padding: 4px 9px;
+  
+  }
   .product-table-list th,
   .product-table-list td {
     padding: 0.2rem; /* Reduz ainda mais o espaçamento */

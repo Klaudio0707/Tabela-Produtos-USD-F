@@ -61,10 +61,12 @@ h1 {
 
 .convert-btn {
   background-color: #28a745;
+  transform: translateY(-2px);
 }
 
 .clean-btn {
   background-color: #dc3545;
+  transform: translateY(-2px);
 }
 
 .btn:hover {
