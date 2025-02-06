@@ -97,7 +97,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Preço Dentro">
                   <input
                     name="priceInside"
-                    value={editedProduct.priceInside.replace(",", ".")}
+                    value={String(editedProduct.priceInside).replace(",", ".")} // Converte para string antes de aplicar replace
                     onChange={(e) => {
                       const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                       setEditedProduct((prev) => ({ ...prev, priceInside: value }));
@@ -105,10 +105,11 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     placeholder="Preço Dentro"
                   />
                 </td>
+
                 <td data-label="Preço Fora">
                   <input
                     name="priceOutside"
-                    value={editedProduct.priceOutside.replace(",", ".")}
+                    value={String(editedProduct.priceOutside).replace(",", ".")} // Converte para string antes de aplicar replace
                     onChange={(e) => {
                       const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                       setEditedProduct((prev) => ({ ...prev, priceOutside: value }));
@@ -116,6 +117,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     placeholder="Preço Fora"
                   />
                 </td>
+
                 <td data-label="IPI">
                   <label className="checkbox-container">
                     <input
@@ -133,7 +135,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     {editedProduct.ipi && (
                       <input
                         name="ipiRate"
-                        value={editedProduct.ipiRate}
+                        value={String(editedProduct.ipiRate).replace(",", ".")} // Converte para string antes de aplicar replace
                         onChange={(e) => {
                           const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                           setEditedProduct((prev) => ({ ...prev, ipiRate: value }));
