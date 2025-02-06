@@ -119,7 +119,7 @@ h1 {
   }
   .btn-list{
     font-size: 0.3rem;
-    padding: 3px 9px;
+    padding: auto 9px;
   
   }
   .product-table-list th,

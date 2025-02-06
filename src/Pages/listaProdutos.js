@@ -164,10 +164,10 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Ações">
                   <button className="btn-list" onClick={() => handleEditClick(product)}>
-                    <RefreshCw size={12} /> Editar
+                    <RefreshCw size={9} /> Editar
                   </button>
                   <button className="btn-list" onClick={() => handleDeleteClick(product._id)}>
-                    <Trash2 size={12} />  Remover
+                    <Trash2 size={9} />  Remover
                   </button>
                 </td>
               </tr>
