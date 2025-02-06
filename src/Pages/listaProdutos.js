@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../style/Lista.css";
-import {  RefreshCw, Trash2 } from "lucide-react";
+import { RefreshCw, Trash2 } from "lucide-react";
 const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const [editingProductId, setEditingProductId] = useState(null);
   const [editedProduct, setEditedProduct] = useState({});
@@ -33,6 +33,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   return (
     <div className="lista-container">
       <h1>Produtos Cadastrados</h1>
+      <p className="description-table-list">Os preços para dentro e fora do estado podem variar devido às diferenças na tributação e encargos fiscais.</p>
       <table className="product-table-list">
         <thead>
           <tr className="th-titulo">
@@ -96,16 +97,22 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Preço Dentro">
                   <input
                     name="priceInside"
-                    value={editedProduct.priceInside}
-                    onChange={handleChange}
+                    value={editedProduct.priceInside.replace(",", ".")}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
+                      setEditedProduct((prev) => ({ ...prev, priceInside: value }));
+                    }}
                     placeholder="Preço Dentro"
                   />
                 </td>
                 <td data-label="Preço Fora">
                   <input
                     name="priceOutside"
-                    value={editedProduct.priceOutside}
-                    onChange={handleChange}
+                    value={editedProduct.priceOutside.replace(",", ".")}
+                    onChange={(e) => {
+                      const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
+                      setEditedProduct((prev) => ({ ...prev, priceOutside: value }));
+                    }}
                     placeholder="Preço Fora"
                   />
                 </td>
@@ -127,7 +134,10 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                       <input
                         name="ipiRate"
                         value={editedProduct.ipiRate}
-                        onChange={handleChange}
+                        onChange={(e) => {
+                          const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
+                          setEditedProduct((prev) => ({ ...prev, ipiRate: value }));
+                        }}
                         placeholder="IPI Rate"
                       />
                     )}
@@ -145,17 +155,17 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Origem">{product.origin}</td>
                 <td data-label="Embalagem">{product.package}</td>
                 <td data-label="Moeda">{product.currency}</td>
-                <td data-label="Preço Dentro">{product.priceInside}</td>
-                <td data-label="Preço Fora">{product.priceOutside}</td>
+                <td data-label="Preço Dentro">R$ {parseFloat(product.priceInside).toFixed(2)}</td>
+                <td data-label="Preço Fora">R$ {parseFloat(product.priceOutside).toFixed(2)}</td>
                 <td data-label="IPI" className="td-ipi">
                   {product.ipi ? `Sim ${product.ipiRate}%` : "Não"}
                 </td>
                 <td data-label="Ações">
                   <button onClick={() => handleEditClick(product)}>
-                   <RefreshCw size={15} /> Editar
+                    <RefreshCw size={15} /> Editar
                   </button>
                   <button onClick={() => handleDeleteClick(product._id)}>
-                  <Trash2 size={15}/>  Remover
+                    <Trash2 size={15} />  Remover
                   </button>
                 </td>
               </tr>

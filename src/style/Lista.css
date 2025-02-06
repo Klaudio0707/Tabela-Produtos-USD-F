@@ -16,6 +16,16 @@ h1 {
   font-size: 1.3rem; /* Tamanho padrão para o título */
   margin-bottom: 1rem; /* Espaçamento abaixo do título */
 }
+.description-table-list {
+  font-size: 0.8rem;
+  color: #000000;
+  font: bolder;
+  padding: 5px;
+  border-radius: 8px;
+  text-align: center;
+  margin-bottom: 5px;
+
+}
 
 /* Estilo para Células e Títulos */
 .product-table-list th,
@@ -94,6 +104,11 @@ h1 {
   .product-table-list th,
   .product-table-list td {
     padding: 0.25rem; /* Reduz o espaçamento interno */
+  }
+  .description-table-list {
+ font-size: 0.6rem;
+ word-wrap: break-word;
+
   }
 }
 
