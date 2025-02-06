@@ -155,8 +155,8 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Origem">{product.origin}</td>
                 <td data-label="Embalagem">{product.package}</td>
                 <td data-label="Moeda">{product.currency}</td>
-                <td data-label="Preço Dentro">R$ {parseFloat(product.priceInside).toFixed(2)}</td>
-                <td data-label="Preço Fora">R$ {parseFloat(product.priceOutside).toFixed(2)}</td>
+                <td data-label="Preço Dentro">{parseFloat(product.priceInside).toFixed(2)}</td>
+                <td data-label="Preço Fora">{parseFloat(product.priceOutside).toFixed(2)}</td>
                 <td data-label="IPI" className="td-ipi">
                   {product.ipi ? `Sim ${product.ipiRate}%` : "Não"}
                 </td>
