@@ -155,10 +155,10 @@ body {
 
   .submit-button {
     grid-column: 1; /* Mantém o botão em uma única coluna */
-    width: 30%; /* Reduz largura do botão */
+    width: 30%; 
     margin: 0 auto; /* Centraliza horizontalmente */
     justify-content: center;
-    padding: 0.6rem; /* Ajusta o espaçamento interno */
+    padding: 0.6rem; 
     text-align: center; /* Centraliza o texto no botão */
     font-size: 0.6rem;
   }
