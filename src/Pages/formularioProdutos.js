@@ -16,8 +16,8 @@ const FormularioProdutos = ({ onAddProduct }) => {
 
   const [error, setError] = useState(""); // Mantendo o estado de erro
   const [successMessage, setSuccessMessage] = useState("");
-   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
- 
+  const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -163,7 +163,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         />
       )}
       <button type="submit" className="submit-button">
-        Salvar
+      Salvar Produto
       </button>
       {error && <p className="error-message">{error}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}

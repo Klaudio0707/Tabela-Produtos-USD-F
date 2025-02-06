@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../style/Lista.css";
-
+import {  RefreshCw, Trash2 } from "lucide-react";
 const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const [editingProductId, setEditingProductId] = useState(null);
   const [editedProduct, setEditedProduct] = useState({});
@@ -32,7 +32,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
 
   return (
     <div className="lista-container">
-      <h1>Lista de Produtos</h1>
+      <h1>Produtos Cadastrados</h1>
       <table className="product-table-list">
         <thead>
           <tr className="th-titulo">
@@ -134,7 +134,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                   </label>
                 </td>
                 <td data-label="Ações">
-                  <button onClick={handleSaveEdit}>Salvar</button>
+                  <button onClick={handleSaveEdit}> Salvar</button>
                   <button onClick={handleCancelEdit}>Cancelar</button>
                 </td>
               </tr>
@@ -152,10 +152,10 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Ações">
                   <button onClick={() => handleEditClick(product)}>
-                    Editar
+                   <RefreshCw size={15} /> Editar
                   </button>
                   <button onClick={() => handleDeleteClick(product._id)}>
-                    Remover
+                  <Trash2 size={15}/>  Remover
                   </button>
                 </td>
               </tr>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import "../style/ConversaoPrecos.css";
+import { DollarSign, Trash2 } from "lucide-react";
+
 
 const ConversaoPrecos = ({ products }) => {
   const [selectedDate, setSelectedDate] = useState("");
@@ -71,7 +73,7 @@ const ConversaoPrecos = ({ products }) => {
 
   return (
     <section className="conversion-container">
-      <h1 className="conversion-title">Conversão de Preços</h1>
+      <h1 className="conversion-title">Tabela de Conversão de Preços</h1>
       <div className="conversion-controls">
         <label className="conversion-label">
           Data do Fechamento do Dólar:
@@ -83,12 +85,13 @@ const ConversaoPrecos = ({ products }) => {
           />
         </label>
         <div className="conversion-buttons">
-          <button className="btn convert-btn" onClick={handleConvertPrices}>
-            Exibir Preços Convertidos
-          </button>
-          <button className="btn clean-btn" onClick={handleCleanPrices}>
-            Limpar Lista
-          </button>
+        <button className="btn convert-btn" onClick={handleConvertPrices}>
+  <DollarSign size={15} /> Exibir Preços Convertidos
+</button>
+
+<button className="btn clean-btn" onClick={handleCleanPrices}>
+  <Trash2 size={15} /> Limpar Lista
+</button>
         </div>
       </div>
       {error && <p className="error-message">{error}</p>}
