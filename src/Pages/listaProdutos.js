@@ -97,7 +97,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Preço Dentro">
                   <input
                     name="priceInside"
-                    value={String(editedProduct.priceInside).replace(",", ".")} // Converte para string antes de aplicar replace
+                    value={String(editedProduct.priceInside).replace(",", ".")} 
                     onChange={(e) => {
                       const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                       setEditedProduct((prev) => ({ ...prev, priceInside: value }));
@@ -109,7 +109,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 <td data-label="Preço Fora">
                   <input
                     name="priceOutside"
-                    value={String(editedProduct.priceOutside).replace(",", ".")} // Converte para string antes de aplicar replace
+                    value={String(editedProduct.priceOutside).replace(",", ".")} 
                     onChange={(e) => {
                       const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                       setEditedProduct((prev) => ({ ...prev, priceOutside: value }));
@@ -135,7 +135,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     {editedProduct.ipi && (
                       <input
                         name="ipiRate"
-                        value={String(editedProduct.ipiRate).replace(",", ".")} // Converte para string antes de aplicar replace
+                        value={String(editedProduct.ipiRate).replace(",", ".")} 
                         onChange={(e) => {
                           const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                           setEditedProduct((prev) => ({ ...prev, ipiRate: value }));

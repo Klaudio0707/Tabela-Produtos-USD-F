@@ -49,7 +49,7 @@ h1 {
 }
 
 .product-table-list tr:hover {
-  background-color: #ddd; /* Destaque para linha quando passa o mouse */
+  background-color: #ddd; 
 }
 
 /* Estilo para Botões */
@@ -57,19 +57,19 @@ h1 {
   font-size: 0.5rem; /* Ajuste do texto do botão */
   padding: 0.4rem 0.45rem; /* Espaçamento interno */
   border: none; /* Remove bordas padrão */
-  border-radius: 0.25rem; /* Bordas arredondadas */
-  cursor: pointer; /* Indica que o botão é clicável */
+  border-radius: 0.25rem; 
+  cursor: pointer; 
   transition: background-color 0.3s; /* Suaviza a mudança de cor ao passar o mouse */
 }
 
 .lista-container button:first-child {
   background-color: #2196f3; /* Fundo azul para o primeiro botão */
-  color: rgb(44, 6, 6); /* Texto escuro */
+  color: rgb(44, 6, 6); 
 }
 
 .lista-container button:last-child {
   background-color: #db1d10; /* Fundo vermelho para o último botão */
-  color: white; /* Texto branco */
+  color: white; 
 }
 
 .lista-container button:hover {
@@ -77,10 +77,10 @@ h1 {
 }
 
 .lista-container input {
-  font-size: 0.7rem; /* Tamanho do texto */
+  font-size: 0.7rem; 
   width: 70%; /* Largura adaptável */
   height: 0.7rem; /* Altura do campo */
-  text-align: center; /* Centraliza o texto */
+  text-align: center; 
 }
 
 /* Checkbox e Rótulos */
@@ -118,8 +118,8 @@ h1 {
     overflow-x: auto; /* Permite scroll horizontal */
   }
   .btn-list{
-    font-size: 0.4rem;
-    padding: 4px 9px;
+    font-size: 0.3rem;
+    padding: 3px 9px;
   
   }
   .product-table-list th,
