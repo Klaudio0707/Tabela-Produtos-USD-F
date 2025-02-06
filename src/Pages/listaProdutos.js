@@ -161,10 +161,10 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                   {product.ipi ? `Sim ${product.ipiRate}%` : "Não"}
                 </td>
                 <td data-label="Ações">
-                  <button onClick={() => handleEditClick(product)}>
+                  <button className="btn-list" onClick={() => handleEditClick(product)}>
                     <RefreshCw size={12} /> Editar
                   </button>
-                  <button onClick={() => handleDeleteClick(product._id)}>
+                  <button className="btn-list" onClick={() => handleDeleteClick(product._id)}>
                     <Trash2 size={12} />  Remover
                   </button>
                 </td>

@@ -90,10 +90,13 @@ h1 {
   gap: 0.3125rem; /* Espaço entre checkbox e rótulo */
   font-size: 0.7rem; /* Tamanho do texto */
 }
+.btn-list{
+  font-size: 0.6rem;
+  padding: 5px 10px;
 
+}
 /* Estilização Responsiva */
 
-/* Tablets e smartphones (até 768px) */
 /* Tablets e smartphones (até 768px) */
 @media (max-width: 768px) {
   .product-table-list {
