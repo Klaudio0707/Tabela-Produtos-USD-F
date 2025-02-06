@@ -116,6 +116,7 @@ h1 {
   .product-table-list {
     font-size: 0.5rem; /* Texto menor para telas muito pequenas */
     overflow-x: auto; /* Permite scroll horizontal */
+    width: 90%;
   }
   .btn-list{
     font-size: 0.3rem;
