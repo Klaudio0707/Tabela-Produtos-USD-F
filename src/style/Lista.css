@@ -1,19 +1,23 @@
 .product-table-list {
-  width: 80%; /* Ocupa a maior parte da largura da tela */
+  width: 90%; /* Ocupa a maior parte da largura da tela */
   border-collapse: collapse; /* Remove os espaços entre as bordas */
   font-size: 0.6rem; /* Texto ajustável para telas menores */
   background-color: #f9f9f9; /* Cor de fundo padrão */
   margin: 0 auto; /* Centraliza a tabela */
   table-layout: auto; /* Ajusta automaticamente o tamanho das colunas */
 }
-.lista-container{
-margin-bottom: 1rem;
+.lista-container {
+  margin-bottom: 1rem;
 }
 
 h1 {
   text-align: center; /* Centraliza o título */
   font-size: 1.3rem; /* Tamanho padrão para o título */
   margin-bottom: 1rem; /* Espaçamento abaixo do título */
+}
+.input-lista{
+width: 20%;
+
 }
 .description-table-list {
   font-size: 0.8rem;
@@ -23,7 +27,6 @@ h1 {
   border-radius: 8px;
   text-align: center;
   margin-bottom: 5px;
-
 }
 
 /* Estilo para Células e Títulos */
@@ -48,7 +51,7 @@ h1 {
 }
 
 .product-table-list tr:hover {
-  background-color: #ddd; 
+  background-color: #ddd;
 }
 
 /* Estilo para Botões */
@@ -56,38 +59,23 @@ h1 {
   font-size: 0.5rem; /* Ajuste do texto do botão */
   padding: 0.4rem 0.45rem; /* Espaçamento interno */
   border: none; /* Remove bordas padrão */
-  border-radius: 0.25rem; 
-  cursor: pointer; 
+  border-radius: 0.25rem;
+  cursor: pointer;
   transition: background-color 0.3s; /* Suaviza a mudança de cor ao passar o mouse */
 }
 
 .lista-container button:first-child {
   background-color: #2196f3; /* Fundo azul para o primeiro botão */
-  color: rgb(44, 6, 6); 
+  color: rgb(44, 6, 6);
 }
 
 .lista-container button:last-child {
   background-color: #db1d10; /* Fundo vermelho para o último botão */
-  color: white; 
+  color: white;
 }
 
 .lista-container button:hover {
   filter: brightness(90%); /* Escurece a cor ao passar o mouse */
-}
-
-.lista-container input {
-  font-size: 0.7rem; 
-  width: 70%; /* Largura adaptável */
-  height: 0.7rem; /* Altura do campo */
-  text-align: center; 
-}
-
-/* Checkbox e Rótulos */
-.checkbox-container {
-  display: flex; /* Alinha elementos lado a lado */
-  align-items: center; /* Centraliza verticalmente */
-  gap: 0.3125rem; /* Espaço entre checkbox e rótulo */
-  font-size: 0.7rem; /* Tamanho do texto */
 }
 
 /* Estilização Responsiva */
@@ -103,28 +91,51 @@ h1 {
   .product-table-list td {
     padding: 0.25rem; /* Reduz o espaçamento interno */
   }
-  .description-table-list {
- font-size: 0.6rem;
- word-wrap: break-word;
 
+  .description-table-list {
+    font-size: 0.6rem;
+    word-wrap: break-word;
   }
 
+  /* Ajustes para os botões em telas pequenas */
+  .lista-container button {
+    font-size: 0.4rem; /* Tamanho do texto reduzido */
+    padding: 0.3rem 0.35rem; /* Reduz o tamanho do botão */
+  }
 }
 
 /* Smartphones muito pequenos (até 576px) */
 @media (max-width: 576px) {
   .product-table-list {
-    font-size: 0.5rem; /* Texto menor para telas muito pequenas */
-    overflow-x: auto; /* Permite scroll horizontal */
-    width: 90%;
-  }
-  .btn-list{
-    font-size: 0.3rem;
-    padding: auto 9px;
   
+    overflow-x: auto; /* Permite scroll horizontal */
+    width: 70%;
   }
+  input{
+    width: 50%;
+    font-size: 0.4rem;
+    }
+    select{
+    
+    font-size: 0.48rem;
+    }
+    .checkbox-list{
+    width: 30%;
+    }
+  button {
+    font-size: 0.1rem;
+    padding: 0.2rem 0.4rem;
+  }
+
   .product-table-list th,
   .product-table-list td {
-    padding: 0.2rem; /* Reduz ainda mais o espaçamento */
+    padding: 0.07rem; /* Reduz ainda mais o espaçamento */
+  }
+
+  /* Ajustes para os botões em telas muito pequenas */
+  .lista-container button {
+    font-size: 0.2rem; /* Texto ainda menor */
+    padding: 0.04rem 0.3rem; /* Tamanho reduzido */
+    min-width: 40px; /* Garante que os botões tenham um tamanho mínimo */
   }
 }
