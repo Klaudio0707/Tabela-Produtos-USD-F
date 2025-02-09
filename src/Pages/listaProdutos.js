@@ -54,6 +54,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
               <tr key={product._id} className="input-lista">
                 <td data-label="Nome">
                   <input
+                  className="input-edit"
                     name="name"
                     value={editedProduct.name}
                     onChange={handleChange}
@@ -62,6 +63,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Fabricante">
                   <input
+                  className="input-edit"
                     name="manufacturer"
                     value={editedProduct.manufacturer}
                     onChange={handleChange}
@@ -70,6 +72,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Origem">
                   <input
+                  className="input-edit"
                     name="origin"
                     value={editedProduct.origin}
                     onChange={handleChange}
@@ -78,6 +81,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Embalagem">
                   <input
+                  className="input-edit"
                     name="package"
                     value={editedProduct.package}
                     onChange={handleChange}
@@ -86,6 +90,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Moeda">
                   <select
+                  className="input-edit-select"
                     name="currency"
                     value={editedProduct.currency}
                     onChange={handleChange}
@@ -96,6 +101,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Preço Dentro">
                   <input
+                  className="input-edit"
                     name="priceInside"
                     value={String(editedProduct.priceInside).replace(",", ".")} 
                     onChange={(e) => {
@@ -108,6 +114,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
 
                 <td data-label="Preço Fora">
                   <input
+                  className="input-edit"
                     name="priceOutside"
                     value={String(editedProduct.priceOutside).replace(",", ".")} 
                     onChange={(e) => {
@@ -119,7 +126,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
 
                 <td data-label="IPI">
-                  <label className="checkbox-container">
+                  <label className="checkbox-edit">
                     <input
                       className="checkbox-list"
                       type="checkbox"
@@ -134,20 +141,21 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     />
                     {editedProduct.ipi && (
                       <input
+                      className="input-edit-ipi"
                         name="ipiRate"
                         value={String(editedProduct.ipiRate).replace(",", ".")} 
                         onChange={(e) => {
                           const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                           setEditedProduct((prev) => ({ ...prev, ipiRate: value }));
                         }}
-                        placeholder="IPI Rate"
+                        placeholder="%"
                       />
                     )}
                   </label>
                 </td>
                 <td data-label="Ações">
                   <button onClick={handleSaveEdit}> <Save size={9} /></button>
-                  <button onClick={handleCancelEdit}> <RefreshCw size={9}/></button>
+                  <button onClick={handleCancelEdit}> <Trash2 size={9} /></button>
                 </td>
               </tr>
             ) : (

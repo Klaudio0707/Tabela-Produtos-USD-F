@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import "../style/ConversaoPrecos.css";
 import { DollarSign, Trash2 } from "lucide-react";
 
-
 const ConversaoPrecos = ({ products }) => {
   const [selectedDate, setSelectedDate] = useState("");
   const [dollarRate, setDollarRate] = useState(null);
@@ -75,15 +74,20 @@ const ConversaoPrecos = ({ products }) => {
     <section className="conversion-container">
       <h1 className="conversion-title">Tabela de Conversão de Preços</h1>
       <div className="conversion-controls">
-        <label className="conversion-label">
-          Data do Fechamento do Dólar:
-          <input
-            type="date"
-            className="conversion-input"
-            value={selectedDate}
-            onChange={(e) => setSelectedDate(e.target.value)}
-          />
-        </label>
+        <h3 className="conversion-title-h3">Data do Fechamento do Dólar</h3>
+        <div class="warning-box">
+          Por favor, selecione uma data anterior à atual e que seja um dia útil.
+          Lembre-se de que o Banco Central não realiza fechamento de câmbio nos
+          finais de semana ou feriados, portanto, não há cotações disponíveis
+          para essas datas.
+        </div>
+
+        <input
+          type="date"
+          className="conversion-input"
+          value={selectedDate}
+          onChange={(e) => setSelectedDate(e.target.value)}
+        />
         <div className="conversion-buttons">
           <button className="btn convert-btn" onClick={handleConvertPrices}>
             <DollarSign size={12} /> Exibir Preços Convertidos

@@ -37,10 +37,10 @@ body {
 }
 
 .submit-button {
-  width: 5rem;
+  width: 4rem;
   grid-column: span 1;
   padding: 0.35rem;
-  font-size: 1rem;
+  font-size: 0.6rem;
   border: 1px solid #ccc;
   border-radius: 4px;
   background-color: #28a745;
@@ -51,21 +51,21 @@ body {
 }
 
 .select-field {
-  font-size: 0.9em; /* Tamanho da fonte */
-  padding: 0.6rem;
+  font-size: 0.7em; /* Tamanho da fonte */
+  padding: 0.4rem;
   border: 1px solid var(--border-color);
   border-radius: 0.25rem;
-  width: 50%;
+  width: 47%;
   box-sizing: border-box;
 }
 
 .input-field-IPI {
-  font-size: 0.8em; /* Tamanho da fonte */
+  font-size: 0.7em; /* Tamanho da fonte */
   grid-column: span 1;
-  padding: 0.6rem;
+  padding: 0.3rem;
   border: 1px solid var(--border-color);
   border-radius: 0.25rem;
-  width: 4rem;
+  width: 3rem;
   text-align: center;
   box-sizing: border-box;
 }
