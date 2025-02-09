@@ -36,7 +36,7 @@ const ConversaoPrecos = ({ products }) => {
       }
      } catch (error) {
        setError(
-        "Erro ao buscar cotação do dólar. Verifique a data e tente novamente."
+        "Erro ao buscar cotação do dólar.Talvez  o banco Central esteja indisponível no momento. Tente mais tarde."
       );
        console.error("Erro ao buscar cotação do dólar:", error);
        return null;
