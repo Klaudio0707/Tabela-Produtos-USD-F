@@ -15,10 +15,13 @@ const ConversaoPrecos = ({ products }) => {
 
   const fetchDollarRate = async (date) => {
     try {
-      const formattedDate = formatDate(date);
+      const formatteDate = formatDate(date);
       const response = await fetch(
-        `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%27${formattedDate}%27&$top=100&$format=json&$select=cotacaoVenda`
+        `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%27${formatteDate}%27&$top=100&$format=json&$select=cotacaoVenda`
       );
+      if (!response.ok) {
+        throw new Error(`HTTP status ${response.status}`);
+      }
 
       const data = await response.json();
       if (data.value && data.value.length > 0) {
@@ -31,12 +34,12 @@ const ConversaoPrecos = ({ products }) => {
         setDollarRate(null);
         return null;
       }
-    } catch (error) {
-      setError(
+     } catch (error) {
+       setError(
         "Erro ao buscar cotação do dólar. Verifique a data e tente novamente."
       );
-      console.error("Erro ao buscar cotação do dólar:", error);
-      return null;
+       console.error("Erro ao buscar cotação do dólar:", error);
+       return null;
     }
   };
 
@@ -75,7 +78,7 @@ const ConversaoPrecos = ({ products }) => {
       <h1 className="conversion-title">Tabela de Conversão de Preços</h1>
       <div className="conversion-controls">
         <h3 className="conversion-title-h3">Data do Fechamento do Dólar</h3>
-        <div class="warning-box">
+        <div className="warning-box">
           Por favor, selecione uma data anterior à atual e que seja um dia útil.
           Lembre-se de que o Banco Central não realiza fechamento de câmbio nos
           finais de semana ou feriados, portanto, não há cotações disponíveis
