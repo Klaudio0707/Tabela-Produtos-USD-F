@@ -1,61 +1,40 @@
+/* Container principal para a tabela */
 .product-table-list {
-  width: 95%; /* Ocupa a maior parte da largura da tela */
+  width: 90%; /* Ocupa a maior parte da largura da tela */
   border-collapse: collapse; /* Remove os espaços entre as bordas */
-  font-size: 0.6rem; /* Texto ajustável para telas menores */
+  font-size: 1.0rem; /* Texto ajustável para telas menores */
   background-color: #f9f9f9; /* Cor de fundo padrão */
   margin: 0 auto; /* Centraliza a tabela */
   table-layout: auto; /* Ajusta automaticamente o tamanho das colunas */
 }
+
 .lista-container {
-  margin-bottom: 1rem;
+  width: 100%;
+  overflow-x: auto; /* Para garantir que o conteúdo não quebre o layout */
 }
 
+/* Títulos e descrições */
 h1 {
   text-align: center; /* Centraliza o título */
   font-size: 1.3rem; /* Tamanho padrão para o título */
   margin-bottom: 1rem; /* Espaçamento abaixo do título */
 }
 
-.checkbox-list {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto;
-  margin-bottom: 3px;
-}
-.input-edit-select {
-  width: 42px;
-  font-size: 0.51rem;
-}
-.input-edit {
-  width: 50%;
-  font-size: 0.4rem;
-  text-align: center;
-}
-.input-edit-ipi {
-  width: 25%;
-  margin: 0;
-  font-size: 0.4rem;
-  text-align: center;
-  align-content: center;
-}
 .description-table-list {
   font-size: 0.8rem;
   color: #000000;
-  font: bolder;
+  font-weight: bolder;
   padding: 5px;
   border-radius: 8px;
   text-align: center;
   margin-bottom: 5px;
 }
 
-/* Estilo para Células e Títulos */
+/* Estilo para células e títulos */
 .product-table-list th,
 .product-table-list td {
+  width: 10%;
   border: 0.0425rem solid #ddd; 
-  /* Espaçamento interno nas células */
   text-align: center; 
   vertical-align: middle; /* Centraliza o texto verticalmente */
   word-wrap: break-word; /* Quebra palavras longas para evitar overflow */
@@ -76,14 +55,33 @@ h1 {
   background-color: #ddd;
 }
 
-/* Estilo para Botões */
+/* Estilo para inputs e selects */
+.input-edit-select {
+  width: 50px;
+  font-size: 0.9rem;
+}
+
+.input-edit {
+  width: 60%;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.input-edit-ipi {
+  width: 30%;
+  margin: 0;
+  font-size: 0.8rem;
+  text-align: center;
+  align-content: center;
+}
+
+/* Estilo para botões */
 .lista-container button {
-  font-size: 0.5rem; 
-  padding: 0.4rem 0.25rem; 
+  font-size: 0.8rem; 
+  padding: 0.4rem 0.95rem; 
   border: none; /* Remove bordas padrão */
   border-radius: 0.25rem;
   margin-right: 3px;
-  
   cursor: pointer;
   transition: background-color 0.3s; /* Suaviza a mudança de cor ao passar o mouse */
   margin-bottom: 10px;
@@ -103,12 +101,27 @@ h1 {
   filter: brightness(90%); /* Escurece a cor ao passar o mouse */
 }
 
-/* Estilização Responsiva */
+/* Ajuste para colunas específicas */
+td:nth-child(4),
+th:nth-child(4),
+td:nth-child(5),
+th:nth-child(5),
+td:nth-child(6),
+th:nth-child(6),
+td:nth-child(7),
+th:nth-child(7),
+td:nth-child(8),
+th:nth-child(8),
+td:nth-child(9),
+th:nth-child(9) {
+  width: 5%; /* Define a largura */
+  text-align: center; /* Alinhamento */
+}
 
 /* Tablets e smartphones (até 768px) */
 @media (max-width: 768px) {
   .product-table-list {
-    font-size: 0.55rem; /* Ajusta o tamanho do texto */
+    font-size: 0.3rem; /* Ajusta o tamanho do texto */
     overflow-x: auto; /* Permite scroll horizontal */
   }
 
@@ -118,29 +131,52 @@ h1 {
   }
 
   .description-table-list {
-    font-size: 0.6rem;
+    font-size: 0.5rem;
     word-wrap: break-word;
   }
 
-  /* Ajustes para os botões em telas pequenas */
   .lista-container button {
-    font-size: 0.4rem; /* Tamanho do texto reduzido */
+    display: flex;
+    flex-direction: row;
+    font-size: 0.2rem; 
     padding: 0.3rem 0.35rem; /* Reduz o tamanho do botão */
   }
+  .input-edit-select {
+    width: 35px;
+    font-size: 0.4rem;
+  }
+  
+  .input-edit {
+    width: 60%;
+    font-size: 0.45rem;
+    text-align: center;
+  }
+  
+  .input-edit-ipi {
+    width: 20%;
+    margin: 0;
+    font-size: 0.6rem;
+    text-align: center;
+    align-content: center;
+  }
 }
+
 
 /* Smartphones muito pequenos (até 576px) */
 @media (max-width: 576px) {
   .product-table-list {
     width: 80%;
   }
+
   input {
     width: 50%;
     font-size: 0.2rem;
   }
+
   select {
     font-size: 0.48rem;
   }
+
   .checkbox-list {
     display: flex;
     flex-direction: column;
@@ -149,13 +185,16 @@ h1 {
     justify-content: center;
     margin: 0 auto;
   }
-  .input-edit-ipi{
-font-size: 6px;
-width: 10px;
 
+  .input-edit-ipi {
+    font-size: 8px;
+    width: 10px;
   }
+
   button {
-    font-size: 0.3rem;
+    display: flex;
+    flex-direction: row;
+    font-size: 0.2rem;
     padding: 0.2rem 0.4rem;
   }
 
@@ -164,7 +203,6 @@ width: 10px;
     padding: 0.17rem; /* Reduz ainda mais o espaçamento */
   }
 
-  /* Ajustes para os botões em telas muito pequenas */
   .lista-container button {
     font-size: 0.5rem; /* Texto ainda menor */
     padding: 0.04rem 0.3rem; /* Tamanho reduzido */
@@ -172,3 +210,4 @@ width: 10px;
     min-width: 10px; /* Garante que os botões tenham um tamanho mínimo */
   }
 }
+
