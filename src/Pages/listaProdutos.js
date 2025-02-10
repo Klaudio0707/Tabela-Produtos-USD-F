@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../style/Lista.css";
-import { RefreshCw, Trash2, Save} from "lucide-react";
+import { RefreshCw, Trash2, Save } from "lucide-react";
 const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const [editingProductId, setEditingProductId] = useState(null);
   const [editedProduct, setEditedProduct] = useState({});
@@ -13,6 +13,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const handleCancelEdit = () => {
     setEditingProductId(null);
     setEditedProduct({});
+
   };
 
   const handleSaveEdit = () => {
@@ -54,7 +55,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
               <tr key={product._id} className="input-lista">
                 <td data-label="Nome">
                   <input
-                  className="input-edit"
+                    className="input-edit"
                     name="name"
                     value={editedProduct.name}
                     onChange={handleChange}
@@ -63,7 +64,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Fabricante">
                   <input
-                  className="input-edit"
+                    className="input-edit"
                     name="manufacturer"
                     value={editedProduct.manufacturer}
                     onChange={handleChange}
@@ -72,7 +73,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Origem">
                   <input
-                  className="input-edit"
+                    className="input-edit"
                     name="origin"
                     value={editedProduct.origin}
                     onChange={handleChange}
@@ -81,7 +82,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Embalagem">
                   <input
-                  className="input-edit"
+                    className="input-edit"
                     name="package"
                     value={editedProduct.package}
                     onChange={handleChange}
@@ -90,7 +91,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Moeda">
                   <select
-                  className="input-edit-select"
+                    className="input-edit-select"
                     name="currency"
                     value={editedProduct.currency}
                     onChange={handleChange}
@@ -101,9 +102,9 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                 </td>
                 <td data-label="Preço Dentro">
                   <input
-                  className="input-edit"
+                    className="input-edit"
                     name="priceInside"
-                    value={String(editedProduct.priceInside).replace(",", ".")} 
+                    value={String(editedProduct.priceInside).replace(",", ".")}
                     onChange={(e) => {
                       const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                       setEditedProduct((prev) => ({ ...prev, priceInside: value }));
@@ -114,9 +115,9 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
 
                 <td data-label="Preço Fora">
                   <input
-                  className="input-edit"
+                    className="input-edit"
                     name="priceOutside"
-                    value={String(editedProduct.priceOutside).replace(",", ".")} 
+                    value={String(editedProduct.priceOutside).replace(",", ".")}
                     onChange={(e) => {
                       const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                       setEditedProduct((prev) => ({ ...prev, priceOutside: value }));
@@ -141,9 +142,9 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     />
                     {editedProduct.ipi && (
                       <input
-                      className="input-edit-ipi"
+                        className="input-edit-ipi"
                         name="ipiRate"
-                        value={String(editedProduct.ipiRate).replace(",", ".")} 
+                        value={String(editedProduct.ipiRate).replace(",", ".")}
                         onChange={(e) => {
                           const value = e.target.value.replace(",", "."); // Troca vírgula por ponto
                           setEditedProduct((prev) => ({ ...prev, ipiRate: value }));
