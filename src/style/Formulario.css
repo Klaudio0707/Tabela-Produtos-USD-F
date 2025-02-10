@@ -20,11 +20,11 @@ body {
 .form-container {
   display: grid;
   grid-template-columns: repeat(5, 1fr); /* 5 colunas por linha */
-  gap: 0.03rem; /* Espaçamento entre os campos */
+  gap: 0.02rem; /* Espaçamento entre os campos */
   max-width: 80%;
   margin: 0 auto;
   margin-bottom: 1rem;
-  padding: 0.7rem;
+  padding: 0.5rem;
   align-items: center;
   justify-content: center;
 }
@@ -91,7 +91,6 @@ body {
   background-color: #28a745;
   transform: translateY(-2px);
 }
-
 .submit-button:active {
   transform: translateY(0);
 }

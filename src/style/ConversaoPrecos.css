@@ -65,8 +65,8 @@ h1 {
 }
 
 .btn {
-  padding: 0.325rem 0.8rem;
-  font-size: 0.6rem;
+  padding: 0.425rem 0.8rem;
+  font-size: 0.7rem;
   color: white;
   border: none;
   border-radius: 0.25rem; /* 4px */
@@ -85,9 +85,11 @@ h1 {
 }
 
 .btn:hover {
-  opacity: 0.9;
+  transform: translateY(-2px);
 }
-
+.btn:active{
+  transform: translateY(0);
+}
 /* Mensagens */
 .error-message {
   color: #ddd;
