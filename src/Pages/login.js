@@ -12,7 +12,7 @@ const Login = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post(`${import.meta.env.REACT_APP_API_BACKEND}/auth/login`, formData);
+            const response = await axios.post(`${process.env.REACT_APP_API_BACKEND}/auth/login`, formData);
             const { token } = response.data;
 
             if (token) {
