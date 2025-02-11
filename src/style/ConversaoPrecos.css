@@ -29,31 +29,31 @@ h1 {
 }
 
 .conversion-title-h3 {
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   margin-bottom: 0;
   color: #555;
 }
 .warning-box {
   text-align: center;
-  max-width: 300px; 
-  padding: 5px;
+  max-width: 400px; 
+  padding: 10px;
   background-color: #ffe4b5; 
   color: #333; 
   border: 1px solid #ddd;
   border-radius: 8px; 
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
   line-height: 2.5;
-  font-size: 10px;
-  margin: 10px;
+  font-size: 14px;
+  margin: 15px;
 }
 
 
 .conversion-input {
   padding: 0.3125rem;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
   border: 0.0625rem solid #ccc;
   border-radius: 0.25rem;
-  width: 6rem;
+  width: 7rem;
   max-width: 15.625rem; /* 250px */
   text-align: center;
   margin-bottom: 20px;
@@ -65,7 +65,7 @@ h1 {
 }
 
 .btn {
-  padding: 0.425rem 0.8rem;
+  padding: 0.525rem 0.8rem;
   font-size: 0.7rem;
   color: white;
   border: none;
@@ -112,9 +112,9 @@ h1 {
 .product-table td {
   border: 0.0425rem solid #ddd; /* 1px */
   padding: 0.425rem; /* 10px */
-  padding: 10px;
+  padding: 5px;
   text-align: center;
-  font-size: 0.6rem;
+  font-size: 0.7rem;
 }
 
 .product-table th {

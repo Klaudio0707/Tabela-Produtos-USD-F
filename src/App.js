@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useCallback } from "react";
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
+import ProtectedRoute  from "./Components/ProtectedRoute"
+import Login from "./Pages/login"
+import Register from "./Pages/register";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
@@ -81,19 +85,35 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
   }, [fetchProducts]);
 
   return (
-    <div className="App-header">
-      <Header />
-      <main>
-        <FormularioProdutos onAddProduct={handleAddProduct} />
-        <ListaProdutos
-          products={products}
-          onUpdateProduct={handleUpdateProduct}
-          onDeleteProduct={handleDeleteProduct}
-        />
-        <ConversaoPrecos products={products} />
-      </main>
-      <Footer />
-    </div>
+    <Router>
+      <div className="App-header">
+        <Header />
+        <main>
+          <Routes>
+            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/login" element={<Login />} />
+            <Route path="/register" element={<Register />} />
+            <Route
+              path="/produtos"
+              element={
+                <ProtectedRoute>
+                  <>
+                    <FormularioProdutos onAddProduct={handleAddProduct} />
+                    <ListaProdutos
+                      products={products}
+                      onUpdateProduct={handleUpdateProduct}
+                      onDeleteProduct={handleDeleteProduct}
+                    />
+                    <ConversaoPrecos products={products} />
+                  </>
+                </ProtectedRoute>
+              }
+            />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
   );
 };
 

@@ -38,22 +38,22 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
       <table className="product-table-list">
         <thead>
           <tr className="th-titulo">
-            <th>Nome</th>
-            <th>Fabricante</th>
-            <th>Origem</th>
-            <th>Embalagem</th>
-            <th>Moeda</th>
-            <th>Preço Dentro</th>
-            <th>Preço Fora</th>
-            <th>IPI</th>
-            <th>Ações</th>
+            <th className="th-nome">Nome</th>
+            <th className="th-fabricante">Fabricante</th>
+            <th className="th-origem">Origem</th>
+            <th className="th-embalagem">Embalagem</th>
+            <th className="th-moeda">Moeda</th>
+            <th className="th-preco-dentro">Preço Dentro</th>
+            <th className="th-preco-fora">Preço Fora</th>
+            <th className="th-ipi">IPI</th>
+            <th className="th-acoes">Ações</th>
           </tr>
         </thead>
         <tbody>
           {products.map((product) =>
             editingProductId === product._id ? (
               <tr key={product._id} className="input-lista">
-                <td data-label="Nome">
+                <td className="td-nome" data-label="Nome">
                   <input
                     className="input-edit"
                     name="name"
@@ -62,7 +62,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     placeholder="Nome"
                   />
                 </td>
-                <td data-label="Fabricante">
+                <td className="td-fabricante" data-label="Fabricante">
                   <input
                     className="input-edit"
                     name="manufacturer"
@@ -71,7 +71,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     placeholder="Fabricante"
                   />
                 </td>
-                <td data-label="Origem">
+                <td className="td-origem" data-label="Origem">
                   <input
                     className="input-edit"
                     name="origin"
@@ -80,7 +80,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     placeholder="Origem"
                   />
                 </td>
-                <td data-label="Embalagem">
+                <td className="td-embalagem" data-label="Embalagem">
                   <input
                     className="input-edit"
                     name="package"
@@ -89,7 +89,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     placeholder="Embalagem"
                   />
                 </td>
-                <td data-label="Moeda">
+                <td className="td-moeda" data-label="Moeda">
                   <select
                     className="input-edit-select"
                     name="currency"
@@ -100,7 +100,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     <option value="USD">Dólar</option>
                   </select>
                 </td>
-                <td data-label="Preço Dentro">
+                <td className="td-preco-dentro" data-label="Preço Dentro">
                   <input
                     className="input-edit"
                     name="priceInside"
@@ -113,7 +113,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                   />
                 </td>
 
-                <td data-label="Preço Fora">
+                <td className="td-preco-fora" data-label="Preço Fora">
                   <input
                     className="input-edit"
                     name="priceOutside"
@@ -126,7 +126,7 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                   />
                 </td>
 
-                <td data-label="IPI">
+                <td className="td-ipi" data-label="IPI">
                   <label className="checkbox-edit">
                     <input
                       className="checkbox-list"
@@ -154,24 +154,24 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                     )}
                   </label>
                 </td>
-                <td data-label="Ações">
+                <td className="td-acoes" data-label="Ações">
                   <button onClick={handleSaveEdit}> <Save size={9} /></button>
                   <button onClick={handleCancelEdit}> <Trash2 size={9} /></button>
                 </td>
               </tr>
             ) : (
               <tr key={product._id} className="tr-lista">
-                <td data-label="Nome">{product.name}</td>
-                <td data-label="Fabricante">{product.manufacturer}</td>
-                <td data-label="Origem">{product.origin}</td>
-                <td data-label="Embalagem">{product.package}</td>
-                <td data-label="Moeda">{product.currency}</td>
-                <td data-label="Preço Dentro">{parseFloat(product.priceInside).toFixed(2)}</td>
-                <td data-label="Preço Fora">{parseFloat(product.priceOutside).toFixed(2)}</td>
-                <td data-label="IPI" className="td-ipi">
+                <td className="td-nome" data-label="Nome">{product.name}</td>
+                <td className="td-fabricante" data-label="Fabricante">{product.manufacturer}</td>
+                <td className="td-origem" data-label="Origem">{product.origin}</td>
+                <td className="td-embalagem" data-label="Embalagem">{product.package}</td>
+                <td className="td-moeda" data-label="Moeda">{product.currency}</td>
+                <td className="td-preco-dentro" data-label="Preço Dentro">{parseFloat(product.priceInside).toFixed(2)}</td>
+                <td className="td-preco-fora" data-label="Preço Fora">{parseFloat(product.priceOutside).toFixed(2)}</td>
+                <td className="td-ipi" data-label="IPI">
                   {product.ipi ? `Sim ${product.ipiRate}%` : "Não"}
                 </td>
-                <td data-label="Ações">
+                <td className="td-acoes" data-label="Ações">
                   <button className="btn-list" onClick={() => handleEditClick(product)}>
                     <RefreshCw size={10} /></button>
                   <button className="btn-list" onClick={() => handleDeleteClick(product._id)}>
