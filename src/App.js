@@ -87,7 +87,6 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
   return (
     <Router>
       <div className="App-header">
-        <Header />
         <main>
           <Routes>
             <Route path="/" element={<Navigate to="/login" />} />
@@ -97,6 +96,7 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
               path="/produtos"
               element={
                 <ProtectedRoute>
+                  <Header />
                   <>
                     <FormularioProdutos onAddProduct={handleAddProduct} />
                     <ListaProdutos

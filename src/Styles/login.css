@@ -1,0 +1,118 @@
+/* reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* estilo do container principal */
+.container-Login {
+display: flex;
+flex-direction: column;
+align-items: center;
+align-items: center;
+justify-content: center;
+min-height: 90vh; /* ocupa 100% da altura da tela */
+background-color: #f0f2f5;
+padding: 20px;
+}
+
+.title-Login {
+font-size: 2rem;
+color: #333;
+margin-bottom: 30px;
+}
+
+.form-Login {
+display: flex;
+flex-direction: column;
+ gap: 10px; /* espaçamento entre os elementos */
+width: 100%;
+max-width: 300px;/* Largura máxima para evitar que o formulário fique muito largo */
+background-color: #fff;
+padding: 20px;
+border-radius: 8px;
+box-shadow:  0 4px 6px rgb(0, 0, 0, 0.1);
+}
+
+.input-Login-User,
+.input-Login-Password {
+    display: flex;
+width: 100%;
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 4px;
+font-size: 0.8rem;
+outline: none; /* remove a borda azul ao clicar no input */
+transition: border-color 0.3s ease; /* efeito de transição para a cor da borda  */
+}
+
+.input-Login-User:focus,
+.input-Login-Password:focus {
+border-color: #007bff;
+}
+
+.btn-Submit,
+.btn-Register {
+display: flex;
+flex-direction: column;
+width: 100%;
+padding: 10px;
+border: none;
+border-radius: 4px;
+font-size: 1rem;
+cursor: pointer;
+transition: background-color 0.3s ease;
+align-items: center;
+
+}
+.btn-Submit {
+background-color: #007bff;
+color: #fff;
+}
+.btn-Submit:hover{
+background-color: #0056b3;
+}
+
+.btn-Register{
+background-color: #28a745;
+color: #fff;
+margin-top: 10px;
+}
+.btn-Register:hover{
+background-color: #218838;
+}
+.error-Login{
+color: #dc3545;
+font-size: 0.5rem;
+margin-top: 10px;
+text-align: center;
+}
+.text-Info-Login{
+ font-size: 0.7rem;
+ text-align: center;   
+}
+.text-Info-Login a{
+color: #007bff;
+text-decoration: none; /* remover o sublinhado da teg a */
+}
+
+.text-Info-Login a:hover {
+text-decoration: underline; /* adiciona o sublinhado ao passar o mouse */
+}
+/*media queries para tela menor */
+@media (max-width: 600px) {
+.form-Login{
+padding: 15px;
+}
+.title-Login{
+font-size: 1.5rem;
+}
+.input-Login-User,
+.input-Login-Password,
+.btn-Submit,
+.btn-Register{
+font-size: 0.8rem;
+
+}
+}
