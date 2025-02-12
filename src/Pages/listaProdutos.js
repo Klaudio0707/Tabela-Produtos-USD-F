@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/Lista.css";
+import "../Styles/Lista.css";
 import { RefreshCw, Trash2, Save } from "lucide-react";
 const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const [editingProductId, setEditingProductId] = useState(null);

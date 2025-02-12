@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/ConversaoPrecos.css";
+import "../Styles/ConversaoPrecos.css";
 import { DollarSign, Trash2 } from "lucide-react";
 
 const ConversaoPrecos = ({ products }) => {

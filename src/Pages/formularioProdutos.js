@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../style/Formulario.css";
+import "../Styles/Formulario.css";
 
 const FormularioProdutos = ({ onAddProduct }) => {
   const [product, setProduct] = useState({
