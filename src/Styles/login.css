@@ -12,13 +12,13 @@ flex-direction: column;
 align-items: center;
 align-items: center;
 justify-content: center;
-min-height: 90vh; /* ocupa 100% da altura da tela */
+min-height: 100vh; /* ocupa 100% da altura da tela */
 background-color: #f0f2f5;
 padding: 20px;
 }
 
 .title-Login {
-font-size: 2rem;
+font-size: 3rem;
 color: #333;
 margin-bottom: 30px;
 }
@@ -28,7 +28,7 @@ display: flex;
 flex-direction: column;
  gap: 10px; /* espaçamento entre os elementos */
 width: 100%;
-max-width: 300px;/* Largura máxima para evitar que o formulário fique muito largo */
+max-width: 350px;/* Largura máxima para evitar que o formulário fique muito largo */
 background-color: #fff;
 padding: 20px;
 border-radius: 8px;
@@ -42,7 +42,7 @@ width: 100%;
 padding: 10px;
 border: 1px solid #ccc;
 border-radius: 4px;
-font-size: 0.8rem;
+font-size: 0.9rem;
 outline: none; /* remove a borda azul ao clicar no input */
 transition: border-color 0.3s ease; /* efeito de transição para a cor da borda  */
 }
@@ -84,7 +84,7 @@ background-color: #218838;
 }
 .error-Login{
 color: #dc3545;
-font-size: 0.5rem;
+font-size: 0.7rem;
 margin-top: 10px;
 text-align: center;
 }
