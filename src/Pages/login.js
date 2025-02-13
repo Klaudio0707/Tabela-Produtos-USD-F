@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { EyeOff } from 'lucide-react';
+import { Eye } from 'lucide-react';
 import "../Styles/Login.css";
 
 const Login = () => {
@@ -38,9 +40,14 @@ const Login = () => {
   };
 
   return (
-    <div className="container-Login">
-      <h1 className="title-Login">Login</h1>
-      <form className="form-Login" onSubmit={handleSubmit}>
+    <div className="container-login">
+      <h1 className="container-title">
+        <span className="logi-title">Logi</span>
+        <span className="box-title">Box</span>
+      </h1>
+      <h3 className="title-login">Login</h3>
+      <form className="form-login" onSubmit={handleSubmit}>
+        <div className="container-div-input">
         <input
           type="text"
           name="username"
@@ -48,10 +55,10 @@ const Login = () => {
           value={formData.username}
           onChange={handleChange}
           required
-          className="input-Login-User"
-        />
+          className="input-login-user"
+          />
 
-        <div className="password-container">
+        
           <input
             type={showPassword ? "text" : "password"}
             name="password"
@@ -59,19 +66,20 @@ const Login = () => {
             value={formData.password}
             onChange={handleChange}
             required
-            className="input-Login-Password"
-          />
+            className="input-login-password"
+            />
           <div
             className={`toggle-switch ${showPassword ? "on" : "off"}`}
             onClick={toggleShowPassword}
-          >
-            <div className="toggle-indicator">{showPassword ? "ON" : "OFF"}</div>
+            >
+            <div className="toggle-indicator">{showPassword ? <Eye className="icon"/> : <EyeOff className="icon" />}</div>
           </div>
-        </div>
+        
 
         <button className="btn-Submit" type="submit">
           Entrar
         </button>
+            </div>
 
         <p className="text-Info-Login">
           Não tem uma conta?{" "}
@@ -83,6 +91,7 @@ const Login = () => {
       {message && <p className="error-Login">{message}</p>}
     </div>
   );
+
 };
 
 export default Login;

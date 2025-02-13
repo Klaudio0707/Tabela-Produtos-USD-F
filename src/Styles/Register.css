@@ -9,19 +9,22 @@
     align-content: center;
 
 }
-h2{
+.container-title-register{
 text-align: center;
 color: #2c3e50;
 margin-top: 1rem;
 margin-bottom: 1.5rem;
 font-size: 2rem;
 }
-form{
+.form-register{
 display: flex;
 flex-direction: column;
 gap: 1rem;
 }
-input{
+.input-register-user,
+.input-register-password,
+.input-register-empresa,
+.input-register-email{
 padding: 0.7rem;
 border: 2px solid #e0e0e0;
 border-radius: 10px;
@@ -32,7 +35,7 @@ max-width: 300px;
 margin: 0 auto;
 text-align: center;
 }
-select{
+.select-register-permiss{
     padding: 0.7rem;
     border: 2px solid #e0e0e0;
     border-radius: 9px;
@@ -44,11 +47,15 @@ select{
     text-align: center; 
 }
 
-input:focus, select:focus{
+.input-register-user:focus,
+.input-register-password:focus,
+.input-register-empresa:focus,
+.input-register-email:focus,
+ .select-register-permiss:focus{
 outline: none;
 border-color: #3498db;
 }
-button{
+.btn-register{
 padding: 0.8rem;
 background-color: #3498db;
 color: white;
@@ -61,10 +68,10 @@ width: 80%; /* Define uma largura menor */
 max-width: 300px; /* Define o limite máximo de largura */
 margin: 0 auto; /* Centraliza o botão */
 }
-button:hover{
+.btn-register:hover{
 background-color: #2980b9;
 }
-button:disabled{
+.btn-register:disabled{
     background-color: #bdc3c7;
     cursor: not-allowed;
 }
@@ -101,7 +108,7 @@ text-align: center;
         margin: 1rem;
         padding: 1.5rem;
     }
-    h2 {
+    .container-title-register {
         font-size: 1.75rem;
       }
       

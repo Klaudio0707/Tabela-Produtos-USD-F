@@ -47,11 +47,12 @@ setLoading(false);
   };
   return (
     <div className="register-Container">
-      <h2>Registro</h2>
+      <h2 className="container-title-register">Registro</h2>
       {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
-      <form onSubmit={handleRegister}>
+      <form className="form-register" onSubmit={handleRegister}>
         <input
           type="text"
+          className="input-register-user"
           placeholder="Usuário"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
@@ -59,6 +60,7 @@ setLoading(false);
           required
         />
         <input
+         className="input-register-password"
           type="password"
           placeholder="Senha"
           value={password}
@@ -68,6 +70,7 @@ setLoading(false);
         />
         <input
           type="text"
+          className="input-register-empresa"
           placeholder="Empresa"
           value={empresa}
           onChange={(e) => setEmpresa(e.target.value)}
@@ -75,6 +78,7 @@ setLoading(false);
         />
         <input
           type="email"
+           className="input-register-email"
           placeholder="Email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
@@ -82,13 +86,14 @@ setLoading(false);
         />
         <select
           value={permiss}
+          className="select-register-permiss"
           onChange={(e) => setPermiss(e.target.value)}
           required >
           <option value="user">Usuário</option>
           <option value="admin">Administrador</option>
           <option value="quest">Consultor</option>
         </select>
-        <button type="submit" disabled={loading}>{loading ? "Registrando...": "Registrar"}</button>
+        <button className="btn-register" type="submit" disabled={loading}>{loading ? "Registrando...": "Registrar"}</button>
       </form>
       <p className="login-Link">
         Já tem uma conta? <a href="/login">Faça login</a>
