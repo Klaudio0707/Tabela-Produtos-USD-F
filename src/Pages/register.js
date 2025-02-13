@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../Styles/Register.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -45,7 +46,7 @@ setLoading(false);
 
   };
   return (
-    <div>
+    <div className="register-Container">
       <h2>Registro</h2>
       {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
       <form onSubmit={handleRegister}>
@@ -89,7 +90,7 @@ setLoading(false);
         </select>
         <button type="submit" disabled={loading}>{loading ? "Registrando...": "Registrar"}</button>
       </form>
-      <p>
+      <p className="login-Link">
         Já tem uma conta? <a href="/login">Faça login</a>
       </p>
     </div>
