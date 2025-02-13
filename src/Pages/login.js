@@ -47,7 +47,6 @@ const Login = () => {
       </h1>
       <h3 className="title-login">Login</h3>
       <form className="form-login" onSubmit={handleSubmit}>
-        <div className="container-div-input">
         <input
           type="text"
           name="username"
@@ -76,19 +75,17 @@ const Login = () => {
           </div>
         
 
-        <button className="btn-Submit" type="submit">
+        <button className="btn-submit" type="submit">
           Entrar
         </button>
-            </div>
-
-        <p className="text-Info-Login">
+        <p className="text-lnfo-login">
           Não tem uma conta?{" "}
-          <a className="btn-Register" href="/register">
+          <a className="btn-register" href="/register">
             Cadastre-se
           </a>
         </p>
       </form>
-      {message && <p className="error-Login">{message}</p>}
+      {message && <p className="error-login">{message}</p>}
     </div>
   );
 
