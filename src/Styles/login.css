@@ -7,74 +7,57 @@
 
 /* Estilo do container principal */
 .container-login {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  min-height: 100vh;
-  background-color: #f4f4f4;
-  padding: 1rem;
+ display: flex;
+ flex-direction: column;
 }
+  /* Título geral */
+  .container-title {
+    margin-top: 50px;
+    font-size: 4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    display: inline-block;
+  }
+  
+  /* Estilo para Logi */
+  .logi-title {
+    color: #3498db; /* Azul para tecnologia */
+    position: relative;
+    display: inline-block;
+    animation: slideLogi 3s ease-in-out infinite;
+  }
+  
+  /* Estilo para Box */
+  .box-title {
+    color: #e74c3c; /* Vermelho para dinamismo */
+    position: relative;
+      display: inline-block;
+    animation: bounceBox 3s ease-in-out infinite, boxGlow 3s ease-in-out infinite;
+  }
 
-/* Título geral */
-.container-title {
-  position: relative;
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 2rem;
-  color: #fff;
-  text-align: center;
-  text-transform: uppercase;
-}
-
-/* Estilo para Logi */
-.logi-title {
-  color: #3498db;
-  animation: slide-logi 3s ease-in-out infinite;
-}
-
-/* Estilo para Box */
-.box-title {
-  color: #e74c3c;
-  animation: bounce-box 3s ease-in-out infinite;
-}
-
-/* Formulário de login */
 .form-login {
-  display: flex;
-  flex-direction: column;
+  max-width: 400px;
+  margin-top: 100px;
+  margin: 2rem auto;
+ text-align: center;
+  justify-items: center;
   justify-content: center;
-  gap: 1rem;
-  max-width: 350px;
-  margin: 20px auto;
   padding: 2rem;
-  background-color: #e4e4e4;
+  background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.title-login {
-  font-size: 1.25rem;
-  text-align: center;
-  margin-bottom: 1rem;
-  color: #333;
-}
-
-.container-div-input {
-  display: flex;
-  flex-direction: column;
- align-items: center;
-}
-
 .input-login-user,
 .input-login-password {
-  padding: 0.7rem;
-  border: 2px solid #e0e0e0;
-  border-radius: 5px;
-  font-size: 1rem;
-
-  width: 70%;
-  transition: border-color 0.3s ease;
+    padding: 0.7rem;
+    margin-top: 20px;
+    border: 2px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+    
 }
 
 .input-login-user:focus,
@@ -84,34 +67,50 @@
 }
 
 .btn-submit {
-  padding: 0.7rem;
-  border: none;
-  border-radius: 5px;
-  font-size: 1rem;
-  width: 70px;
-  cursor: pointer;
-  background-color: #3498db;
-  color: #fff;
-  transition: background-color 0.3s ease;
-  margin-top: 10px;
-  justify-content: center;
+    padding: 0.9rem 2rem;
+    border: none;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-align: center;
+}
+
+.btn-submit {
+    background-color: #3498db;
+    color: #fff;
 }
 
 .btn-submit:hover {
-  background-color: #2980b9;
+    background-color: #2980b9;
+}
+.a-register{
+color: #315be7;
+font-size: 1rem;
+font-weight: bold;
+text-decoration: none;
+
 }
 
-/* Alternador de exibição de senha */
+
+.password-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
 .toggle-switch {
-  display: flex;
-  align-items: center;
-  width: 50px;
-  height: 20px;
-  border-radius: 12.5px;
-  background-color: #e0e0e0;
-  position: relative;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    display: flex;
+    width: 50px;
+    height: 25px;
+    margin: 10px;
+    border-radius: 12.5px;
+    background-color: #ffffff;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .toggle-switch.on {
@@ -146,25 +145,20 @@
   justify-content: center;
   align-items: center;
 }
-
-/* Mensagens de erro e links */
-.error-login {
-  color: #dc3545;
-  font-size: 0.875rem;
-  margin-top: 10px;
-  text-align: center;
+.error-Login {
+    color: #dc3545;
+    font-size: 0.7rem;
+    margin-top: 10px;
+    text-align: center;
 }
-
 .text-info-login {
   font-size: 0.875rem;
   text-align: center;
 }
-
 .text-info-login a {
   color: #0bb90b;
   text-decoration: none;
 }
-
 .text-info-login a:hover {
   text-decoration: underline;
 }
@@ -245,25 +239,38 @@
 
 /* Responsividade */
 @media (max-width: 600px) {
-  .container-login {
-    padding: 1.5rem;
-  }
+    .container-login {
+        margin: 0.8rem;
+        padding: 0.7rem;   
+    }
+    .container-title {
+      margin-top: 30px;
+      font-size: 3rem;
+     
+      
+    
+    }
+    .form-login{
+      display: flex;
+      flex-direction: column;
+     align-items: center;
+    }
 
-  .container-title {
-    font-size: 2rem;
-  }
+    .title-login {
+        font-size: 1.9rem;
+    }
 
-  .form-login {
-    padding: 1.5rem;
-  }
-
-  .title-login {
-    font-size: 1rem;
-  }
-
-  .input-login-user,
-  .input-login-password,
-  .btn-submit {
-    font-size: 0.875rem;
-  }
+    .input-login-user,
+    .input-login-password {
+      width: 60%;
+      padding: 10px;
+      font-size: 0.7rem;
+    }
+    
+    .btn-submit {
+      width: 35%;
+      justify-content: center;
+        padding: 10px;
+        font-size: 0.8rem;
+    }
 }
