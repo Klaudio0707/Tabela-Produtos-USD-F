@@ -1,220 +1,269 @@
-/* reset básico */
+/* Reset básico */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* estilo do container principal */
+/* Estilo do container principal */
 .container-login {
-    max-width: 400px;
-    margin-top: 100px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  padding: 1rem;
 }
 
-.title-container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
-  /* Título geral */
-  .container-title {
-    font-size: 4rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    display: inline-block;
-  }
-  
-  /* Estilo para Logi */
-  .logi-title {
-    color: #3498db; /* Azul para tecnologia */
-    position: relative;
-    animation: slideLogi 3s ease-in-out infinite;
-  }
-  
-  /* Estilo para Box */
-  .box-title {
-    color: #e74c3c; /* Vermelho para dinamismo */
-    position: relative;
-    animation: bounceBox 3s ease-in-out infinite, boxGlow 3s ease-in-out infinite;
-  }
+/* Título geral */
+.container-title {
+  position: relative;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
 
+/* Estilo para Logi */
+.logi-title {
+  color: #3498db;
+  animation: slide-logi 3s ease-in-out infinite;
+}
+
+/* Estilo para Box */
+.box-title {
+  color: #e74c3c;
+  animation: bounce-box 3s ease-in-out infinite;
+}
+
+/* Formulário de login */
 .form-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 1rem;
+  max-width: 350px;
+  margin: 20px auto;
+  padding: 2rem;
+  background-color: #e4e4e4;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.title-login {
+  font-size: 1.25rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.container-div-input {
+  display: flex;
+  flex-direction: column;
+ align-items: center;
 }
 
 .input-login-user,
 .input-login-password {
-    padding: 0.7rem;
-    border: 2px solid #e0e0e0;
-    border-radius: 5px;
-    font-size: 1rem;
-    transition: border-color 0.3s ease;
+  padding: 0.7rem;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  font-size: 1rem;
+
+  width: 70%;
+  transition: border-color 0.3s ease;
 }
 
 .input-login-user:focus,
 .input-login-password:focus {
-    outline: none;
-    border-color: #007bff;
+  outline: none;
+  border-color: #3498db;
 }
 
-.btn-Submit,
-.btn-Register {
-    padding: 0.8rem;
-    border: none;
-    border-radius: 5px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    text-align: center;
+.btn-submit {
+  padding: 0.7rem;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  width: 70px;
+  cursor: pointer;
+  background-color: #3498db;
+  color: #fff;
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+  justify-content: center;
 }
 
-.btn-Submit {
-    background-color: #3498db;
-    color: #fff;
+.btn-submit:hover {
+  background-color: #2980b9;
 }
 
-.btn-Submit:hover {
-    background-color: #2980b9;
-}
-
-.btn-Register {
-    color: #fff;
-    margin-top: 1px;
-}
-
-.password-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
+/* Alternador de exibição de senha */
 .toggle-switch {
-    display: flex;
-    width: 50px;
-    height: 25px;
-    border-radius: 12.5px;
-    background-color: #e0e0e0;
-    position: relative;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  width: 50px;
+  height: 20px;
+  border-radius: 12.5px;
+  background-color: #e0e0e0;
+  position: relative;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .toggle-switch.on {
-    background-color: #06f506;
+  background-color: #06f506;
 }
 
 .toggle-switch.off {
-    background-color: #030303;
+  background-color: #030303;
 }
 
 .toggle-indicator {
-    width: 25px;
-    height: 25px;
-    background-color: white;
-    border-radius: 50%;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: transform 0.3s ease;
+  width: 25px;
+  height: 25px;
+  background-color: #fff;
+  border-radius: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
 }
 
 .toggle-switch.on .toggle-indicator {
-    transform: translate(25px, -50%);
+  transform: translate(25px, -50%);
 }
-
 .icon {
-    background-color: inherit; /* Herda a cor de fundo da div */
-    padding: 4px;
-    border-radius: 50%;
-    color: inherit; /* Adiciona a cor do texto do ícone (herda a cor do fundo) */
-    font-size: 1.2rem; /* Ajusta o tamanho do ícone */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+  background-color: inherit; /* Herda a cor de fundo da div */
+  padding: 2px;
+  border-radius: 50%;
+  color: inherit; /* Adiciona a cor do texto do ícone (herda a cor do fundo) */
+  font-size: 1rem; /* Ajusta o tamanho do ícone */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.error-Login {
-    color: #dc3545;
-    font-size: 0.7rem;
-    margin-top: 10px;
-    text-align: center;
+/* Mensagens de erro e links */
+.error-login {
+  color: #dc3545;
+  font-size: 0.875rem;
+  margin-top: 10px;
+  text-align: center;
 }
 
 .text-info-login {
-    font-size: 0.7rem;
-    text-align: center;
+  font-size: 0.875rem;
+  text-align: center;
 }
 
 .text-info-login a {
-    color: #0bb90b;
-    text-decoration: none; /* Remove o sublinhado da tag a */
+  color: #0bb90b;
+  text-decoration: none;
 }
 
 .text-info-login a:hover {
-    text-decoration: underline; /* Adiciona o sublinhado ao passar o mouse */
+  text-decoration: underline;
 }
-@keyframes slideLogi {
-    0% {
-      transform: translateX(0);
-    }
-    50% {
-      transform: translateX(10px); /* Leve movimento para frente */
-    }
-    100% {
-      transform: translateX(0); /* Volta para a posição inicial */
-    }
+ /* Estilo para Logi */
+ .logi-title {
+  display: inline-block;
+  color: #3498db; /* Azul para tecnologia */
+  animation: slideLogi 3s ease-in-out infinite;
+}
+
+/* Estilo para Box */
+.box-title {
+  display: inline-block;
+  color: #e74c3c; /* Vermelho para dinamismo */
+  animation: bounceBox 3s ease-in-out infinite, boxGlow 3s ease-in-out infinite;
+}
+/* Animações */
+@keyframes boxAppear {
+  0% {
+      opacity: 0;
+      transform: scale(0);
   }
-  
-  /* Animação: Salto vertical para Box */
-  @keyframes bounceBox {
-    0% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-15px); /* Salto para cima */
-    }
-    100% {
-      transform: translateY(0); /* Retorno à posição inicial */
-    }
+  70% {
+      opacity: 0; /* A caixa ainda não aparece */
   }
-  
-  /* Animação: Efeito de brilho para Box */
-  @keyframes boxGlow {
-    0% {
-      text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
-    }
-    50% {
-      text-shadow: 0 0 15px rgba(231, 76, 60, 0.8);
-    }
-    100% {
-      text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
-    }
+  100% {
+      opacity: 1;
+      transform: scale(1); /* A caixa aparece */
+  }
+}
+
+.box-container {
+  width: 100px; /* Largura da caixa */
+    height: 30px; /* Altura maior para parecer uma caixa */
+    background-color: #e74c3c; /* Cor da caixa */
+    position: absolute;
+    bottom: -60px; /* Posiciona abaixo do "Box" */
+    left: 50%;
+    transform: translateX(-50%);
+    opacity: 0;
+    border-radius: 10px; /* Bordas arredondadas */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para efeito 3D */
+    animation: boxAppear 1.5s ease-in-out forwards; /* Animação da caixa */
   }
 
-/* Media queries para tela menor */
+/* Animação: Salto vertical para Box */
+@keyframes boxAppear {
+  0% {
+      opacity: 0;
+      transform: translateX(-50%) scale(0); /* Começa invisível e pequena */
+  }
+  70% {
+      opacity: 0; /* A caixa ainda não aparece */
+  }
+  100% {
+      opacity: 1;
+      transform: translateX(-50%) scale(1); /* A caixa aparece */
+  }
+}
+
+.box-title {
+  display: inline-block;
+  color: #e74c3c;
+  animation: bounceBox 1.5s ease-in-out forwards; /* Animação de queda */
+}
+/* Animação: Efeito de brilho para Box */
+@keyframes boxGlow {
+  0% {
+    text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 15px rgba(231, 76, 60, 0.8);
+  }
+  100% {
+    text-shadow: 0 0 5px rgba(231, 76, 60, 0.5);
+  }
+}
+
+/* Responsividade */
 @media (max-width: 600px) {
-    .container-login {
-        margin: 1rem;
-        padding: 1.5rem;
-    }
+  .container-login {
+    padding: 1.5rem;
+  }
 
-    .title-login {
-        font-size: 1.75rem;
-    }
+  .container-title {
+    font-size: 2rem;
+  }
 
-    .input-login-user,
-    .input-login-password,
-    .btn-submit,
-    .btn-register {
-        font-size: 0.9rem;
-    }
+  .form-login {
+    padding: 1.5rem;
+  }
+
+  .title-login {
+    font-size: 1rem;
+  }
+
+  .input-login-user,
+  .input-login-password,
+  .btn-submit {
+    font-size: 0.875rem;
+  }
 }

@@ -44,9 +44,10 @@ const Login = () => {
       <h1 className="container-title">
         <span className="logi-title">Logi</span>
         <span className="box-title">Box</span>
+        <div className="box-container"></div>
       </h1>
-      <h3 className="title-login">Login</h3>
       <form className="form-login" onSubmit={handleSubmit}>
+      <h3 className="title-login">Login</h3>
         <div className="container-div-input">
         <input
           type="text"
@@ -76,12 +77,12 @@ const Login = () => {
           </div>
         
 
-        <button className="btn-Submit" type="submit">
+        <button className="btn-submit" type="submit">
           Entrar
         </button>
             </div>
 
-        <p className="text-Info-Login">
+        <p className="text-info-login">
           Não tem uma conta?{" "}
           <a className="btn-Register" href="/register">
             Cadastre-se
