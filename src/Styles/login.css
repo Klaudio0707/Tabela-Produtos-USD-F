@@ -7,22 +7,12 @@
 
 /* estilo do container principal */
 .container-login {
-    max-width: 400px;
-    margin-top: 100px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+ display: flex;
+ flex-direction: column;
 }
-
-.title-container {
-    text-align: center;
-    margin-top: 50px;
-  }
-  
   /* Título geral */
   .container-title {
+    margin-top: 50px;
     font-size: 4rem;
     font-weight: bold;
     text-transform: uppercase;
@@ -34,6 +24,7 @@
   .logi-title {
     color: #3498db; /* Azul para tecnologia */
     position: relative;
+    display: inline-block;
     animation: slideLogi 3s ease-in-out infinite;
   }
   
@@ -41,23 +32,32 @@
   .box-title {
     color: #e74c3c; /* Vermelho para dinamismo */
     position: relative;
+      display: inline-block;
     animation: bounceBox 3s ease-in-out infinite, boxGlow 3s ease-in-out infinite;
   }
 
 .form-login {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 1rem;
+  max-width: 400px;
+  margin-top: 100px;
+  margin: 2rem auto;
+ text-align: center;
+  justify-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .input-login-user,
 .input-login-password {
     padding: 0.7rem;
+    margin-top: 20px;
     border: 2px solid #e0e0e0;
     border-radius: 5px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
+    
 }
 
 .input-login-user:focus,
@@ -66,10 +66,10 @@
     border-color: #007bff;
 }
 
-.btn-submit,
-.btn-register {
-    padding: 0.8rem;
+.btn-submit {
+    padding: 0.9rem 2rem;
     border: none;
+    margin: 10px;
     border-radius: 5px;
     font-size: 1rem;
     cursor: pointer;
@@ -85,24 +85,29 @@
 .btn-submit:hover {
     background-color: #2980b9;
 }
+.a-register{
+color: #315be7;
+font-size: 1rem;
+font-weight: bold;
+text-decoration: none;
 
-.btn-register {
-    color: #fff;
-    margin-top: 1px;
 }
+
 
 .password-container {
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 
 .toggle-switch {
     display: flex;
     width: 50px;
     height: 25px;
+    margin: 10px;
     border-radius: 12.5px;
-    background-color: #e0e0e0;
+    background-color: #ffffff;
     position: relative;
     cursor: pointer;
     transition: background-color 0.3s ease;
@@ -199,18 +204,37 @@
 /* Media queries para tela menor */
 @media (max-width: 600px) {
     .container-login {
-        margin: 1rem;
-        padding: 1.5rem;
+        margin: 0.8rem;
+        padding: 0.7rem;   
+    }
+    .container-title {
+      margin-top: 30px;
+      font-size: 3rem;
+     
+      
+    
+    }
+    .form-login{
+      display: flex;
+      flex-direction: column;
+     align-items: center;
     }
 
     .title-login {
-        font-size: 1.75rem;
+        font-size: 1.9rem;
     }
 
     .input-login-user,
-    .input-login-password,
-    .btn-submit,
-    .btn-register {
-        font-size: 0.9rem;
+    .input-login-password {
+      width: 60%;
+      padding: 10px;
+      font-size: 0.7rem;
+    }
+    
+    .btn-submit {
+      width: 35%;
+      justify-content: center;
+        padding: 10px;
+        font-size: 0.8rem;
     }
 }

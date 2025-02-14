@@ -45,8 +45,8 @@ const Login = () => {
         <span className="logi-title">Logi</span>
         <span className="box-title">Box</span>
       </h1>
-      <h3 className="title-login">Login</h3>
       <form className="form-login" onSubmit={handleSubmit}>
+      <h3 className="title-login">Login</h3>
         <input
           type="text"
           name="username"
@@ -80,7 +80,7 @@ const Login = () => {
         </button>
         <p className="text-lnfo-login">
           Não tem uma conta?{" "}
-          <a className="btn-register" href="/register">
+          <a className="a-register" href="/register">
             Cadastre-se
           </a>
         </p>
