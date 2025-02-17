@@ -84,6 +84,13 @@ const FormularioProdutos = ({ onAddProduct }) => {
 
   return (
     <form onSubmit={handleSubmit} className="form-container">
+      <h3 className="title-form">Cadastrar Produto</h3>
+      <p className="description">
+        Este sistema permite cadastrar produtos,
+        visualizar suas informações e converter
+        os preços de Real (R$) para Dólar (USD)
+        com base na cotação do dia.
+      </p>
       <input
         name="name"
         placeholder="Nome"
@@ -163,7 +170,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         />
       )}
       <button type="submit" className="submit-button">
-      Salvar Produto
+        Salvar Produto
       </button>
       {error && <p className="error-message">{error}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}

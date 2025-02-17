@@ -16,6 +16,13 @@ body {
   padding: 0;
   
 }
+.description {
+  font-size: 0.7rem;
+  color: #000000;
+  margin-top: 15px;
+  text-align: center;
+justify-content: center;
+} 
 
 .form-container {
   display: grid;
@@ -141,6 +148,12 @@ body {
     box-sizing: border-box;
     margin: 0 auto;
   }
+  .description {
+    font-size: 0.5rem;
+    margin-top: 4px;
+   
+    max-width: 15rem;
+  }
   .select-field {
     width: 30%; /* Ocupa toda a largura da coluna */
     font-size: 0.475rem; /* Reduz tamanho da fonte */
@@ -208,6 +221,13 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
+  }
+  .description {
+    font-size: 0.5rem;
+    color: #141414;
+    margin-top: 4px;
+ 
+   
   }
 
   .submit-button {

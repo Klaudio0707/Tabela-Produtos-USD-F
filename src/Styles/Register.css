@@ -1,13 +1,6 @@
 .register-Container{
-    max-width: 400px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0, 0.1);
-    justify-content: center;
-    align-content: center;
-
+    display: flex;
+    flex-direction: column;
 }
 .container-title-register{
 text-align: center;
@@ -16,12 +9,19 @@ margin: 1rem 0 1.5rem;
 font-size: 2rem;
 font-weight: bold;
 }
+
 .form-register{
 display: flex;
 flex-direction: column;
+background-color: #f8f9fa;
+border-radius: 10px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0, 0.1);
+margin: 2rem auto;
+padding: 2rem;
 gap: 1rem;
 width: 100%;
 }
+
 .input-register-user,
 .input-register-password,
 .input-register-empresa,
@@ -152,10 +152,10 @@ justify-content: center;
 
 @media (max-width: 480px) {
     .register-Container {
-        margin: 0.5rem;
-        padding: 1rem;
-        max-width: 90%;
-    }
+        padding: 2rem;
+        max-width: 80%;
+        align-content: center;
+        }
 
     .container-title-register {
         font-size: 1.5rem;
@@ -166,13 +166,18 @@ justify-content: center;
     .input-register-password,
     .input-register-empresa,
     .input-register-email,
-    .select-register-permiss,
-    .btn-register {
+    .select-register-permiss {
         width: 100%; /* Ocupa toda a largura disponível */
         padding: 0.6rem; /* Reduz o padding */
         font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+        align-items: end;
     }
-
+    .btn-register {
+        width: 40%; /* Ocupa toda a largura disponível */
+        padding: 0.6rem; /* Reduz o padding */
+        font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+        align-content: center;
+    }
     .form-register {
         gap: 0.8rem; /* Reduz o espaço entre os campos */
     }

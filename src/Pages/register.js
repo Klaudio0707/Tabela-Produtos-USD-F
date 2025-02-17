@@ -47,9 +47,9 @@ setLoading(false);
   };
   return (
     <div className="register-Container">
-      <h2 className="container-title-register">Registro</h2>
       {errorMessage && <p style={{color:"red"}}>{errorMessage}</p>}
       <form className="form-register" onSubmit={handleRegister}>
+      <h2 className="container-title-register">Registro</h2>
         <input
           type="text"
           className="input-register-user"
@@ -96,7 +96,7 @@ setLoading(false);
         <button className="btn-register" type="submit" disabled={loading}>{loading ? "Registrando...": "Registrar"}</button>
       </form>
       <p className="login-Link">
-        Já tem uma conta? <a href="/login">Faça login</a>
+       Você já tem conta? <a href="/login">Faça login</a>
       </p>
     </div>
   );
