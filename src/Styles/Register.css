@@ -12,14 +12,15 @@
 .container-title-register{
 text-align: center;
 color: #2c3e50;
-margin-top: 1rem;
-margin-bottom: 1.5rem;
+margin: 1rem 0 1.5rem;
 font-size: 2rem;
+font-weight: bold;
 }
 .form-register{
 display: flex;
 flex-direction: column;
 gap: 1rem;
+width: 100%;
 }
 .input-register-user,
 .input-register-password,
@@ -30,7 +31,7 @@ border: 2px solid #e0e0e0;
 border-radius: 10px;
 font-size: 1rem;
 transition: border-color 0.3s ease;
-width: 90%;
+width: calc(100% - 4rem);
 max-width: 300px;
 margin: 0 auto;
 text-align: center;
@@ -64,9 +65,9 @@ border-radius: 5px;
 font-size: 1rem;
 cursor: pointer;
 transition: background-color 0.3s ease;
-width: 80%; /* Define uma largura menor */
-max-width: 300px; /* Define o limite máximo de largura */
+max-width: 300px;  /* Define o limite máximo de largura */
 margin: 0 auto; /* Centraliza o botão */
+text-align: center;
 }
 .btn-register:hover{
 background-color: #2980b9;
@@ -96,23 +97,97 @@ text-decoration: none;
 font-weight: 500;
 transition: color 0.3s ease;
 justify-content: center;
-text-align: center;
+
 }
 .login-Link a:hover{
     color: #2980b9;
     text-decoration: underline;
 }
-
-@media(max-width: 480px){
-    .register-Container{
-        margin: 1rem;
-        padding: 1.5rem;
+@media (max-width: 768px) {
+    .register-Container {
+        max-width: 90%; /* Reduz a largura máxima */
+        padding: 1.5rem; /* Ajusta o padding */
+        margin: 1rem auto; /* Dá mais espaço ao redor */
     }
+
     .container-title-register {
-        font-size: 1.75rem;
-      }
-      
-      input, select, button {
-        padding: 0.7rem;
-      }
+        font-size: 1.75rem; /* Ajusta o tamanho da fonte */
+        margin-top: 0.5rem;
+        margin-bottom: 1rem;
+    }
+
+    .input-register-user,
+    .input-register-password,
+    .input-register-empresa,
+    .input-register-email,
+    .select-register-permiss {
+        width: 100%; /* Ocupa toda a largura disponível */
+        max-width: none; /* Remove o limite máximo de largura */
+        font-size: 1rem; /* Ajusta a fonte para melhor leitura */
+        padding: 0.7rem; /* Padding mais confortável */
+    }
+
+    .form-register {
+        gap: 1rem; /* Mantém o espaçamento entre os campos */
+    }
+
+    .btn-register {
+        width: 100%; /* Ocupa toda a largura disponível */
+        max-width: none; /* Remove o limite máximo de largura */
+        padding: 0.8rem; /* Botão maior para toque confortável */
+        font-size: 1rem; /* Mantém o tamanho do texto legível */
+    }
+
+    .error-Message {
+        font-size: 1rem; /* Texto ajustado para leitura */
+        padding: 0.8rem;
+    }
+
+    .login-Link {
+        margin-top: 1rem; /* Ajuste no espaçamento */
+        font-size: 0.95rem; /* Fonte levemente menor */
+    }
+}
+
+
+@media (max-width: 480px) {
+    .register-Container {
+        margin: 0.5rem;
+        padding: 1rem;
+        max-width: 90%;
+    }
+
+    .container-title-register {
+        font-size: 1.5rem;
+        margin: 0.5rem 0 1rem;
+    }
+
+    .input-register-user,
+    .input-register-password,
+    .input-register-empresa,
+    .input-register-email,
+    .select-register-permiss,
+    .btn-register {
+        width: 100%; /* Ocupa toda a largura disponível */
+        padding: 0.6rem; /* Reduz o padding */
+        font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+    }
+
+    .form-register {
+        gap: 0.8rem; /* Reduz o espaço entre os campos */
+    }
+
+    .btn-register {
+        padding: 0.7rem; /* Botão mais compacto */
+        font-size: 0.9rem;
+    }
+
+    .login-Link {
+        margin-top: 1rem; /* Reduz espaço acima do link */
+    }
+
+    .error-Message {
+        font-size: 0.9rem; /* Texto menor */
+        padding: 0.6rem; /* Margem menor */
+    }
 }
