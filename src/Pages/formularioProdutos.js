@@ -83,14 +83,15 @@ const FormularioProdutos = ({ onAddProduct }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="form-container">
-      <h3 className="title-form">Cadastrar Produto</h3>
-      <p className="description">
+    <div className="formProducts-container">
+         <h3 className="title-form">Cadastrar Produto</h3>
+         <div className="warning-box">
         Este sistema permite cadastrar produtos,
         visualizar suas informações e converter
         os preços de Real (R$) para Dólar (USD)
         com base na cotação do dia.
-      </p>
+      </div>
+    <form onSubmit={handleSubmit} className="form-container">     
       <input
         name="name"
         placeholder="Nome"
@@ -98,7 +99,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         onChange={handleChange}
         required
         className="input-field input-name"
-      />
+        />
       <input
         name="manufacturer"
         placeholder="Fabricante"
@@ -114,7 +115,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         onChange={handleChange}
         required
         className="input-field input-origin"
-      />
+        />
       <input
         name="package"
         placeholder="Embalagem"
@@ -122,7 +123,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         onChange={handleChange}
         required
         className="input-field input-package"
-      />
+        />
       <input
         name="priceInside"
         type="number"
@@ -140,13 +141,13 @@ const FormularioProdutos = ({ onAddProduct }) => {
         required
         onChange={handleChange}
         className="input-field input-priceOutside"
-      />
+        />
       <select
         name="currency"
         value={product.currency}
         onChange={handleChange}
         className="select-field"
-      >
+        >
         <option value="BRL">Real</option>
         <option value="USD">Dólar</option>
       </select>
@@ -167,14 +168,15 @@ const FormularioProdutos = ({ onAddProduct }) => {
           value={product.ipiRate}
           onChange={handleChange}
           className="input-field-IPI"
-        />
-      )}
+          />
+        )}
       <button type="submit" className="submit-button">
         Salvar Produto
       </button>
       {error && <p className="error-message">{error}</p>}
       {successMessage && <p className="success-message">{successMessage}</p>}
     </form>
+        </div>
   );
 };
 
