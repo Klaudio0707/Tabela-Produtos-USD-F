@@ -1,8 +1,12 @@
 .header {
   color: white;
   padding: 5px 15px;
+  font-size: 5rem;
 }
+.container-title-register{
 
+  
+}
 .logi-title {
   color: #3498db; /* Azul para tecnologia */
   position: relative;

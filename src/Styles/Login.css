@@ -12,40 +12,26 @@
 }
 
 /* Título geral */
-.container-title {
-  margin-top: 3px;
-  font-size: 3rem;
+.title-login{
+  margin-top: 10px;
+  font-size: 2rem;
   font-weight: bold;
   text-transform: uppercase;
   letter-spacing: 2px;
   display: inline-block;
 }
 
-/* Estilo para Logi */
-.logi-title {
-  color: #3498db; /* Azul para tecnologia */
-  position: relative;
-  display: inline-block;
-  animation: slideLogi 3s ease-in-out infinite;
-}
-
-/* Estilo para Box */
-.box-title {
-  color: #e74c3c; /* Vermelho para dinamismo */
-  position: relative;
-  display: inline-block;
-  animation: bounceBox 3s ease-in-out infinite, boxGlow 3s ease-in-out infinite;
-}
-
 /* Formulário de login */
 .form-login {
-  max-width: 300px;
-  margin: 1rem auto;
+  max-width: 350px;
+  margin: 4rem auto;
   text-align: center;
-  padding: 0.81rem;
+  justify-items: center;
+  padding: 4rem;
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
 }
 
 .input-login-user,
@@ -54,7 +40,7 @@
   margin-top: 20px;
   border: 2px solid #e0e0e0;
   border-radius: 5px;
-  font-size: 1rem;
+  font-size: 0.8rem;
   transition: border-color 0.3s ease;
 }
 
@@ -67,7 +53,7 @@
 .btn-submit {
   padding: 0.7rem 2rem;
   border: none;
-  margin: 10px;
+  margin: 30px;
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
@@ -96,6 +82,7 @@
 
 .toggle-switch {
   display: flex;
+  flex-direction: column;
   width: 50px;
   height: 25px;
   margin: 5px;
@@ -104,6 +91,7 @@
   position: relative;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  
 }
 
 .toggle-switch.on {
@@ -147,8 +135,8 @@
   text-align: center;
 }
 
-.text-info-login {
-  font-size: 0.875rem;
+.text-lnfo-login{
+  font-size: 0.7rem;
   text-align: center;
 }
 

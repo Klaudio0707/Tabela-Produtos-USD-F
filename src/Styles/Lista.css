@@ -59,6 +59,7 @@ h1 {
 .input-edit-select {
   width: 50px;
   font-size: 0.9rem;
+  justify-content: baseline;
 }
 
 .input-edit {
@@ -164,14 +165,14 @@ h1 {
   font-size: 0.9rem;
 }
 
-.input-edit {
-  width: 60%;
+.input-edit{
+  width: 50%;
   font-size: 0.8rem;
   text-align: center;
 }
 
 .input-edit-ipi {
-  width: 30%;
+  width: 10%;
   margin: 0;
   font-size: 0.8rem;
   text-align: center;
@@ -180,7 +181,7 @@ h1 {
 
 /* Estilo para botões */
 .lista-container button {
-  font-size: 0.8rem; 
+  font-size: 0.5rem; 
   padding: 0.4rem 0.95rem; 
   border: none; /* Remove bordas padrão */
   border-radius: 0.25rem;
@@ -217,7 +218,7 @@ td:nth-child(8),
 th:nth-child(8),
 td:nth-child(9),
 th:nth-child(9) {
-  width: 5%; /* Define a largura */
+  width: 10%; /* Define a largura */
   text-align: center; /* Alinhamento */
 }
 

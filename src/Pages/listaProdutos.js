@@ -155,8 +155,8 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
                   </label>
                 </td>
                 <td className="td-acoes" data-label="Ações">
-                  <button onClick={handleSaveEdit}> <Save size={9} /></button>
-                  <button onClick={handleCancelEdit}> <Trash2 size={9} /></button>
+                  <button onClick={handleSaveEdit}> <Save size={11} /></button>
+                  <button onClick={handleCancelEdit}> <Trash2 size={11} /></button>
                 </td>
               </tr>
             ) : (

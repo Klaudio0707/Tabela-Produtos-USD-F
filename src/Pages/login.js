@@ -51,9 +51,7 @@ const Login = () => {
           onChange={handleChange}
           required
           className="input-login-user"
-          />
-
-        
+          />        
           <input
             type={showPassword ? "text" : "password"}
             name="password"

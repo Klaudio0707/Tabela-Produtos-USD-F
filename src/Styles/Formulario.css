@@ -5,7 +5,7 @@
   --error-color: #f44336;
   --bg-color: #f9f9f9;
   --font-color: #333;
-  --border-color: #ccc;
+  --border-color: #9b9595;
 }
 
 body {
@@ -25,15 +25,15 @@ body {
 
 .title-form {
   text-align: center;
-  margin: 20px;
+  margin: 10px;
 }
 
 .form-container {
   display: grid;
-  grid-template-columns: repeat(5, 1fr); /* 5 colunas por linha */
-  gap: 0.5rem; /* Espaçamento entre os campos */
-  max-width: 80%;
-  margin: 0 auto 1rem;
+  grid-template-columns: repeat(4, 1fr); /* 5 colunas por linha */
+  gap: 0.4rem; /* Espaçamento entre os campos */
+  max-width: 90%;
+  margin: 0 auto;
   padding: 0.5rem;
   align-items: center;
 }
@@ -44,6 +44,7 @@ body {
   border: 1px solid var(--border-color);
   border-radius: 0.25rem;
   box-sizing: border-box;
+  max-width: 100%;
 }
 
 .input-field {
@@ -52,23 +53,54 @@ body {
 
 .select-field {
   grid-column: span 1;
-}
-
-.input-field-IPI {
+  justify-items: center;
   text-align: center;
-  grid-column: span 1;
+  width: 40%;
 }
 
-.submit-button {
-  grid-column: span 1;
-  padding: 0.4rem;
+.checkbox-label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* Espaçamento entre os elementos */
+  font-size: 1rem;
+}
+
+/* Contêiner do checkbox */
+.checkbox-container {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem; /* Espaçamento entre o checkbox e o texto */
+}
+
+/* Estilo do checkbox */
+.checkbox {
+  width: 15px;
+  height: 20px;
+}
+
+/* Estilo para o input do IPI */
+.input-field-IPI {
+  width: 40px; /* Largura ajustada */
+  padding: 0.3rem;
   font-size: 0.875rem;
+  border: 1px solid var(--border-color);
+  border-radius: 0.25rem;
+  text-align: center;
+}
+.submit-button {
+  grid-column: span 4;
+  padding: 0.5rem;
+  max-width: 40%;
+  font-size: 0.875rem;
+  text-align: center;
+  justify-self: center;
   border: none;
   border-radius: 4px;
   background-color: var(--success-color);
   color: #fff;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin: 30px;
 }
 
 .submit-button:hover {
@@ -100,30 +132,47 @@ body {
 /* Responsividade */
 @media (max-width: 768px) {
   .form-container {
-    grid-template-columns: repeat(3, 1fr); /* 3 colunas por linha */
-    gap: 0.5rem;
+    grid-template-columns: repeat(2, 1fr); /* 2 colunas por linha */
+    gap: 0.7rem;
+    justify-content: center;
   }
 
-  .input-field, .select-field, .input-field-IPI, .submit-button {
-    grid-column: span 3; /* Ocupa toda a largura da linha */
+  .input-field, .submit-button {
+    grid-column: span 2; /* Ocupa toda a largura da linha */
     width: 100%;
   }
+  .input-field-IPI{
+   width: 60px;
 
+  }
   .error-message, .success-message {
-    grid-column: span 3;
+    grid-column: span 2;
   }
 }
 
 @media (max-width: 576px) {
   .form-container {
     grid-template-columns: 1fr; /* 1 coluna por linha */
+    justify-items: center;
   }
 
-  .input-field, .select-field, .input-field-IPI, .submit-button {
+  .input-field,.submit-button {
+    grid-column: span 1; /* Ocupa toda a largura */
     width: 100%;
+  }
+  .select-field{
+    width: 50%;
+    justify-content: center;
   }
 
   .error-message, .success-message {
     grid-column: span 1;
+  }
+
+  .submit-button {
+    max-width: 70%; /* Botão ocupa a largura total */
+    margin: 1rem 0; /* Espaçamento superior e inferior */
+    justify-content: center;
+
   }
 }

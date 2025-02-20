@@ -84,99 +84,102 @@ const FormularioProdutos = ({ onAddProduct }) => {
 
   return (
     <div className="formProducts-container">
-         <h3 className="title-form">Cadastrar Produto</h3>
-         <div className="warning-box">
+      <h3 className="title-form">Cadastrar Produto</h3>
+      <div className="warning-box">
         Este sistema permite cadastrar produtos,
         visualizar suas informações e converter
         os preços de Real (R$) para Dólar (USD)
         com base na cotação do dia.
       </div>
-    <form onSubmit={handleSubmit} className="form-container">     
-      <input
-        name="name"
-        placeholder="Nome"
-        value={product.name}
-        onChange={handleChange}
-        required
-        className="input-field input-name"
-        />
-      <input
-        name="manufacturer"
-        placeholder="Fabricante"
-        value={product.manufacturer}
-        onChange={handleChange}
-        required
-        className="input-field input-manufacturer"
-      />
-      <input
-        name="origin"
-        placeholder="Origem"
-        value={product.origin}
-        onChange={handleChange}
-        required
-        className="input-field input-origin"
-        />
-      <input
-        name="package"
-        placeholder="Embalagem"
-        value={product.package}
-        onChange={handleChange}
-        required
-        className="input-field input-package"
-        />
-      <input
-        name="priceInside"
-        type="number"
-        placeholder="Preço Dentro"
-        value={product.priceInside}
-        onChange={handleChange}
-        required
-        className="input-field input-priceInside"
-      />
-      <input
-        name="priceOutside"
-        type="number"
-        placeholder="Preço Fora"
-        value={product.priceOutside}
-        required
-        onChange={handleChange}
-        className="input-field input-priceOutside"
-        />
-      <select
-        name="currency"
-        value={product.currency}
-        onChange={handleChange}
-        className="select-field"
-        >
-        <option value="BRL">Real</option>
-        <option value="USD">Dólar</option>
-      </select>
-      <label className="checkbox-label">
-        IPI?
+      <form onSubmit={handleSubmit} className="form-container">
         <input
-          type="checkbox"
-          checked={product.ipi}
-          onChange={handleCheckboxChange}
-          className="checkbox"
-        />
-      </label>
-      {product.ipi && (
-        <input
-          type="number"
-          name="ipiRate"
-          placeholder="%"
-          value={product.ipiRate}
+          name="name"
+          placeholder="Nome"
+          value={product.name}
           onChange={handleChange}
-          className="input-field-IPI"
-          />
-        )}
-      <button type="submit" className="submit-button">
-        Salvar Produto
-      </button>
-      {error && <p className="error-message">{error}</p>}
-      {successMessage && <p className="success-message">{successMessage}</p>}
-    </form>
-        </div>
+          required
+          className="input-field input-name"
+        />
+        <input
+          name="manufacturer"
+          placeholder="Fabricante"
+          value={product.manufacturer}
+          onChange={handleChange}
+          required
+          className="input-field input-manufacturer"
+        />
+        <input
+          name="origin"
+          placeholder="Origem"
+          value={product.origin}
+          onChange={handleChange}
+          required
+          className="input-field input-origin"
+        />
+        <input
+          name="package"
+          placeholder="Embalagem"
+          value={product.package}
+          onChange={handleChange}
+          required
+          className="input-field input-package"
+        />
+        <input
+          name="priceInside"
+          type="number"
+          placeholder="Preço Dentro"
+          value={product.priceInside}
+          onChange={handleChange}
+          required
+          className="input-field input-priceInside"
+        />
+        <input
+          name="priceOutside"
+          type="number"
+          placeholder="Preço Fora"
+          value={product.priceOutside}
+          required
+          onChange={handleChange}
+          className="input-field input-priceOutside"
+        />
+        <select
+          name="currency"
+          value={product.currency}
+          onChange={handleChange}
+          className="select-field"
+        >
+          <option value="BRL">Real</option>
+          <option value="USD">Dólar</option>
+        </select>
+        <label className="checkbox-label">
+          <div className="checkbox-container">
+            <input
+              type="checkbox"
+              checked={product.ipi}
+              onChange={handleCheckboxChange}
+              className="checkbox"
+            />
+            <span>IPI?</span>
+          </div>
+
+          {product.ipi && (
+            <input
+              type="number"
+              name="ipiRate"
+              placeholder="%"
+              value={product.ipiRate}
+              onChange={handleChange}
+              className="input-field-IPI"
+            />
+          )}
+        </label>
+        <button type="submit" className="submit-button">
+          Salvar Produto
+        </button>
+        {error && <p className="error-message">{error}</p>}
+        {successMessage && <p className="success-message">{successMessage}</p>}
+      </form>
+    </div>
   );
 };
 

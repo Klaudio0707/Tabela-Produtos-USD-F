@@ -1,19 +1,20 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
-import ProtectedRoute  from "./Components/ProtectedRoute"
-import Login from "./Pages/login"
+import ProtectedRoute from "./Components/ProtectedRoute";
+import Login from "./Pages/login";
+import Perfil from "./Pages/perfil";
 import Register from "./Pages/register";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
 const App = () => {
   const [products, setProducts] = useState([]);
+  const navigate = useNavigate();
 
-const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
-
+  const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
   // Função para obter os produtos do backend
   const fetchProducts = useCallback(async () => {
@@ -30,12 +31,12 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
     }
   }, [REACT_APP_API_BACKEND]);
 
-  // Função para adicionar um novo produto
+  // Adicionar produto
   const handleAddProduct = (newProduct) => {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
   };
 
-  // Atualizar um produto no backend
+  // Atualizar produto
   const handleUpdateProduct = async (updatedProduct) => {
     try {
       const response = await fetch(
@@ -61,7 +62,7 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
     }
   };
 
-  // Remover um produto do backend
+  // Remover produto
   const handleDeleteProduct = async (id) => {
     try {
       const response = await fetch(`${REACT_APP_API_BACKEND}/products/${id}`, {
@@ -88,9 +89,9 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
     <Router>
       <div className="App-header">
         <main>
-        <Header />
+          <Header />
           <Routes>
-            <Route path="/" element={<Navigate to="/login" />} />
+            <Route path="/" element={<Navigate to="/produtos" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/register" element={<Register />} />
             <Route
@@ -104,8 +105,37 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
                       onUpdateProduct={handleUpdateProduct}
                       onDeleteProduct={handleDeleteProduct}
                     />
-                    <ConversaoPrecos products={products} />
+                    <div className="navigation-buttons">
+                      <button
+                        className="btn-navigate"
+                          onClick={() => navigate("/conversao-precos")}
+                      >
+                        Conversão de Preços
+                      </button>
+                      <button
+                        className="btn-navigate"
+                        onClick={() => navigate("/perfil")}
+                      >
+                        Perfil
+                      </button>
+                    </div>
                   </>
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/conversao-precos"
+              element={
+                <ProtectedRoute>
+                  <ConversaoPrecos products={products} />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/perfil"
+              element={
+                <ProtectedRoute>
+                  <Perfil />
                 </ProtectedRoute>
               }
             />
