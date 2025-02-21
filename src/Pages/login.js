@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import axios from "axios";
-import { EyeOff } from 'lucide-react';
-import { Eye } from 'lucide-react';
+import { EyeOff, Eye } from "lucide-react";
 import "../Styles/Login.css";
+import { useNavigate } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ onLogin }) => {
   const [formData, setFormData] = useState({ username: "", password: "" });
   const [message, setMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -29,7 +30,8 @@ const Login = () => {
       if (token) {
         localStorage.setItem("authToken", token);
         setMessage("Login realizado com sucesso!");
-        window.location.href = "/produtos";
+        onLogin(); // Atualiza o estado global de autenticação
+        navigate("/produtos"); // Redireciona para a página protegida
       } else {
         setMessage("Token não recebido. Verifique o backend.");
       }
@@ -42,7 +44,7 @@ const Login = () => {
   return (
     <div className="container-login">
       <form className="form-login" onSubmit={handleSubmit}>
-      <h3 className="title-login">Login</h3>
+        <h3 className="title-login">Login</h3>
         <input
           type="text"
           name="username"
@@ -51,24 +53,24 @@ const Login = () => {
           onChange={handleChange}
           required
           className="input-login-user"
-          />        
-          <input
-            type={showPassword ? "text" : "password"}
-            name="password"
-            placeholder="Senha"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            className="input-login-password"
-            />
-          <div
-            className={`toggle-switch ${showPassword ? "on" : "off"}`}
-            onClick={toggleShowPassword}
-            >
-            <div className="toggle-indicator">{showPassword ? <Eye className="icon"/> : <EyeOff className="icon" />}</div>
+        />
+        <input
+          type={showPassword ? "text" : "password"}
+          name="password"
+          placeholder="Senha"
+          value={formData.password}
+          onChange={handleChange}
+          required
+          className="input-login-password"
+        />
+        <div
+          className={`toggle-switch ${showPassword ? "on" : "off"}`}
+          onClick={toggleShowPassword}
+        >
+          <div className="toggle-indicator">
+            {showPassword ? <Eye className="icon" /> : <EyeOff className="icon" />}
           </div>
-        
-
+        </div>
         <button className="btn-submit" type="submit">
           Entrar
         </button>
@@ -82,7 +84,6 @@ const Login = () => {
       {message && <p className="error-login">{message}</p>}
     </div>
   );
-
 };
 
 export default Login;

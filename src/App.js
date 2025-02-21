@@ -1,18 +1,22 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { BrowserRouter as Router, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
-import ProtectedRoute from "./Components/ProtectedRoute";
 import Login from "./Pages/login";
-import Perfil from "./Pages/perfil";
 import Register from "./Pages/register";
+import ProtectedRoute from "./Components/ProtectedRoute";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const navigate = useNavigate();
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
@@ -82,65 +86,40 @@ const App = () => {
   };
 
   useEffect(() => {
-    fetchProducts();
-  }, [fetchProducts]);
+    if (isAuthenticated) {
+      fetchProducts();
+    }
+  }, [isAuthenticated, fetchProducts]);
 
   return (
     <Router>
       <div className="App-header">
-        <main>
-          <Header />
-          <Routes>
-            <Route path="/" element={<Navigate to="/produtos" />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/register" element={<Register />} />
-            <Route
-              path="/produtos"
-              element={
-                <ProtectedRoute>
-                  <>
-                    <FormularioProdutos onAddProduct={handleAddProduct} />
-                    <ListaProdutos
-                      products={products}
-                      onUpdateProduct={handleUpdateProduct}
-                      onDeleteProduct={handleDeleteProduct}
-                    />
-                    <div className="navigation-buttons">
-                      <button
-                        className="btn-navigate"
-                          onClick={() => navigate("/conversao-precos")}
-                      >
-                        Conversão de Preços
-                      </button>
-                      <button
-                        className="btn-navigate"
-                        onClick={() => navigate("/perfil")}
-                      >
-                        Perfil
-                      </button>
-                    </div>
-                  </>
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/conversao-precos"
-              element={
-                <ProtectedRoute>
-                  <ConversaoPrecos products={products} />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/perfil"
-              element={
-                <ProtectedRoute>
-                  <Perfil />
-                </ProtectedRoute>
-              }
-            />
-          </Routes>
-        </main>
+        <Header />
+        <Routes>
+          <Route path="/register"  element={<Register />} />
+          <Route
+            path="/login"
+            element={<Login onLogin={() => setIsAuthenticated(true)} />}
+          />
+
+          {/* Rota protegida para FormularioProdutos */}
+          <Route
+            path="/formulario-produtos"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <FormularioProdutos
+                  products={products}
+                  onAddProduct={handleAddProduct}
+                  onUpdateProduct={handleUpdateProduct}
+                  onDeleteProduct={handleDeleteProduct}
+                />
+              </ProtectedRoute>
+            }
+          />
+
+          {/* Redireciona para Login como página inicial */}
+          <Route path="*" element={<Navigate to="/login" replace />} />
+        </Routes>
         <Footer />
       </div>
     </Router>
@@ -148,3 +127,4 @@ const App = () => {
 };
 
 export default App;
+

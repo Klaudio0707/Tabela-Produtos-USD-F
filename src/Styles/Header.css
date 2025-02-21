@@ -1,12 +1,10 @@
 .header {
+  margin-top: 10px;
   color: white;
   padding: 5px 15px;
-  font-size: 5rem;
+  font-size: 10rem;
 }
-.container-title-register{
 
-  
-}
 .logi-title {
   color: #3498db; /* Azul para tecnologia */
   position: relative;
@@ -100,12 +98,10 @@
     padding: auto;
     padding: 0.3rem;
   }
-  .title-header{
-font-size: 0.8rem;
 
-  }
   .header-content {
     flex-direction: column;
     text-align: center;
+    font-size: 1.9rem;
   }
 }

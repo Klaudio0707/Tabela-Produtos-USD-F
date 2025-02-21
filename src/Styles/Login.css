@@ -24,10 +24,10 @@
 /* Formulário de login */
 .form-login {
   max-width: 350px;
-  margin: 4rem auto;
+  margin: 2rem auto;
   text-align: center;
   justify-items: center;
-  padding: 4rem;
+  padding: 2rem;
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

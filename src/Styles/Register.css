@@ -4,7 +4,7 @@
    text-align: center;
 }
 .container-title-register{
-   margin-top: 10px;
+   margin-top: 30px;
    font-size: 2rem;
    font-weight: bold;
    text-transform: uppercase;
@@ -18,10 +18,10 @@
    background-color: #f8f9fa;
    border-radius: 10px;
    box-shadow: 0 4px 6px rgba(0, 0, 0, 0, 0.1);
-   margin: 2rem auto;
-   padding: 2rem;
+   margin: 1rem auto;
+   padding: 10px 10px;
    gap: 1rem;
-   width: 40%;
+   width: 350px;
 }
 
 .input-register-user,
@@ -35,7 +35,7 @@
   font-size: 0.8rem;
   transition: border-color 0.3s ease;
    width: calc(100% - 4rem);
-   max-width: 300px;
+   max-width: 200px;
    margin: 0 auto;
    text-align: start;
 }
@@ -155,47 +155,53 @@
 
 @media (max-width: 480px) {
     .register-Container {
-        padding: 2rem;
-        max-width: 80%;
+       max-width: 100% ;
         align-content: center;
+        justify-content: center;
         }
 
     .container-title-register {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         margin: 0.5rem 0 1rem;
+    }
+    .form-register{
+width: 80%;
+gap: 0.5rem;
     }
 
     .input-register-user,
     .input-register-password,
     .input-register-cnpj,
-    .input-register-email,
-    .select-register-permiss {
-        width: 100%; /* Ocupa toda a largura disponível */
-        padding: 0.6rem; /* Reduz o padding */
-        font-size: 0.9rem; /* Ajusta o tamanho da fonte */
+    .input-register-email
+     {
+        width: 60%; /* Ocupa toda a largura disponível */
+        padding: 0.5rem; /* Reduz o padding */
+        font-size: 0.6rem; /* Ajusta o tamanho da fonte */
         align-items: end;
     }
-    .btn-register {
-        width: 40%; /* Ocupa toda a largura disponível */
-        padding: 0.6rem; /* Reduz o padding */
-        font-size: 0.9rem; /* Ajusta o tamanho da fonte */
-        align-content: center;
-    }
-    .form-register {
-        gap: 0.8rem; /* Reduz o espaço entre os campos */
-    }
 
+    .select-register-permiss{
+        width: 45%; /* Ocupa toda a largura disponível */
+        padding: 0.5rem; /* Reduz o padding */
+        font-size: 0.6rem; /* Ajusta o tamanho da fonte */
+        align-items: end;
+        margin-bottom: 30px;
+    }
     .btn-register {
-        padding: 0.7rem; /* Botão mais compacto */
-        font-size: 0.9rem;
+        width: 30%; /* Ocupa toda a largura disponível */
+        padding: 0.6rem; /* Reduz o padding */
+        font-size: 0.8rem; /* Ajusta o tamanho da fonte */
+   
+        text-align: center;
     }
 
     .login-Link {
-        margin-top: 1rem; /* Reduz espaço acima do link */
+        margin-top: 2rem; /* Reduz espaço acima do link */
     }
 
     .error-Message {
         font-size: 0.9rem; /* Texto menor */
         padding: 0.6rem; /* Margem menor */
+        
     }
 }
