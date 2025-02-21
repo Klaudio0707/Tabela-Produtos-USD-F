@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import "../Styles/Formulario.css";
 
 const FormularioProdutos = ({ onAddProduct }) => {
+
+
   const [product, setProduct] = useState({
     name: "",
     manufacturer: "",

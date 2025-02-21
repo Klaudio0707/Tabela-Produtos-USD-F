@@ -9,6 +9,7 @@
 .container-login {
   display: flex;
   flex-direction: column;
+  text-align: center;
 }
 
 /* Título geral */
@@ -131,8 +132,7 @@
 .error-Login {
   color: #dc3545;
   font-size: 0.7rem;
-  margin-top: 10px;
-  text-align: center;
+  margin-top: 20px;
 }
 
 .text-lnfo-login{

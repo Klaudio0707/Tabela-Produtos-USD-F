@@ -10,25 +10,28 @@ import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
 import Login from "./Pages/login";
 import Register from "./Pages/register";
+import Perfil from "./Pages/perfil";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
 const App = () => {
-  const [products, setProducts] = useState([]);
+  const [product, setProducts] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
   // Função para obter os produtos do backend
   const fetchProducts = useCallback(async () => {
+    console.log("Fetching products...");
     try {
       const response = await fetch(`${REACT_APP_API_BACKEND}/products`);
       if (response.ok) {
         const data = await response.json();
+        console.log("Produtos recebidos:", data);
         setProducts(data);
       } else {
-        console.error("Erro ao obter produtos");
+        console.error("Erro ao obter produtos:", response.status);
       }
     } catch (error) {
       console.error("Erro na requisição:", error);
@@ -96,29 +99,52 @@ const App = () => {
       <div className="App-header">
         <Header />
         <Routes>
-          <Route path="/register"  element={<Register />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/login"
             element={<Login onLogin={() => setIsAuthenticated(true)} />}
           />
-
-          {/* Rota protegida para FormularioProdutos */}
           <Route
-            path="/formulario-produtos"
+            path="/formularioProdutos"
             element={
               <ProtectedRoute isAuthenticated={isAuthenticated}>
-                <FormularioProdutos
-                  products={products}
+                <div>
+                  <FormularioProdutos
+                    products={product}
+                    onAddProduct={handleAddProduct}
+                    onUpdateProduct={handleUpdateProduct}
+                    onDeleteProduct={handleDeleteProduct}
+                  />
+                  <ListaProdutos products={product} 
                   onAddProduct={handleAddProduct}
                   onUpdateProduct={handleUpdateProduct}
                   onDeleteProduct={handleDeleteProduct}
-                />
+                  />
+                </div>
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/perfil"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <Perfil />
+              </ProtectedRoute>
+            }
 
-          {/* Redireciona para Login como página inicial */}
-          <Route path="*" element={<Navigate to="/login" replace />} />
+          />
+          <Route
+            path="/conversaoPrecos"
+            element={
+              <ProtectedRoute isAuthenticated={isAuthenticated}>
+                <ConversaoPrecos products={product} />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="*"
+            element={<Navigate to="/formularioProdutos" replace />}
+          />
         </Routes>
         <Footer />
       </div>

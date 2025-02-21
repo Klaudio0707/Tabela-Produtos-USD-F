@@ -1,9 +1,15 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../Styles/Lista.css";
 import { RefreshCw, Trash2, Save } from "lucide-react";
+
+
+
 const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
   const [editingProductId, setEditingProductId] = useState(null);
   const [editedProduct, setEditedProduct] = useState({});
+
+   const navigate = useNavigate();
 
   const handleEditClick = (product) => {
     setEditingProductId(product._id);
@@ -183,6 +189,11 @@ const ListaProdutos = ({ products, onUpdateProduct, onDeleteProduct }) => {
           )}
         </tbody>
       </table>
+      <button
+        onClick={() => navigate("/conversaoPrecos")}
+        style={{ marginTop: "20px" }}>
+        Ir para Conversão de Preços
+      </button>
     </div>
   );
 };
