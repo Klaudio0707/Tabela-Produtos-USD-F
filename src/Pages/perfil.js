@@ -16,7 +16,13 @@ const Perfil = () => {
   const [loading, setLoading] = useState(false);
 
   const API_URL = process.env.REACT_APP_API_BACKEND; // Certifique-se de que está configurado
-  const token = localStorage.getItem("authToken");
+
+  const getTokenFromCookie = () => {
+    const match = document.cookie.match(/(^| )authToken=([^;]+)/);
+    return match ? match[2] : null;
+  };
+
+  const token = getTokenFromCookie();
 
   // Busca os dados do perfil do usuário ao montar o componente
   useEffect(() => {
