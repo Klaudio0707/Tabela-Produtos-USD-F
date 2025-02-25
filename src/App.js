@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
 import ConversaoPrecos from "./Pages/conversaoPrecos";
@@ -8,6 +9,7 @@ import Register from "./Pages/register";
 import Perfil from "./Pages/perfil";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
+
 const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
 const App = () => {
