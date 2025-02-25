@@ -2,11 +2,10 @@ import React, { useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css"; // Estilos base
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
-import { ClientSideRowModelModule } from "@ag-grid-community/client-side-row-model";
-import { ModuleRegistry } from "@ag-grid-community/core";
+import {AllCommunityModule, ModuleRegistry } from "ag-grid-community";
 
 // Registra o módulo necessário
-ModuleRegistry.registerModules([ClientSideRowModelModule]);
+ModuleRegistry.registerModules([AllCommunityModule]);
 
 const ListaProdutos = () => {
   const [products, setProducts] = useState([]); // Armazena os produtos
@@ -19,7 +18,6 @@ const ListaProdutos = () => {
       const response = await fetch(`${REACT_APP_API_BACKEND}/products`);
       if (response.ok) {
         const data = await response.json();
-        console.log("Dados recebidos da API:", data); // Log dos dados
         setProducts(data);
       } else {
         console.error("Erro ao obter produtos:", response.status);
@@ -31,37 +29,64 @@ const ListaProdutos = () => {
     }
   };
 
-  // Chama a função de busca ao montar o componente
   useEffect(() => {
     fetchProducts();
   }, []);
 
   // Definição das colunas da tabela
   const columnDefs = [
-    { field: "name", headerName: "Nome" },
-    { field: "manufacturer", headerName: "Fabricante" },
-    { field: "origin", headerName: "Origem" },
-    { field: "package", headerName: "Embalagem" },
-    { field: "currency", headerName: "Moeda" },
+    { field: "name", headerName: "Nome", width: 200, editable: true },
+    { field: "manufacturer", headerName: "Fabricante", width: 150, editable: true },
+    { field: "origin", headerName: "Origem", width: 120, editable: true },
+    { field: "package", headerName: "Embalagem", width: 120, editable: true },
+    { field: "currency", headerName: "Moeda", width: 100, editable: true },
     {
       field: "priceInside",
       headerName: "Preço Dentro",
+      width: 130,
+      editable: true,
       valueFormatter: (params) => parseFloat(params.value).toFixed(2),
     },
     {
       field: "priceOutside",
       headerName: "Preço Fora",
+      width: 130,
+      editable: true,
       valueFormatter: (params) => parseFloat(params.value).toFixed(2),
     },
     {
       field: "ipi",
       headerName: "IPI",
+      width: 100,
+      editable: true,
       valueFormatter: (params) =>
         params.data.ipi ? `Sim ${params.data.ipiRate}%` : "Não",
     },
   ];
 
-  // Exibe uma mensagem de carregamento enquanto os dados estão sendo buscados
+  // Função para lidar com a edição de células
+  const handleCellEdit = async (event) => {
+    const { data, oldValue, newValue, colDef } = event;
+    console.log("Célula editada:", data, colDef.field, oldValue, newValue);
+
+    // Atualize os dados no backend
+    try {
+      const response = await fetch(`${REACT_APP_API_BACKEND}/products/${data._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [colDef.field]: newValue }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+
+      console.log("Alteração salva com sucesso!");
+    } catch (error) {
+      console.error("Erro ao salvar alteração:", error);
+    }
+  };
+
   if (loading) {
     return <div>Carregando produtos...</div>;
   }
@@ -77,6 +102,8 @@ const ListaProdutos = () => {
           pagination={true} // Habilita paginação
           paginationPageSize={10} // Número de linhas por página
           rowSelection="single" // Permite seleção de linha única
+          onGridReady={(params) => params.api.sizeColumnsToFit()} // Ajusta as colunas ao carregar
+          onCellValueChanged={(event) => handleCellEdit(event)} // Captura alterações
         />
       </div>
     </div>
