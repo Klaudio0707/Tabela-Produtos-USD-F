@@ -29,7 +29,37 @@ h1 {
   text-align: center;
   margin-bottom: 5px;
 }
+/* styles.css */
+/* Estilo global da página */
+.page-container {
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
 
+/* Título da página */
+.page-title {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Mensagem de carregamento */
+.loading-message {
+  text-align: center;
+  font-size: 18px;
+  color: #666;
+  margin-top: 50px;
+}
+
+/* Estilo do contêiner da tabela */
+.table-container {
+  width: 100%;
+  height: 500px;
+  margin: 0 auto;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
 /* Estilo para células e títulos */
 .product-table-list th,
 .product-table-list td {

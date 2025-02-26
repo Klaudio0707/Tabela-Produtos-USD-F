@@ -1,23 +1,25 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css"; // Estilos base
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
-import {AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import "../Styles/Lista.css"; // Importa o arquivo CSS personalizado
 
-// Registra o módulo necessário
-ModuleRegistry.registerModules([AllCommunityModule]);
+// Registra os módulos necessários
+ModuleRegistry.registerModules(AllCommunityModule);
 
 const ListaProdutos = () => {
   const [products, setProducts] = useState([]); // Armazena os produtos
   const [loading, setLoading] = useState(true); // Estado de carregamento
   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
-  // Função para buscar os produtos da API
-  const fetchProducts = async () => {
+  // Função para buscar os produtos da API (usando useCallback)
+  const fetchProducts = useCallback(async () => {
     try {
       const response = await fetch(`${REACT_APP_API_BACKEND}/products`);
       if (response.ok) {
         const data = await response.json();
+        console.log("Dados recebidos da API:", data); // Log dos dados
         setProducts(data);
       } else {
         console.error("Erro ao obter produtos:", response.status);
@@ -27,11 +29,34 @@ const ListaProdutos = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }, [REACT_APP_API_BACKEND]); // Dependências de fetchProducts
 
   useEffect(() => {
-    fetchProducts();
-  }, []);
+    fetchProducts(); // Chama a função ao montar o componente
+  }, [fetchProducts]); // Inclui fetchProducts como dependência
+
+  // Função para lidar com a edição de células
+  const handleCellEdit = async (event) => {
+    const { data, oldValue, newValue, colDef } = event;
+    console.log("Célula editada:", data, colDef.field, oldValue, newValue);
+
+    // Atualiza os dados no backend
+    try {
+      const response = await fetch(`${REACT_APP_API_BACKEND}/products/${data._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ [colDef.field]: newValue }),
+      });
+
+      if (!response.ok) {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+
+      console.log("Alteração salva com sucesso!");
+    } catch (error) {
+      console.error("Erro ao salvar alteração:", error);
+    }
+  };
 
   // Definição das colunas da tabela
   const columnDefs = [
@@ -64,46 +89,24 @@ const ListaProdutos = () => {
     },
   ];
 
-  // Função para lidar com a edição de células
-  const handleCellEdit = async (event) => {
-    const { data, oldValue, newValue, colDef } = event;
-    console.log("Célula editada:", data, colDef.field, oldValue, newValue);
-
-    // Atualize os dados no backend
-    try {
-      const response = await fetch(`${REACT_APP_API_BACKEND}/products/${data._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ [colDef.field]: newValue }),
-      });
-
-      if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
-      }
-
-      console.log("Alteração salva com sucesso!");
-    } catch (error) {
-      console.error("Erro ao salvar alteração:", error);
-    }
-  };
-
+  // Mensagem de carregamento enquanto os dados estão sendo buscados
   if (loading) {
-    return <div>Carregando produtos...</div>;
+    return <div className="loading-message">Carregando produtos...</div>;
   }
 
   return (
-    <div className="lista-container">
-      <h1>Produtos Cadastrados</h1>
+    <div className="page-container">
+      <h1 className="page-title">Produtos Cadastrados</h1>
       {/* Container da tabela */}
-      <div className="ag-theme-alpine" style={{ height: "500px", width: "100%" }}>
+      <div className="table-container ag-theme-alpine">
         <AgGridReact
           rowData={products} // Dados da tabela
           columnDefs={columnDefs} // Definição das colunas
           pagination={true} // Habilita paginação
           paginationPageSize={10} // Número de linhas por página
           rowSelection="single" // Permite seleção de linha única
-          onGridReady={(params) => params.api.sizeColumnsToFit()} // Ajusta as colunas ao carregar
           onCellValueChanged={(event) => handleCellEdit(event)} // Captura alterações
+          onGridReady={(params) => params.api.sizeColumnsToFit()} // Ajusta as colunas ao carregar
         />
       </div>
     </div>
