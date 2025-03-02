@@ -2,18 +2,15 @@ import React, { useState, useEffect, useCallback } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css"; // Estilos base
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
-import { AllCommunityModule, ModuleRegistry } from "ag-grid-community";
+import { AllCommunityModule } from "ag-grid-community"; // Importa todos os módulos
 import "../Styles/Lista.css"; // Importa o arquivo CSS personalizado
-
-// Registra os módulos necessários
-ModuleRegistry.registerModules(AllCommunityModule);
 
 const ListaProdutos = () => {
   const [products, setProducts] = useState([]); // Armazena os produtos
   const [loading, setLoading] = useState(true); // Estado de carregamento
   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
-  // Função para buscar os produtos da API (usando useCallback)
+  // Função para buscar os produtos da API
   const fetchProducts = useCallback(async () => {
     try {
       const response = await fetch(`${REACT_APP_API_BACKEND}/products`);
@@ -29,11 +26,11 @@ const ListaProdutos = () => {
     } finally {
       setLoading(false);
     }
-  }, [REACT_APP_API_BACKEND]); // Dependências de fetchProducts
+  }, [REACT_APP_API_BACKEND]);
 
   useEffect(() => {
     fetchProducts(); // Chama a função ao montar o componente
-  }, [fetchProducts]); // Inclui fetchProducts como dependência
+  }, [fetchProducts]);
 
   // Função para lidar com a edição de células
   const handleCellEdit = async (event) => {
@@ -47,11 +44,9 @@ const ListaProdutos = () => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ [colDef.field]: newValue }),
       });
-
       if (!response.ok) {
         throw new Error(`Erro HTTP: ${response.status}`);
       }
-
       console.log("Alteração salva com sucesso!");
     } catch (error) {
       console.error("Erro ao salvar alteração:", error);
@@ -97,6 +92,7 @@ const ListaProdutos = () => {
   return (
     <div className="page-container">
       <h1 className="page-title">Produtos Cadastrados</h1>
+
       {/* Container da tabela */}
       <div className="table-container ag-theme-alpine">
         <AgGridReact
@@ -107,6 +103,7 @@ const ListaProdutos = () => {
           rowSelection="single" // Permite seleção de linha única
           onCellValueChanged={(event) => handleCellEdit(event)} // Captura alterações
           onGridReady={(params) => params.api.sizeColumnsToFit()} // Ajusta as colunas ao carregar
+          modules={AllCommunityModule} // Passa os módulos aqui
         />
       </div>
     </div>

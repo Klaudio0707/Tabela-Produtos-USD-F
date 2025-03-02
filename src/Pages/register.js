@@ -1,4 +1,4 @@
-import React, { useState } from "react"; 
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Register.css";
 
@@ -7,15 +7,56 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [cnpj, setCnpj] = useState("");
   const [email, setEmail] = useState("");
-  const [permiss, setPermiss] = useState("user"); // a permisão padrão é user
+  const [permiss, setPermiss] = useState("user"); // A permissão padrão é "user"
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
   const navigate = useNavigate();
 
+  const formatCNPJ = (value) => {
+    // Remove todos os caracteres não numéricos
+    const numericValue = value.replace(/\D/g, "");
+
+    // Aplica a máscara de CNPJ
+    if (numericValue.length <= 2) {
+      return numericValue;
+    } else if (numericValue.length <= 5) {
+      return `${numericValue.slice(0, 2)}.${numericValue.slice(2)}`;
+    } else if (numericValue.length <= 8) {
+      return `${numericValue.slice(0, 2)}.${numericValue.slice(
+        2,
+        5
+      )}.${numericValue.slice(5)}`;
+    } else if (numericValue.length <= 12) {
+      return `${numericValue.slice(0, 2)}.${numericValue.slice(
+        2,
+        5
+      )}.${numericValue.slice(5, 8)}/${numericValue.slice(8)}`;
+    } else {
+      return `${numericValue.slice(0, 2)}.${numericValue.slice(
+        2,
+        5
+      )}.${numericValue.slice(5, 8)}/${numericValue.slice(
+        8,
+        12
+      )}-${numericValue.slice(12, 14)}`;
+    }
+  };
+  const handleCNPJChange = (e) => {
+    const rawValue = e.target.value; // Valor bruto digitado pelo usuário
+    const formattedValue = formatCNPJ(rawValue); // Aplica a máscara
+    setCnpj(formattedValue); // Atualiza o estado com o valor formatado
+  };
+
   const validateCNPJ = async (cnpj) => {
+    const numericCNPJ = cnpj.replace(/[^\d]/g, ""); // Remove caracteres não numéricos
+    if (numericCNPJ.length !== 14) {
+      throw new Error("CNPJ deve conter 14 dígitos.");
+    }
+
     try {
-      const response = await fetch(`https://open.cnpja.com/office/${cnpj}`);
+      const response = await fetch(
+        `https://open.cnpja.com/office/${numericCNPJ}`
+      );
       const data = await response.json();
       if (data.status === "ERROR") {
         throw new Error(data.message || "CNPJ inválido.");
@@ -33,10 +74,10 @@ const Register = () => {
 
     try {
       // Validar CNPJ
-      const cnpjData = await validateCNPJ(cnpj.replace(/[^\d]/g, "")); // Remove caracteres não numéricos
-console.log(cnpjData);
-      if (cnpjData.status.text !== "Ativa") {
-        throw new Error("Empresa inativa.");
+      const cnpjData = await validateCNPJ(cnpj);
+
+      if (cnpjData.situacao.text !== "Ativa") {
+        throw new Error("A empresa associada ao CNPJ está inativa.");
       }
 
       const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
@@ -49,26 +90,37 @@ console.log(cnpjData);
       const response = await fetch(`${REACT_APP_API_BACKEND}/auth/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ 
-          username, 
-          password, 
-          cnpj, 
-          email, 
+        body: JSON.stringify({
+          username,
+          password,
+          cnpj,
+          email,
           permiss,
-          nomeEmpresa: cnpjData.nome, 
-          situacao: cnpjData.situacao 
+          companyName: cnpjData.nome,
+          isActive: cnpjData.situacao.text,
         }),
       });
 
       if (response.ok) {
         alert("Usuário registrado com sucesso!");
+        setUsername("");
+        setPassword("");
+        setCnpj("");
+        setEmail("");
+        setPermiss("user");
         navigate("/login");
       } else {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "Erro ao registrar o usuário.");
       }
     } catch (error) {
-      setErrorMessage(error.message);
+      if (error.message.includes("Empresa inativa")) {
+        setErrorMessage("A empresa associada ao CNPJ está inativa.");
+      } else if (error.message.includes("CNPJ deve conter 14 dígitos")) {
+        setErrorMessage("O CNPJ deve conter exatamente 14 dígitos.");
+      } else {
+        setErrorMessage(error.message);
+      }
     } finally {
       setLoading(false);
     }
@@ -79,6 +131,7 @@ console.log(cnpjData);
       {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
       <form className="form-register" onSubmit={handleRegister}>
         <h2 className="container-title-register">Registro</h2>
+
         <input
           type="text"
           className="input-register-user"
@@ -87,7 +140,9 @@ console.log(cnpjData);
           onChange={(e) => setUsername(e.target.value)}
           minLength={3}
           required
+          aria-label="Nome de usuário"
         />
+
         <input
           className="input-register-password"
           type="password"
@@ -96,15 +151,21 @@ console.log(cnpjData);
           onChange={(e) => setPassword(e.target.value)}
           minLength={8}
           required
+          aria-label="Senha"
         />
+
+        <label htmlFor="cnpj">CNPJ:</label>
         <input
           type="text"
-          className="input-register-cnpj"
+          id="cnpj"
           placeholder="CNPJ"
           value={cnpj}
-          onChange={(e) => setCnpj(e.target.value)}
+          onChange={handleCNPJChange}
+          maxLength={18} // Limite o comprimento máximo (incluindo pontos e traços)
           required
+          aria-label="CNPJ"
         />
+
         <input
           type="email"
           className="input-register-email"
@@ -112,20 +173,32 @@ console.log(cnpjData);
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          aria-label="Email"
         />
+
         <select
           value={permiss}
           className="select-register-permiss"
           onChange={(e) => setPermiss(e.target.value)}
           required
+          aria-label="Permissão"
         >
           <option value="user">Usuário</option>
           <option value="admin">Administrador</option>
           <option value="quest">Consultor</option>
         </select>
+
         <button className="btn-register" type="submit" disabled={loading}>
-          {loading ? "Validando e Registrando..." : "Registrar"}
+          {loading ? (
+            <span>
+              <i className="fa fa-spinner fa-spin"></i> Validando e
+              Registrando...
+            </span>
+          ) : (
+            "Registrar"
+          )}
         </button>
+
         <p className="login-Link">
           Você já tem conta? <a href="/login">Faça login</a>
         </p>
@@ -135,4 +208,3 @@ console.log(cnpjData);
 };
 
 export default Register;
-

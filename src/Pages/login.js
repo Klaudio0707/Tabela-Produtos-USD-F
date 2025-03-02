@@ -29,14 +29,14 @@ const Login = ({ onLogin }) => {
         formData,
         { withCredentials: true } // Inclui cookies na requisição
       );
-      console.log("Resposta do servidor:", response);
+      // console.log("Resposta do servidor:", response);
   
       const token = response.data.token;
   
       if (token) {
         // Salvando o token no cookie
         Cookies.set("authToken", token, { expires: 7, secure: true, sameSite: "Strict" });
-        console.log("Token salvo no cookie:", token); // Verifique se o token está sendo salvo
+        // console.log("Token salvo no cookie:", token); // Verifique se o token está sendo salvo
   
         setMessage("Login realizado com sucesso!");
         setIsLoading(false);
