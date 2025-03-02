@@ -12,11 +12,38 @@ import Header from "./Components/Header";
 
 const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
+// Componente combinado para gerenciar produtos e conversão de preços
+const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct }) => {
+  return (
+    <div>
+      <h2>Gerenciamento de Produtos</h2>
+
+      {/* Formulário de Produtos */}
+      <FormularioProdutos
+        products={products}
+        onAddProduct={onAddProduct}
+        onUpdateProduct={onUpdateProduct}
+        onDeleteProduct={onDeleteProduct}
+      />
+
+      {/* Tabela de Produtos */}
+      <ListaProdutos
+        products={products}
+        onAddProduct={onAddProduct}
+        onUpdateProduct={onUpdateProduct}
+        onDeleteProduct={onDeleteProduct}
+      />
+
+      {/* Conversão de Preços */}
+      <ConversaoPrecos products={products} />
+    </div>
+  );
+};
+
 const App = () => {
-  const [product, setProducts] = useState([]);
+  const [products, setProducts] = useState([]);
   const [isAuthenticated, setIsAuthenticated] = useState(null); // Estado inicial: null
   const [loading, setLoading] = useState(true); // Estado de carregamento
- 
 
   // Função para buscar produtos
   const fetchProducts = async () => {
@@ -41,11 +68,11 @@ const App = () => {
           method: "GET",
           credentials: "include", // Inclui cookies na requisição
         });
-  
+
         if (!response.ok) {
           throw new Error(`Erro HTTP: ${response.status}`);
         }
-  
+
         const data = await response.json();
         if (data.isValid) {
           setIsAuthenticated(true);
@@ -59,12 +86,11 @@ const App = () => {
         setLoading(false);
       }
     };
-  
+
     checkAuthentication();
   }, []);
 
   useEffect(() => {
-    console.log("isAuthenticated mudou:", isAuthenticated); // Debug: Verifique o valor de isAuthenticated
     if (isAuthenticated) {
       fetchProducts();
     }
@@ -74,10 +100,6 @@ const App = () => {
   const handleLogin = () => {
     setIsAuthenticated(true);
   };
-
-  // const handleLogout = () => {
-  //   setIsAuthenticated(false);
-  // };
 
   // Funções para manipulação de produtos
   const handleAddProduct = (newProduct) => {
@@ -145,20 +167,12 @@ const App = () => {
           path="/formularioProdutos"
           element={
             isAuthenticated ? (
-              <div>
-                <FormularioProdutos
-                  products={product}
-                  onAddProduct={handleAddProduct}
-                  onUpdateProduct={handleUpdateProduct}
-                  onDeleteProduct={handleDeleteProduct}
-                />
-                <ListaProdutos
-                  products={product}
-                  onAddProduct={handleAddProduct}
-                  onUpdateProduct={handleUpdateProduct}
-                  onDeleteProduct={handleDeleteProduct}
-                />
-              </div>
+              <ProdutosPage
+                products={products}
+                onAddProduct={handleAddProduct}
+                onUpdateProduct={handleUpdateProduct}
+                onDeleteProduct={handleDeleteProduct}
+              />
             ) : (
               <Navigate to="/login" />
             )
@@ -169,16 +183,6 @@ const App = () => {
           element={
             isAuthenticated ? (
               <Perfil />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/conversaoPrecos"
-          element={
-            isAuthenticated ? (
-              <ConversaoPrecos products={product} />
             ) : (
               <Navigate to="/login" />
             )

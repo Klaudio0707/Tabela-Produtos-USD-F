@@ -1,13 +1,18 @@
 import React, { useState, useEffect, useCallback } from "react";
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/styles/ag-grid.css"; // Estilos base
-import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
-import { AllCommunityModule } from "ag-grid-community"; // Importa todos os módulos
-import "../Styles/Lista.css"; // Importa o arquivo CSS personalizado
+import { DataGrid } from "@mui/x-data-grid";
+import { Box, Typography } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import SaveIcon from "@mui/icons-material/Save";
+import CancelIcon from "@mui/icons-material/Close";
+import DeleteIcon from "@mui/icons-material/DeleteOutlined";
+import { GridRowModes, GridActionsCellItem } from "@mui/x-data-grid";
+import "../Styles/Lista.css";
 
 const ListaProdutos = () => {
   const [products, setProducts] = useState([]); // Armazena os produtos
   const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [searchText, setSearchText] = useState(""); // Estado para a busca
+  const [rowModesModel, setRowModesModel] = useState({}); // Controle de modo de edição
   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
   // Função para buscar os produtos da API
@@ -32,55 +37,145 @@ const ListaProdutos = () => {
     fetchProducts(); // Chama a função ao montar o componente
   }, [fetchProducts]);
 
-  // Função para lidar com a edição de células
-  const handleCellEdit = async (event) => {
-    const { data, oldValue, newValue, colDef } = event;
-    console.log("Célula editada:", data, colDef.field, oldValue, newValue);
-
-    // Atualiza os dados no backend
+  // Função para lidar com o clique no botão "Editar"
+  const processRowUpdate = async (newRow) => {
     try {
-      const response = await fetch(`${REACT_APP_API_BACKEND}/products/${data._id}`, {
+      const response = await fetch(`${REACT_APP_API_BACKEND}/products/${newRow._id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ [colDef.field]: newValue }),
+        body: JSON.stringify(newRow),
       });
+
       if (!response.ok) {
-        throw new Error(`Erro HTTP: ${response.status}`);
+        throw new Error(`Erro ao salvar produto: ${response.status}`);
       }
+
       console.log("Alteração salva com sucesso!");
+
+      const updatedProduct = await response.json();
+      setProducts((prevProducts) =>
+        prevProducts.map((product) =>
+          product._id === updatedProduct._id ? updatedProduct : product
+        )
+      );
+
+      return updatedProduct; // Retorna a linha atualizada
     } catch (error) {
-      console.error("Erro ao salvar alteração:", error);
+      console.error("Erro ao atualizar produto:", error);
+      return newRow; // Retorna a linha original em caso de erro
     }
   };
 
+  const handleEditClick = (id) => () => {
+    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
+  };
+
+  const handleSaveClick = (id) => () => {
+    setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
+  };
+
+  const handleCancelClick = (id) => () => {
+    setRowModesModel({
+      ...rowModesModel,
+      [id]: { mode: GridRowModes.View, ignoreModifications: true },
+    });
+  };
+
+  const handleDeleteClick = (id) => async () => {
+    try {
+      const response = await fetch(`${REACT_APP_API_BACKEND}/products/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        console.log("Produto excluído com sucesso!");
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product._id !== id)
+        );
+      } else {
+        throw new Error(`Erro HTTP: ${response.status}`);
+      }
+    } catch (error) {
+      console.error("Erro ao excluir produto:", error);
+    }
+  };
+
+  // Função para aplicar filtro rápido
+  const onSearchChange = (e) => {
+    setSearchText(e.target.value);
+  };
+
+  // Filtra os dados com base no texto de busca
+  const filteredProducts = products.filter((product) =>
+    Object.values(product).some(
+      (value) =>
+        typeof value === "string" && value.toLowerCase().includes(searchText.toLowerCase())
+    )
+  );
+
   // Definição das colunas da tabela
-  const columnDefs = [
-    { field: "name", headerName: "Nome", width: 200, editable: true },
-    { field: "manufacturer", headerName: "Fabricante", width: 150, editable: true },
-    { field: "origin", headerName: "Origem", width: 120, editable: true },
-    { field: "package", headerName: "Embalagem", width: 120, editable: true },
-    { field: "currency", headerName: "Moeda", width: 100, editable: true },
+  const columns = [
+    { field: "name", headerName: "Nome", flex: 1, editable: true },
+    { field: "manufacturer", headerName: "Fabricante", flex: 1, editable: true },
+    { field: "origin", headerName: "Origem", flex: 1, editable: true },
+    { field: "package", headerName: "Embalagem", flex: 1, editable: true },
+    { field: "currency", headerName: "Moeda", flex: 1, editable: true },
     {
       field: "priceInside",
       headerName: "Preço Dentro",
-      width: 130,
+      flex: 1,
       editable: true,
       valueFormatter: (params) => parseFloat(params.value).toFixed(2),
     },
     {
       field: "priceOutside",
       headerName: "Preço Fora",
-      width: 130,
+      flex: 1,
       editable: true,
       valueFormatter: (params) => parseFloat(params.value).toFixed(2),
     },
+   
     {
-      field: "ipi",
-      headerName: "IPI",
-      width: 100,
-      editable: true,
-      valueFormatter: (params) =>
-        params.data.ipi ? `Sim ${params.data.ipiRate}%` : "Não",
+      field: "actions",
+      type: "actions",
+      headerName: "Ações",
+      flex: 1,
+      cellClassName: "actions",
+      getActions: ({ id }) => {
+        const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
+        if (isInEditMode) {
+          return [
+            <GridActionsCellItem
+              icon={<SaveIcon />}
+              label="Salvar"
+              onClick={handleSaveClick(id)}
+              color="primary"
+            />,
+            <GridActionsCellItem
+              icon={<CancelIcon />}
+              label="Cancelar"
+              className="textPrimary"
+              onClick={handleCancelClick(id)}
+              color="inherit"
+            />,
+          ];
+        }
+        return [
+          <GridActionsCellItem
+            icon={<EditIcon />}
+            label="Editar"
+            className="textPrimary"
+            onClick={handleEditClick(id)}
+            color="inherit"
+          />,
+          <GridActionsCellItem
+            icon={<DeleteIcon />}
+            label="Excluir"
+            onClick={handleDeleteClick(id)}
+            color="inherit"
+          />,
+        ];
+      },
     },
   ];
 
@@ -90,23 +185,60 @@ const ListaProdutos = () => {
   }
 
   return (
-    <div className="page-container">
-      <h1 className="page-title">Produtos Cadastrados</h1>
+    <Box className="page-container" sx={{ padding: "20px", maxWidth: "1200px", margin: "0 auto" }}>
+      <Typography variant="h4" className="page-title" sx={{ textAlign: "center", mb: 2 }}>
+        Produtos Cadastrados
+      </Typography>
 
-      {/* Container da tabela */}
-      <div className="table-container ag-theme-alpine">
-        <AgGridReact
-          rowData={products} // Dados da tabela
-          columnDefs={columnDefs} // Definição das colunas
-          pagination={true} // Habilita paginação
-          paginationPageSize={10} // Número de linhas por página
-          rowSelection="single" // Permite seleção de linha única
-          onCellValueChanged={(event) => handleCellEdit(event)} // Captura alterações
-          onGridReady={(params) => params.api.sizeColumnsToFit()} // Ajusta as colunas ao carregar
-          modules={AllCommunityModule} // Passa os módulos aqui
+      {/* Barra de busca */}
+      <Box className="search-bar" sx={{ display: "flex", justifyContent: "center", mb: 2 }}>
+        <input
+          type="text"
+          placeholder="Buscar..."
+          value={searchText}
+          onChange={onSearchChange}
+          style={{
+            width: "100%",
+            maxWidth: "400px",
+            padding: "8px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+          }}
         />
-      </div>
-    </div>
+      </Box>
+
+      {/* Tabela */}
+      <Box className="table-container">
+        <DataGrid
+          rows={filteredProducts}
+          columns={columns}
+          pageSize={10}
+          rowsPerPageOptions={[10]}
+          checkboxSelection
+          disableSelectionOnClick
+          editMode="row"
+          rowModesModel={rowModesModel}
+          onRowModesModelChange={(newModel) => setRowModesModel(newModel)}
+          processRowUpdate={processRowUpdate}
+          getRowId={(row) => row._id}
+          sx={{
+            width: "100%",
+            height: "auto",
+            "& .MuiDataGrid-cell--editable": {
+              backgroundColor: "#f0f8ff",
+            },
+            "& .MuiDataGrid-columnHeaders": {
+              backgroundColor: "#f5f5f5",
+            },
+            "& .MuiDataGrid-row": {
+              cursor: "pointer",
+            },
+          }}
+          autoHeight
+          hideFooterSelectedRowCount
+        />
+      </Box>
+    </Box>
   );
 };
 
