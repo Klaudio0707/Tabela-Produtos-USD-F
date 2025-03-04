@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { ProductProvider } from "./Context/ProductContext";
 import { Routes, Route, Navigate } from "react-router-dom";
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
 import FormularioProdutos from "./Pages/formularioProdutos";
@@ -16,7 +17,6 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct }) => {
   return (
     <div>
-      <h2>Gerenciamento de Produtos</h2>
 
       {/* Formulário de Produtos */}
       <FormularioProdutos
@@ -154,6 +154,8 @@ const App = () => {
 
   return (
     <div className="App-header">
+      <ProductProvider>
+
       <Header />
       <Routes>
         <Route path="/register" element={<Register />} />
@@ -162,22 +164,22 @@ const App = () => {
           element={
             <Login onLogin={handleLogin} />
           }
-        />
+          />
         <Route
           path="/formularioProdutos"
           element={
             isAuthenticated ? (
               <ProdutosPage
-                products={products}
-                onAddProduct={handleAddProduct}
-                onUpdateProduct={handleUpdateProduct}
-                onDeleteProduct={handleDeleteProduct}
+              products={products}
+              onAddProduct={handleAddProduct}
+              onUpdateProduct={handleUpdateProduct}
+              onDeleteProduct={handleDeleteProduct}
               />
             ) : (
               <Navigate to="/login" />
             )
           }
-        />
+          />
         <Route
           path="/perfil"
           element={
@@ -187,10 +189,11 @@ const App = () => {
               <Navigate to="/login" />
             )
           }
-        />
+          />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
       <Footer />
+          </ProductProvider>
     </div>
   );
 };

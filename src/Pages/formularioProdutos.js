@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import { ProductContext } from "../Context/ProductContext";
 import "../Styles/Formulario.css";
 
-const FormularioProdutos = ({ onAddProduct }) => {
-
-
-  const [product, setProduct] = useState({
+const FormularioProdutos = () => {
+  const { setProducts, setUpdateTrigger } = useContext(ProductContext);
+  const [formData, setFormData] = useState({
     name: "",
     manufacturer: "",
     origin: "",
@@ -12,45 +12,39 @@ const FormularioProdutos = ({ onAddProduct }) => {
     currency: "BRL",
     priceInside: "",
     priceOutside: "",
-    ipi: false,
-    ipiRate: 0,
   });
 
-  const [error, setError] = useState(""); // Mantendo o estado de erro
-  const [successMessage, setSuccessMessage] = useState("");
+  const [error, setError] = useState(""); // Estado para mensagens de erro
+  const [successMessage, setSuccessMessage] = useState(""); // Estado para mensagens de sucesso
   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
-
+  // Função para lidar com mudanças nos campos de texto
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setProduct((prev) => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]:
-        name === "ipiRate" || name === "priceInside" || name === "priceOutside"
-          ? value // Mantém o valor como string para permitir entrada decimal
-          : value,
+      [name]: value,
     }));
   };
-  const handleCheckboxChange = () => {
-    setProduct((prev) => ({ ...prev, ipi: !prev.ipi }));
-  };
 
+
+  // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     // Verifica se os campos obrigatórios foram preenchidos
-    if (!product.name || !product.manufacturer || !product.priceInside) {
+    if (!formData.name || !formData.manufacturer || !formData.priceInside) {
       setError("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
 
+    // Cria um novo produto com os dados formatados
     const newProduct = {
-      ...product,
+      ...formData,
       // Converte os preços para números com 2 casas decimais
-      priceInside: parseFloat(product.priceInside.replace(",", ".")).toFixed(2),
-      priceOutside: parseFloat(product.priceOutside.replace(",", ".")).toFixed(
-        2
-      ),
+      priceInside: parseFloat(formData.priceInside.replace(",", ".")).toFixed(2),
+      priceOutside: parseFloat(formData.priceOutside.replace(",", ".")).toFixed(2),
+     
     };
 
     try {
@@ -59,10 +53,12 @@ const FormularioProdutos = ({ onAddProduct }) => {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newProduct),
       });
+
       if (response.ok) {
-        const savedProduct = await response.json();
-        onAddProduct(savedProduct);
-        setProduct({
+        const newProduct = await response.json();
+        setProducts((prevProducts) => [...prevProducts, newProduct]);
+        setUpdateTrigger((prev) => !prev); // Dispara atualização
+        setFormData({
           name: "",
           manufacturer: "",
           origin: "",
@@ -70,8 +66,6 @@ const FormularioProdutos = ({ onAddProduct }) => {
           currency: "BRL",
           priceInside: "",
           priceOutside: "",
-          ipi: false,
-          ipiRate: "",
         });
         setError("");
         setSuccessMessage("Produto salvo com sucesso!");
@@ -88,16 +82,14 @@ const FormularioProdutos = ({ onAddProduct }) => {
     <div className="formProducts-container">
       <h3 className="title-form">Cadastrar Produto</h3>
       <div className="warning-box">
-        Este sistema permite cadastrar produtos,
-        visualizar suas informações e converter
-        os preços de Real (R$) para Dólar (USD)
-        com base na cotação do dia.
+        Este sistema permite cadastrar produtos, visualizar suas informações e
+        converter os preços de Real (R$) para Dólar (USD) com base na cotação do dia.
       </div>
       <form onSubmit={handleSubmit} className="form-container">
         <input
           name="name"
           placeholder="Nome"
-          value={product.name}
+          value={formData.name}
           onChange={handleChange}
           required
           className="input-field input-name"
@@ -105,7 +97,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         <input
           name="manufacturer"
           placeholder="Fabricante"
-          value={product.manufacturer}
+          value={formData.manufacturer}
           onChange={handleChange}
           required
           className="input-field input-manufacturer"
@@ -113,7 +105,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         <input
           name="origin"
           placeholder="Origem"
-          value={product.origin}
+          value={formData.origin}
           onChange={handleChange}
           required
           className="input-field input-origin"
@@ -121,7 +113,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
         <input
           name="package"
           placeholder="Embalagem"
-          value={product.package}
+          value={formData.package}
           onChange={handleChange}
           required
           className="input-field input-package"
@@ -130,7 +122,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
           name="priceInside"
           type="number"
           placeholder="Preço Dentro"
-          value={product.priceInside}
+          value={formData.priceInside}
           onChange={handleChange}
           required
           className="input-field input-priceInside"
@@ -139,42 +131,20 @@ const FormularioProdutos = ({ onAddProduct }) => {
           name="priceOutside"
           type="number"
           placeholder="Preço Fora"
-          value={product.priceOutside}
-          required
+          value={formData.priceOutside}
           onChange={handleChange}
+          required
           className="input-field input-priceOutside"
         />
         <select
           name="currency"
-          value={product.currency}
+          value={formData.currency}
           onChange={handleChange}
           className="select-field"
         >
           <option value="BRL">Real</option>
           <option value="USD">Dólar</option>
         </select>
-        <label className="checkbox-label">
-          <div className="checkbox-container">
-            <input
-              type="checkbox"
-              checked={product.ipi}
-              onChange={handleCheckboxChange}
-              className="checkbox"
-            />
-            <span>IPI?</span>
-          </div>
-
-          {product.ipi && (
-            <input
-              type="number"
-              name="ipiRate"
-              placeholder="%"
-              value={product.ipiRate}
-              onChange={handleChange}
-              className="input-field-IPI"
-            />
-          )}
-        </label>
         <button type="submit" className="submit-button">
           Salvar Produto
         </button>
