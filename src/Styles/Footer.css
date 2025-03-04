@@ -1,5 +1,5 @@
 /* Footer */
-.footer {
+.container-footer {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -14,14 +14,14 @@
 }
 
 /* Texto do footer */
-.footer p {
+.container-footer p {
   margin: 0; /* Remove margens padrão */
   font-size: 0.7rem; /* Tamanho de fonte mais confortável */
   text-align: center;
 }
 
 /* Links dos ícones */
-.footer a {
+.container-footer a {
   display: flex;
   align-items: center;
   margin-left: 1rem; /* Espaço entre o texto e os ícones */
@@ -31,26 +31,26 @@
   text-decoration: none;
 }
 
-.footer a:hover {
+.container-footer a:hover {
   transform: scale(1.2); /* Aumenta o ícone ao passar o mouse */
   color: #f0f0f0;
 }
 
 /* Responsividade para telas pequenas */
 @media (max-width: 576px) {
-  .footer {
+  .container-footer {
     flex-direction: column; /* Coloca itens em coluna para telas pequenas */
     text-align: center; /* Centraliza o texto */
     justify-content: center;
     padding: 0.5rem; /* Ajusta o padding para telas menores */
   }
 
-  .footer p {
+  .container-footer p {
     font-size: 0.5rem;
     margin: 0.5rem 0;
   }
 
-  .footer a {
+  .container-footer a {
     margin-left: 0; /* Remove margem esquerda */
     margin-top: 0.3rem; /* Adiciona espaço entre os ícones verticalmente */
     font-size: 2rem; /* Aumenta o tamanho dos ícones */
@@ -59,7 +59,7 @@
 
 /* Responsividade para telas médias (por exemplo, de 360px a 576px) */
 @media (min-width: 320px) and (max-width: 576px) {
-  .footer {
+  .container-footer {
 
     flex-direction: row; /* Coloca os itens em linha para telas médias */
     padding: 0.5rem;
@@ -68,12 +68,12 @@
     text-align: center;
   }
 
-  .footer p {
+  .container-footer p {
     font-size: 0.6rem;
     margin-right: 1px;
   }
 
-  .footer a {
+  .container-footer a {
     margin-left: 0.5rem; /* Espaço entre os ícones */
     font-size: 1.1rem;
     align-items: center;

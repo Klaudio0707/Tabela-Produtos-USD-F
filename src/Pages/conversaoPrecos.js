@@ -117,7 +117,6 @@ const ConversaoPrecos = ({ products }) => {
               <th>Moeda</th>
               <th>Preço Dentro</th>
               <th>Preço Fora</th>
-              <th>IPI (%)</th>
             </tr>
           </thead>
           <tbody className="tbody-convertidos">
@@ -128,7 +127,6 @@ const ConversaoPrecos = ({ products }) => {
                 <td>{product.currency}</td>
                 <td>R$ {product.priceInside}</td>
                 <td>R$ {product.priceOutside}</td>
-                <td>{product.ipi ? `${product.ipiRate}%` : "Não"}</td>
               </tr>
             ))}
           </tbody>

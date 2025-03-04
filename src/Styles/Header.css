@@ -1,4 +1,4 @@
-.header {
+.container-header {
   margin-top: 10px;
   color: white;
   padding: 5px 15px;
@@ -75,7 +75,7 @@
 }
 /* Responsividade */
 @media (max-width: 775px) {
-  .header {
+  .container-header {
     padding: auto;
   }
   .header-content {
@@ -85,7 +85,7 @@
   }
 }
 @media (max-width: 600px) {
-  .header {
+  .container-header {
     padding: auto;
   }
   .header-content {
@@ -94,7 +94,7 @@
   }
 }
 @media (max-width: 500px) {
-  .header {
+  .container-header {
     padding: auto;
     padding: 0.3rem;
   }

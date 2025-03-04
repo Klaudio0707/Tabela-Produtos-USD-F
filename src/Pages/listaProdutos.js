@@ -1,85 +1,33 @@
-import React, { useContext, useState, useEffect, useCallback } from "react";
-import { DataGrid, GridRowModes, GridActionsCellItem } from "@mui/x-data-grid";
+import React, { useContext, useState, useEffect } from "react";
 import { Box, Typography, TextField, Autocomplete } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
-import CancelIcon from "@mui/icons-material/Close";
-import DeleteIcon from "@mui/icons-material/DeleteOutlined";
-import { ProductContext } from "../Context/ProductContext"; // Importa o contexto
+import CancelIcon from "@mui/icons-material/Cancel";
+import DeleteIcon from "@mui/icons-material/Delete";
+import { ProductContext } from "../Context/ProductContext";
 import "../Styles/Lista.css";
 
 const ListaProdutos = () => {
   const { products, fetchProducts, setProducts, updateTrigger } =
-    useContext(ProductContext); // Usa o contexto
+    useContext(ProductContext);
   const [loading, setLoading] = useState(true);
+  const [editingProductId, setEditingProductId] = useState(null);
   const [searchText, setSearchText] = useState("");
-  const [rowModesModel, setRowModesModel] = useState({});
+  const [editedProducts, setEditedProducts] = useState({}); // Estado para produtos editados
 
-  // Função para buscar produtos (com useCallback)
-  const fetchData = useCallback(async () => {
-    try {
-      await fetchProducts(); // Usa a função do contexto para buscar produtos
-    } catch (error) {
-      console.error("Erro ao buscar produtos:", error);
-    } finally {
-      setLoading(false);
-    }
-  }, [fetchProducts]);
-
-  // Busca os produtos ao montar o componente ou quando `updateTrigger` mudar
+  // Função para buscar produtos
   useEffect(() => {
-    fetchData();
-  }, [fetchData, updateTrigger]);
-
-  // Função para atualizar um produto (com useCallback)
-  const processRowUpdate = useCallback(async (newRow) => {
-    try {
-      const response = await fetch(
-        `${process.env.REACT_APP_API_BACKEND}/products/${newRow._id}`,
-        {
-          method: "PUT",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(newRow),
-        }
-      );
-      if (!response.ok) throw new Error("Erro ao atualizar produto.");
-      const updatedProduct = await response.json();
-
-      // Atualiza o estado global no contexto
-      setProducts((prevProducts) =>
-        prevProducts.map((product) =>
-          product._id === updatedProduct._id ? updatedProduct : product
-        )
-      );
-
-      return updatedProduct;
-    } catch (error) {
-      console.error("Erro ao atualizar:", error);
-      return newRow;
-    }
-  }, [setProducts]);
-
-  // Função para excluir um produto (com useCallback)
-  const handleDeleteClick = useCallback(
-    (id) => async () => {
+    const fetchData = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
-          method: "DELETE",
-        });
-        if (response.ok) {
-          // Remove o produto do estado global no contexto
-          setProducts((prevProducts) =>
-            prevProducts.filter((product) => product._id !== id)
-          );
-        } else {
-          console.error("Erro ao excluir:", response.status);
-        }
+        await fetchProducts();
       } catch (error) {
-        console.error("Erro ao excluir:", error);
+        console.error("Erro ao buscar produtos:", error);
+      } finally {
+        setLoading(false);
       }
-    },
-    [setProducts]
-  );
+    };
+    fetchData();
+  }, [fetchProducts, updateTrigger]);
 
   // Filtra os produtos com base no texto de busca
   const filteredProducts = products.filter((product) =>
@@ -90,118 +38,65 @@ const ListaProdutos = () => {
     )
   );
 
-  // Definição das colunas da tabela
-  const columns = [
-    {
-      field: "name",
-      headerName: "Nome",
-      flex: 1,
-      editable: true,
-      minWidth: 50,
-    },
-    {
-      field: "manufacturer",
-      headerName: "Fabricante",
-      flex: 1,
-      editable: true,
-      minWidth: 50,
-    },
-    {
-      field: "origin",
-      headerName: "Origem",
-      flex: 1,
-      editable: true,
-      minWidth: 50,
-    },
-    {
-      field: "package",
-      headerName: "Embalagem",
-      flex: 1,
-      editable: true,
-      minWidth:50,
-    },
-    { field: "currency", headerName: "Moeda", flex: 1, editable: true },
-    {
-      field: "priceInside",
-      headerName: "Preço Dentro",
-      flex: 1,
-      editable: true,
-    },
-    {
-      field: "priceOutside",
-      headerName: "Preço Fora",
-      flex: 1,
-      editable: true,
-    },
-    {
-      field: "actions",
-      type: "actions",
-      headerName: "Ações",
-      flex: 1,
-      getActions: ({ id }) => {
-        const isInEditMode = rowModesModel[id]?.mode === GridRowModes.Edit;
-        if (isInEditMode) {
-          return [
-            <GridActionsCellItem
-              icon={<SaveIcon />}
-              label="Salvar"
-              onClick={() => handleSaveClick(id)}
-              color="primary"
-            />,
-            <GridActionsCellItem
-              icon={<CancelIcon />}
-              label="Cancelar"
-              onClick={() => handleCancelClick(id)}
-              color="inherit"
-            />,
-          ];
-        }
-        return [
-          <GridActionsCellItem
-            icon={<EditIcon />}
-            label="Editar"
-            onClick={() => handleEditClick(id)}
-            color="inherit"
-          />,
-          <GridActionsCellItem
-            icon={<DeleteIcon />}
-            label="Excluir"
-            onClick={handleDeleteClick(id)}
-            color="inherit"
-          />,
-        ];
-      },
-    },
-  ];
-
-  // Funções para manipular o modo de edição (com useCallback)
-  const handleEditClick = useCallback(
-    (id) => () => {
-      setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.Edit } });
-    },
-    [rowModesModel]
-  );
-
-  const handleSaveClick = useCallback(
-    (id) => () => {
-      setRowModesModel({ ...rowModesModel, [id]: { mode: GridRowModes.View } });
-    },
-    [rowModesModel]
-  );
-
-  const handleCancelClick = useCallback(
-    (id) => () => {
-      setRowModesModel({
-        ...rowModesModel,
-        [id]: { mode: GridRowModes.View, ignoreModifications: true },
-      });
-    },
-    [rowModesModel]
-  );
-
   if (loading) {
     return <div>Carregando...</div>;
   }
+
+  // Função para entrar no modo de edição
+  const handleEditClick = (id) => {
+    const productToEdit = products.find((product) => product._id === id);
+    setEditingProductId(id);
+
+    // Preenche o estado `editedProducts` com os valores atuais do produto
+    setEditedProducts((prev) => ({
+      ...prev,
+      [id]: { ...productToEdit },
+    }));
+  };
+
+  // Função para salvar as alterações
+  const handleSaveClick = async (id) => {
+    try {
+      const updatedProduct = editedProducts[id]; // Obtém o produto editado
+      const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(updatedProduct),
+      });
+      if (!response.ok) throw new Error("Erro ao atualizar produto.");
+      const data = await response.json();
+
+      // Atualiza o estado global
+      setProducts((prevProducts) =>
+        prevProducts.map((product) => (product._id === id ? data : product))
+      );
+      setEditingProductId(null); // Sai do modo de edição
+    } catch (error) {
+      console.error("Erro ao salvar:", error);
+    }
+  };
+
+  // Função para cancelar a edição
+  const handleCancelClick = () => {
+    setEditingProductId(null);
+  };
+
+  // Função para excluir um produto
+  const handleDeleteClick = async (id) => {
+    try {
+      const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
+        method: "DELETE",
+      });
+      if (!response.ok) throw new Error("Erro ao excluir produto.");
+
+      // Remove o produto do estado global
+      setProducts((prevProducts) =>
+        prevProducts.filter((product) => product._id !== id)
+      );
+    } catch (error) {
+      console.error("Erro ao excluir:", error);
+    }
+  };
 
   return (
     <div className="container-Lista">
@@ -219,38 +114,221 @@ const ListaProdutos = () => {
           sx={{ mb: 2, width: "10rem", fontSize: "1rem", textAlign: "center" }}
         />
         <Box sx={{ width: "100%", overflowX: "auto" }}>
-          <DataGrid
-            rows={filteredProducts}
-            columns={columns}
-            pageSize={5}
-            rowsPerPageOptions={[5]}
-            disableSelectionOnClick
-            editMode="row"
-            rowModesModel={rowModesModel}
-            onRowModesModelChange={setRowModesModel}
-            processRowUpdate={processRowUpdate}
-            getRowId={(row) => row._id}
-            sx={{
-              width: "100%",
-              "& .MuiDataGrid-columnHeaders": {
-                backgroundColor: "#f5f5f5",
-                color: "#333",
-                fontSize: "0.6rem",
-                fontWeight: "bold",
-              },
-              "& .MuiDataGrid-columnHeaderTitle": {
-                whiteSpace: "normal", // Permite quebra de linha
-                overflow: "visible", // Remove truncamento
-                textOverflow: "clip", // Remove os três pontos
-              },
-              "& .MuiDataGrid-cell--editable": {
-                backgroundColor: "#f0f8ff",
-              },
-              "& .MuiDataGrid-row": {
-                cursor: "pointer",
-              },
-            }}
-          />
+          <table className="product-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Fabricante</th>
+                <th>Origem</th>
+                <th>Embalagem</th>
+                <th>Moeda</th>
+                <th>Preço Dentro</th>
+                <th>Preço Fora</th>
+                <th>Ações</th>
+              </tr>
+            </thead>
+            <tbody>
+              {filteredProducts.map((product) => (
+                <tr key={product._id}>
+                  {/* Nome */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <input
+                        type="text"
+                        value={editedProducts[product._id]?.name || product.name}
+                        onChange={(e) =>
+                          setEditedProducts({
+                            ...editedProducts,
+                            [product._id]: {
+                              ...editedProducts[product._id],
+                              name: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    ) : (
+                      product.name
+                    )}
+                  </td>
+
+                  {/* Fabricante */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <input
+                        type="text"
+                        value={
+                          editedProducts[product._id]?.manufacturer || product.manufacturer
+                        }
+                        onChange={(e) =>
+                          setEditedProducts({
+                            ...editedProducts,
+                            [product._id]: {
+                              ...editedProducts[product._id],
+                              manufacturer: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    ) : (
+                      product.manufacturer
+                    )}
+                  </td>
+
+                  {/* Origem */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <input
+                        type="text"
+                        value={editedProducts[product._id]?.origin || product.origin}
+                        onChange={(e) =>
+                          setEditedProducts({
+                            ...editedProducts,
+                            [product._id]: {
+                              ...editedProducts[product._id],
+                              origin: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    ) : (
+                      product.origin
+                    )}
+                  </td>
+
+                  {/* Embalagem */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <input
+                        type="text"
+                        value={editedProducts[product._id]?.package || product.package}
+                        onChange={(e) =>
+                          setEditedProducts({
+                            ...editedProducts,
+                            [product._id]: {
+                              ...editedProducts[product._id],
+                              package: e.target.value,
+                            },
+                          })
+                        }
+                      />
+                    ) : (
+                      product.package
+                    )}
+                  </td>
+
+                  {/* Moeda */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <select
+                        value={editedProducts[product._id]?.currency || product.currency}
+                        onChange={(e) =>
+                          setEditedProducts({
+                            ...editedProducts,
+                            [product._id]: {
+                              ...editedProducts[product._id],
+                              currency: e.target.value,
+                            },
+                          })
+                        }
+                      >
+                        <option value="BRL">BRL</option>
+                        <option value="USD">USD</option>
+                      </select>
+                    ) : (
+                      product.currency
+                    )}
+                  </td>
+
+                  {/* Preço Dentro */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={
+                          editedProducts[product._id]?.priceInside || product.priceInside
+                        }
+                        onChange={(e) =>
+                          setEditedProducts({
+                            ...editedProducts,
+                            [product._id]: {
+                              ...editedProducts[product._id],
+                              priceInside: parseFloat(e.target.value),
+                            },
+                          })
+                        }
+                      />
+                    ) : (
+                      product.priceInside
+                    )}
+                  </td>
+
+                  {/* Preço Fora */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <input
+                        type="number"
+                        step="0.01"
+                        value={
+                          editedProducts[product._id]?.priceOutside || product.priceOutside
+                        }
+                        onChange={(e) =>
+                          setEditedProducts({
+                            ...editedProducts,
+                            [product._id]: {
+                              ...editedProducts[product._id],
+                              priceOutside: parseFloat(e.target.value),
+                            },
+                          })
+                        }
+                      />
+                    ) : (
+                      product.priceOutside
+                    )}
+                  </td>
+
+                  {/* Ações */}
+                  <td>
+                    {editingProductId === product._id ? (
+                      <>
+                        <button
+                          className="icon-btn save-btn"
+                          onClick={() => handleSaveClick(product._id)}
+                          title="Salvar"
+                        >
+                          <SaveIcon />
+                        </button>
+                        <button
+                          className="icon-btn cancel-btn"
+                          onClick={handleCancelClick}
+                          title="Cancelar"
+                        >
+                          <CancelIcon />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          className="icon-btn edit-btn"
+                          onClick={() => handleEditClick(product._id)}
+                          title="Editar"
+                        >
+                          <EditIcon />
+                        </button>
+                        <button
+                          className="icon-btn delete-btn"
+                          onClick={() => handleDeleteClick(product._id)}
+                          title="Excluir"
+                        >
+                          <DeleteIcon />
+                        </button>
+                      </>
+                    )}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </Box>
       </Box>
     </div>

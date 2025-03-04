@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ProductProvider } from "./Context/ProductContext";
 import { Routes, Route, Navigate } from "react-router-dom";
+import Cookies from "js-cookie";
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
@@ -8,6 +9,7 @@ import ConversaoPrecos from "./Pages/conversaoPrecos";
 import Login from "./Pages/login";
 import Register from "./Pages/register";
 import Perfil from "./Pages/perfil";
+import Menu from "./Components/Menu";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
@@ -17,7 +19,7 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct }) => {
   return (
     <div>
-
+      
       {/* Formulário de Produtos */}
       <FormularioProdutos
         products={products}
@@ -42,7 +44,7 @@ const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(null); // Estado inicial: null
+  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado inicial: null
   const [loading, setLoading] = useState(true); // Estado de carregamento
 
   // Função para buscar produtos
@@ -151,35 +153,39 @@ const App = () => {
   if (loading) {
     return <div>Loading...</div>;
   }
-
+  const handleLogout = () => {
+    Cookies.remove("authToken");
+    setIsAuthenticated(false); // Defina isAuthenticated como false
+  };
   return (
     <div className="App-header">
-      <ProductProvider>
-
+    <ProductProvider>
       <Header />
+      
+      {/* Renderiza o Menu somente se o usuário estiver autenticado */}
+      {isAuthenticated && <Menu onLogout={handleLogout} />}
+      
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route
           path="/login"
-          element={
-            <Login onLogin={handleLogin} />
-          }
-          />
+          element={<Login onLogin={handleLogin} />}
+        />
         <Route
           path="/formularioProdutos"
           element={
             isAuthenticated ? (
               <ProdutosPage
-              products={products}
-              onAddProduct={handleAddProduct}
-              onUpdateProduct={handleUpdateProduct}
-              onDeleteProduct={handleDeleteProduct}
+                products={products}
+                onAddProduct={handleAddProduct}
+                onUpdateProduct={handleUpdateProduct}
+                onDeleteProduct={handleDeleteProduct}
               />
             ) : (
               <Navigate to="/login" />
             )
           }
-          />
+        />
         <Route
           path="/perfil"
           element={
@@ -189,12 +195,12 @@ const App = () => {
               <Navigate to="/login" />
             )
           }
-          />
+        />
         <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
       <Footer />
-          </ProductProvider>
-    </div>
+    </ProductProvider>
+  </div>
   );
 };
 

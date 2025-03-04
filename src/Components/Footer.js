@@ -5,7 +5,7 @@ import "../Styles/Footer.css";
 
 const Footer = () => {
   return (
-    <footer className="footer">
+    <footer className="container-footer">
       <p>© Todos os direitos reservados. </p>
       <a
         target="_blank"
