@@ -7,20 +7,33 @@ const useAuth = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        // Tenta autenticar automaticamente com o token no cookie
         const response = await axios.get(
           `${process.env.REACT_APP_API_BACKEND}/auth/verify-token`,
-          { withCredentials: true } // Necessário para enviar cookies
+          { withCredentials: true }
         );
         setIsAuthenticated(response.data.isValid);
-      } catch (error) {
-        setIsAuthenticated(false); // Token inválido ou não autenticado
+      } catch{
+        setIsAuthenticated(false);
       }
     };
     checkAuth();
   }, []);
 
-  return { isAuthenticated, setIsAuthenticated };
+  const logout = async () => {
+    try {
+      await axios.post(
+        `${process.env.REACT_APP_API_BACKEND}/auth/logout`,
+        {},
+        { withCredentials: true }
+      );
+    } catch (error) {
+      console.error("Erro ao sair:", error);
+    } finally {
+      setIsAuthenticated(false); // Garantir que o estado seja atualizado
+    }
+  };
+
+  return { isAuthenticated, setIsAuthenticated, logout };
 };
 
 export default useAuth;

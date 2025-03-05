@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { ProductProvider } from "./Context/ProductContext";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Cookies from "js-cookie";
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
+import useAuth from "./Components/useAuth"; // Importe o hook de autenticação
 import ConversaoPrecos from "./Pages/conversaoPrecos";
 import Login from "./Pages/login";
 import Register from "./Pages/register";
@@ -19,7 +19,6 @@ const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct }) => {
   return (
     <div>
-      
       {/* Formulário de Produtos */}
       <FormularioProdutos
         products={products}
@@ -44,8 +43,7 @@ const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Estado inicial: null
-  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const { isAuthenticated, setIsAuthenticated, logout } = useAuth(); // Usa o hook de autenticação
 
   // Função para buscar produtos
   const fetchProducts = async () => {
@@ -62,46 +60,11 @@ const App = () => {
     }
   };
 
-  // Verificação de autenticação baseada no backend
-  useEffect(() => {
-    const checkAuthentication = async () => {
-      try {
-        const response = await fetch(`${REACT_APP_API_BACKEND}/auth/verify-token`, {
-          method: "GET",
-          credentials: "include", // Inclui cookies na requisição
-        });
-
-        if (!response.ok) {
-          throw new Error(`Erro HTTP: ${response.status}`);
-        }
-
-        const data = await response.json();
-        if (data.isValid) {
-          setIsAuthenticated(true);
-        } else {
-          setIsAuthenticated(false);
-        }
-      } catch (error) {
-        console.error("Erro ao verificar token:", error);
-        setIsAuthenticated(false);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    checkAuthentication();
-  }, []);
-
   useEffect(() => {
     if (isAuthenticated) {
       fetchProducts();
     }
   }, [isAuthenticated]);
-
-  // Funções de login e logout
-  const handleLogin = () => {
-    setIsAuthenticated(true);
-  };
 
   // Funções para manipulação de produtos
   const handleAddProduct = (newProduct) => {
@@ -149,27 +112,18 @@ const App = () => {
     }
   };
 
-  // Se loading estiver true, mostra o loading
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-  const handleLogout = () => {
-    Cookies.remove("authToken");
-    setIsAuthenticated(false); // Defina isAuthenticated como false
-  };
   return (
-    <div className="App-header">
     <ProductProvider>
       <Header />
       
       {/* Renderiza o Menu somente se o usuário estiver autenticado */}
-      {isAuthenticated && <Menu onLogout={handleLogout} />}
+      {isAuthenticated && <Menu onLogout={logout} />}
       
       <Routes>
         <Route path="/register" element={<Register />} />
         <Route
           path="/login"
-          element={<Login onLogin={handleLogin} />}
+          element={<Login onLogin={() => setIsAuthenticated(true)} />}
         />
         <Route
           path="/formularioProdutos"
@@ -200,7 +154,6 @@ const App = () => {
       </Routes>
       <Footer />
     </ProductProvider>
-  </div>
   );
 };
 
