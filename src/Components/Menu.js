@@ -1,5 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import "../Styles/Menu.css";
 import Cookies from "js-cookie";
 
 const Menu = ({ onLogout }) => {
@@ -20,7 +21,7 @@ const Menu = ({ onLogout }) => {
 
   return (
     <div className="container-menu">
-      <button onClick={() => goToPage("/")}>Principal</button>
+      <button onClick={() => goToPage("/formularioProdutos")}>Principal</button>
       <button onClick={() => goToPage("/perfil")}>Perfil</button>
       <button onClick={handleLogout}>Sair</button>
     </div>

@@ -44,7 +44,7 @@ const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct
 const App = () => {
   const [products, setProducts] = useState([]);
   const { isAuthenticated, setIsAuthenticated, logout } = useAuth(); // Usa o hook de autenticação
-
+console.log(isAuthenticated);
   // Função para buscar produtos
   const fetchProducts = async () => {
     try {
