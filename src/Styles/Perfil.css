@@ -1,0 +1,109 @@
+/* Estilo global do container */
+.user-profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+  font-family: Arial, sans-serif;
+}
+
+/* Título */
+h1 {
+  margin-bottom: 1rem;
+  color: #333333;
+}
+
+/* Informações do perfil */
+.profile-info {
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: left;
+}
+
+.info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.info-row span {
+  font-weight: bold;
+  color: #333333;
+}
+
+.edit-button {
+  background-color: #007bff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #0056b3;
+}
+
+/* Inputs */
+.input-profile,
+.input-profile-select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #cccccc;
+  border-radius: 4px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.input-profile:focus,
+.input-profile-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Botões */
+.btn-profile,
+.btn-cancel {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.btn-profile {
+  background-color: #007bff;
+  color: #ffffff;
+}
+
+.btn-profile:hover {
+  background-color: #0056b3;
+}
+
+.btn-cancel {
+  background-color: #dc3545;
+  color: #ffffff;
+  margin-top: 1rem;
+}
+
+.btn-cancel:hover {
+  background-color: #a71d2a;
+}
+
+/* Mensagem */
+.message {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #dc3545;
+}

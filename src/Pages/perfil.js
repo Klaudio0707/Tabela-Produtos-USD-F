@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 import "../Styles/UserProfile.css"; // Crie e ajuste conforme seu estilo
-
-
 
 const Perfil = () => {
   const [user, setUser] = useState({
     username: "",
     email: "",
     permiss: "user",
-    password: "",
+    cnpj: "",
+    companyName: "",
+    isActive: false,
   });
+  const [isEditing, setIsEditing] = useState(false); // Controla o modo de edição
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -31,8 +31,8 @@ const Perfil = () => {
         const response = await axios.get(`${API_URL}/auth/users/me`, {
           headers: { Authorization: `Bearer ${token}` },
         });
-        // Atualiza o estado com os dados do usuário retornados (senha não é retornada)
-        setUser({ ...response.data, password: "" });
+        // Atualiza o estado com os dados do usuário retornados
+        setUser(response.data);
       } catch (error) {
         setMessage("Erro ao buscar dados do perfil");
         console.error(error);
@@ -61,8 +61,8 @@ const Perfil = () => {
         { headers: { Authorization: `Bearer ${token}` } }
       );
       setMessage("Perfil atualizado com sucesso!");
-      // Atualiza o estado com os dados retornados (não inclui a senha, se não alterada)
-      setUser({ ...response.data.user, password: "" });
+      setUser(response.data); // Atualiza o estado com os dados retornados
+      setIsEditing(false); // Sai do modo de edição após salvar
     } catch (error) {
       setMessage(error.response?.data?.message || "Erro ao atualizar o perfil");
       console.error(error);
@@ -75,58 +75,114 @@ const Perfil = () => {
     <div className="user-profile-container">
       <h1>Meu Perfil</h1>
       {message && <p className="message">{message}</p>}
-      <form className="profile-form" onSubmit={handleSubmit}>
-        <label>
-          Nome de Usuário:
-          <input
-            type="text"
-            name="username"
-            value={user.username}
-            onChange={handleChange}
-            required
-            className="input-profile"
-          />
-        </label>
-        <label>
-          Email:
-          <input
-            type="email"
-            name="email"
-            value={user.email}
-            onChange={handleChange}
-            required
-            className="input-profile"
-          />
-        </label>
-        <label>
-          Tipo de Usuário:
-          <select
-            name="permiss"
-            value={user.permiss}
-            onChange={handleChange}
-            required
-            className="input-profile-select"
+      <div className="profile-info">
+        {/* Exibição dos dados do usuário */}
+        <div className="info-row">
+          <span>Usuário:</span>
+          {isEditing ? (
+            <input
+              type="text"
+              name="username"
+              value={user.username}
+              onChange={handleChange}
+              required
+              className="input-profile"
+            />
+          ) : (
+            <span>{user.username}</span>
+          )}
+          {!isEditing && (
+            <button
+              className="edit-button"
+              onClick={() => setIsEditing(true)}
+            >
+              Editar
+            </button>
+          )}
+        </div>
+
+        <div className="info-row">
+          <span>Email:</span>
+          {isEditing ? (
+            <input
+              type="email"
+              name="email"
+              value={user.email}
+              onChange={handleChange}
+              required
+              className="input-profile"
+            />
+          ) : (
+            <span>{user.email}</span>
+          )}
+          {!isEditing && (
+            <button
+              className="edit-button"
+              onClick={() => setIsEditing(true)}
+            >
+              Editar
+            </button>
+          )}
+        </div>
+
+        <div className="info-row">
+          <span>Permissão:</span>
+          {isEditing ? (
+            <select
+              name="permiss"
+              value={user.permiss}
+              onChange={handleChange}
+              required
+              className="input-profile-select"
+            >
+              <option value="user">Usuário</option>
+              <option value="admin">Administrador</option>
+              <option value="quest">Consultor</option>
+            </select>
+          ) : (
+            <span>{user.permiss}</span>
+          )}
+          {!isEditing && (
+            <button
+              className="edit-button"
+              onClick={() => setIsEditing(true)}
+            >
+              Editar
+            </button>
+          )}
+        </div>
+
+        <div className="info-row">
+          <span>CNPJ:</span>
+          <span>{user.cnpj}</span>
+        </div>
+
+        <div className="info-row">
+          <span>Nome da Empresa:</span>
+          <span>{user.companyName}</span>
+        </div>
+
+        <div className="info-row">
+          <span>Status da Empresa:</span>
+          <span>{user.isActive ? "Ativa" : "Inativa"}</span>
+        </div>
+      </div>
+
+      {/* Botão para salvar alterações ou cancelar edição */}
+      {isEditing && (
+        <form className="profile-form" onSubmit={handleSubmit}>
+          <button type="submit" disabled={loading} className="btn-profile">
+            {loading ? "Salvando..." : "Salvar Alterações"}
+          </button>
+          <button
+            type="button"
+            onClick={() => setIsEditing(false)}
+            className="btn-cancel"
           >
-            <option value="user">Usuário</option>
-            <option value="admin">Administrador</option>
-            <option value="quest">Consultor</option>
-          </select>
-        </label>
-        <label>
-          Nova Senha:
-          <input
-            type="password"
-            name="password"
-            value={user.password}
-            onChange={handleChange}
-            placeholder="Deixe em branco para não alterar"
-            className="input-profile"
-          />
-        </label>
-        <button type="submit" disabled={loading} className="btn-profile">
-          {loading ? "Atualizando..." : "Salvar Alterações"}
-        </button>
-      </form>
+            Cancelar
+          </button>
+        </form>
+      )}
     </div>
   );
 };

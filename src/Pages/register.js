@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Styles/Register.css";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const passwordConfirmRef = useRef(null);
   const [cnpj, setCnpj] = useState("");
   const [email, setEmail] = useState("");
   const [permiss, setPermiss] = useState("user"); // A permissão padrão é "user"
@@ -15,7 +17,7 @@ const Register = () => {
   const formatCNPJ = (value) => {
     // Remove todos os caracteres não numéricos
     const numericValue = value.replace(/\D/g, "");
-
+console.log(numericValue);
     // Aplica a máscara de CNPJ
     if (numericValue.length <= 2) {
       return numericValue;
@@ -65,24 +67,30 @@ const Register = () => {
     } catch (error) {
       throw new Error("Erro ao validar o CNPJ.");
     }
+  
   };
-
+  
   const handleRegister = async (e) => {
     e.preventDefault();
     setLoading(true);
     setErrorMessage("");
-
+   
     try {
       // Validar CNPJ
       const cnpjData = await validateCNPJ(cnpj);
-
-      if (cnpjData.situacao.text !== "Ativa") {
+console.log(cnpjData);
+      if (cnpjData.status.text !== "Ativa") {
         throw new Error("A empresa associada ao CNPJ está inativa.");
+      }
+      if (password !== passwordConfirm) {
+        setErrorMessage("As senhas não conferem.");
+        passwordConfirmRef.current.focus(); // Foca no campo de confirmação de senha
+        return;
       }
 
       const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
       if (!REACT_APP_API_BACKEND) {
-        setErrorMessage("Configuração do backend está ausente.");
+        setErrorMessage("Ocorreu um erro interno. Entre em contato com o suporte.");
         return;
       }
 
@@ -97,7 +105,7 @@ const Register = () => {
           email,
           permiss,
           companyName: cnpjData.nome,
-          isActive: cnpjData.situacao.text,
+          isActive: cnpjData.status.text,
         }),
       });
 
@@ -109,18 +117,23 @@ const Register = () => {
         setEmail("");
         setPermiss("user");
         navigate("/login");
-      } else {
+      } if (!response.ok) {
         const errorData = await response.json();
         setErrorMessage(errorData.message || "Erro ao registrar o usuário.");
+        return;
       }
     } catch (error) {
       if (error.message.includes("Empresa inativa")) {
         setErrorMessage("A empresa associada ao CNPJ está inativa.");
       } else if (error.message.includes("CNPJ deve conter 14 dígitos")) {
         setErrorMessage("O CNPJ deve conter exatamente 14 dígitos.");
+      } else if (error.message.includes("As senhas não conferem")) {
+        setErrorMessage("As senhas digitadas não coincidem.");
       } else {
-        setErrorMessage(error.message);
+        setErrorMessage("Ocorreu um erro ao registrar o usuário. Tente novamente.");
+      console.log(error)
       }
+    
     } finally {
       setLoading(false);
     }
@@ -153,11 +166,20 @@ const Register = () => {
           required
           aria-label="Senha"
         />
-
-        <label htmlFor="cnpj">CNPJ:</label>
+            <input
+          className="input-register-password"
+          type="password"
+          placeholder="Senha-Confirmação"
+          value={passwordConfirm}
+          onChange={(e) => setPasswordConfirm(e.target.value)}
+          minLength={8}
+          required
+          aria-label="Senha"
+          ref={passwordConfirmRef}
+        />
         <input
+         className="input-register-cnpj"
           type="text"
-          id="cnpj"
           placeholder="CNPJ"
           value={cnpj}
           onChange={handleCNPJChange}
