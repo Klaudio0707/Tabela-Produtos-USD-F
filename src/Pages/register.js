@@ -104,7 +104,7 @@ console.log(cnpjData);
           cnpj,
           email,
           permiss,
-          companyName: cnpjData.nome,
+          companyName: cnpjData.company.name,
           isActive: cnpjData.status.text,
         }),
       });

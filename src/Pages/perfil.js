@@ -17,30 +17,23 @@ const Perfil = () => {
 
   const API_URL = process.env.REACT_APP_API_BACKEND; // Certifique-se de que está configurado
 
-  const getTokenFromCookie = () => {
-    const match = document.cookie.match(/(^| )authToken=([^;]+)/);
-    return match ? match[2] : null;
-  };
-
-  const token = getTokenFromCookie();
-
   // Busca os dados do perfil do usuário ao montar o componente
   useEffect(() => {
     const fetchUserData = async () => {
       try {
         const response = await axios.get(`${API_URL}/auth/users/me`, {
-          headers: { Authorization: `Bearer ${token}` },
+          withCredentials: true, // Inclui cookies na requisição
         });
-        // Atualiza o estado com os dados do usuário retornados
-        setUser(response.data);
+        console.log(response.data);
+        setUser(response.data); // Atualiza o estado com os dados retornados
       } catch (error) {
         setMessage("Erro ao buscar dados do perfil");
         console.error(error);
       }
     };
 
-    if (token) fetchUserData();
-  }, [API_URL, token]);
+    fetchUserData();
+  }, [API_URL]);
 
   // Atualiza o estado conforme o usuário edita os campos
   const handleChange = (e) => {
@@ -58,7 +51,7 @@ const Perfil = () => {
       const response = await axios.put(
         `${API_URL}/auth/users/me`,
         user,
-        { headers: { Authorization: `Bearer ${token}` } }
+        { withCredentials: true } // Inclui cookies na requisição
       );
       setMessage("Perfil atualizado com sucesso!");
       setUser(response.data); // Atualiza o estado com os dados retornados
@@ -84,7 +77,7 @@ const Perfil = () => {
               type="text"
               name="username"
               value={user.username}
-              onChange={handleChange}
+              onChange={handleChange} // Atualiza o estado ao editar
               required
               className="input-profile"
             />
@@ -108,7 +101,7 @@ const Perfil = () => {
               type="email"
               name="email"
               value={user.email}
-              onChange={handleChange}
+              onChange={handleChange} // Atualiza o estado ao editar
               required
               className="input-profile"
             />
@@ -131,7 +124,7 @@ const Perfil = () => {
             <select
               name="permiss"
               value={user.permiss}
-              onChange={handleChange}
+              onChange={handleChange} // Atualiza o estado ao editar
               required
               className="input-profile-select"
             >
