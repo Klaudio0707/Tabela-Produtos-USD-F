@@ -1,15 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { ProductProvider } from "./Context/ProductContext";
-import { Routes, Route, Navigate } from "react-router-dom";
 import "ag-grid-community/styles/ag-theme-alpine.css"; // Tema Alpine
 import FormularioProdutos from "./Pages/formularioProdutos";
 import ListaProdutos from "./Pages/listaProdutos";
-import useAuth from "./Components/useAuth"; // Importe o hook de autenticação
 import ConversaoPrecos from "./Pages/conversaoPrecos";
-import Login from "./Pages/login";
-import Register from "./Pages/register";
-import Perfil from "./Pages/perfil";
-import Menu from "./Components/Menu";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 
@@ -43,8 +36,7 @@ const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct
 
 const App = () => {
   const [products, setProducts] = useState([]);
-  const { isAuthenticated, setIsAuthenticated, logout } = useAuth(); // Usa o hook de autenticação
-console.log(isAuthenticated);
+
   // Função para buscar produtos
   const fetchProducts = async () => {
     try {
@@ -60,11 +52,10 @@ console.log(isAuthenticated);
     }
   };
 
+  // Buscar produtos ao carregar o componente
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchProducts();
-    }
-  }, [isAuthenticated]);
+    fetchProducts();
+  }, []);
 
   // Funções para manipulação de produtos
   const handleAddProduct = (newProduct) => {
@@ -113,47 +104,21 @@ console.log(isAuthenticated);
   };
 
   return (
-    <ProductProvider>
+    <div>
+      {/* Cabeçalho */}
       <Header />
-      
-      {/* Renderiza o Menu somente se o usuário estiver autenticado */}
-      {isAuthenticated && <Menu onLogout={logout} />}
-      
-      <Routes>
-        <Route path="/register" element={<Register />} />
-        <Route
-          path="/login"
-          element={<Login onLogin={() => setIsAuthenticated(true)} />}
-        />
-        <Route
-          path="/formularioProdutos"
-          element={
-            isAuthenticated ? (
-              <ProdutosPage
-                products={products}
-                onAddProduct={handleAddProduct}
-                onUpdateProduct={handleUpdateProduct}
-                onDeleteProduct={handleDeleteProduct}
-              />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route
-          path="/perfil"
-          element={
-            isAuthenticated ? (
-              <Perfil />
-            ) : (
-              <Navigate to="/login" />
-            )
-          }
-        />
-        <Route path="*" element={<Navigate to="/login" replace />} />
-      </Routes>
+
+      {/* Página de Produtos */}
+      <ProdutosPage
+        products={products}
+        onAddProduct={handleAddProduct}
+        onUpdateProduct={handleUpdateProduct}
+        onDeleteProduct={handleDeleteProduct}
+      />
+
+      {/* Rodapé */}
       <Footer />
-    </ProductProvider>
+    </div>
   );
 };
 

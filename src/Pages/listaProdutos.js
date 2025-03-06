@@ -1,33 +1,34 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Box, Typography, TextField, Autocomplete } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import CancelIcon from "@mui/icons-material/Cancel";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { ProductContext } from "../Context/ProductContext";
 import "../Styles/Lista.css";
 
 const ListaProdutos = () => {
-  const { products, fetchProducts, setProducts, updateTrigger } =
-    useContext(ProductContext);
+  const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [editingProductId, setEditingProductId] = useState(null);
   const [searchText, setSearchText] = useState("");
-  const [editedProducts, setEditedProducts] = useState({}); // Estado para produtos editados
+  const [editedProducts, setEditedProducts] = useState({});
 
   // Função para buscar produtos
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchProducts = async () => {
       try {
-        await fetchProducts();
+        const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products`);
+        if (!response.ok) throw new Error("Erro ao buscar produtos.");
+        const data = await response.json();
+        setProducts(data);
       } catch (error) {
         console.error("Erro ao buscar produtos:", error);
       } finally {
         setLoading(false);
       }
     };
-    fetchData();
-  }, [fetchProducts, updateTrigger]);
+    fetchProducts();
+  }, []);
 
   // Filtra os produtos com base no texto de busca
   const filteredProducts = products.filter((product) =>
@@ -57,7 +58,7 @@ const ListaProdutos = () => {
   // Função para salvar as alterações
   const handleSaveClick = async (id) => {
     try {
-      const updatedProduct = editedProducts[id]; // Obtém o produto editado
+      const updatedProduct = editedProducts[id];
       const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
@@ -66,7 +67,7 @@ const ListaProdutos = () => {
       if (!response.ok) throw new Error("Erro ao atualizar produto.");
       const data = await response.json();
 
-      // Atualiza o estado global
+      // Atualiza o estado local
       setProducts((prevProducts) =>
         prevProducts.map((product) => (product._id === id ? data : product))
       );
@@ -89,7 +90,7 @@ const ListaProdutos = () => {
       });
       if (!response.ok) throw new Error("Erro ao excluir produto.");
 
-      // Remove o produto do estado global
+      // Remove o produto do estado local
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== id)
       );
@@ -130,7 +131,6 @@ const ListaProdutos = () => {
             <tbody>
               {filteredProducts.map((product) => (
                 <tr key={product._id}>
-                  {/* Nome */}
                   <td>
                     {editingProductId === product._id ? (
                       <input
@@ -150,8 +150,6 @@ const ListaProdutos = () => {
                       product.name
                     )}
                   </td>
-
-                  {/* Fabricante */}
                   <td>
                     {editingProductId === product._id ? (
                       <input
@@ -173,8 +171,6 @@ const ListaProdutos = () => {
                       product.manufacturer
                     )}
                   </td>
-
-                  {/* Origem */}
                   <td>
                     {editingProductId === product._id ? (
                       <input
@@ -194,8 +190,6 @@ const ListaProdutos = () => {
                       product.origin
                     )}
                   </td>
-
-                  {/* Embalagem */}
                   <td>
                     {editingProductId === product._id ? (
                       <input
@@ -215,8 +209,6 @@ const ListaProdutos = () => {
                       product.package
                     )}
                   </td>
-
-                  {/* Moeda */}
                   <td>
                     {editingProductId === product._id ? (
                       <select
@@ -238,8 +230,6 @@ const ListaProdutos = () => {
                       product.currency
                     )}
                   </td>
-
-                  {/* Preço Dentro */}
                   <td>
                     {editingProductId === product._id ? (
                       <input
@@ -262,8 +252,6 @@ const ListaProdutos = () => {
                       product.priceInside
                     )}
                   </td>
-
-                  {/* Preço Fora */}
                   <td>
                     {editingProductId === product._id ? (
                       <input
@@ -286,8 +274,6 @@ const ListaProdutos = () => {
                       product.priceOutside
                     )}
                   </td>
-
-                  {/* Ações */}
                   <td>
                     {editingProductId === product._id ? (
                       <>

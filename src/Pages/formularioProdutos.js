@@ -1,9 +1,7 @@
-import React, { useContext, useState } from "react";
-import { ProductContext } from "../Context/ProductContext";
+import React, { useState } from "react";
 import "../Styles/Formulario.css";
 
-const FormularioProdutos = () => {
-  const { setProducts, setUpdateTrigger } = useContext(ProductContext);
+const FormularioProdutos = ({ setProducts }) => {
   const [formData, setFormData] = useState({
     name: "",
     manufacturer: "",
@@ -27,7 +25,6 @@ const FormularioProdutos = () => {
     }));
   };
 
-
   // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -41,10 +38,10 @@ const FormularioProdutos = () => {
     // Cria um novo produto com os dados formatados
     const newProduct = {
       ...formData,
-      // Converte os preços para números com 2 casas decimais
       priceInside: parseFloat(formData.priceInside.replace(",", ".")).toFixed(2),
-      priceOutside: parseFloat(formData.priceOutside.replace(",", ".")).toFixed(2),
-     
+      priceOutside: formData.priceOutside
+        ? parseFloat(formData.priceOutside.replace(",", ".")).toFixed(2)
+        : null,
     };
 
     try {
@@ -55,9 +52,8 @@ const FormularioProdutos = () => {
       });
 
       if (response.ok) {
-        const newProduct = await response.json();
-        setProducts((prevProducts) => [...prevProducts, newProduct]);
-        setUpdateTrigger((prev) => !prev); // Dispara atualização
+        const addedProduct = await response.json();
+        setProducts((prevProducts) => [...prevProducts, addedProduct]);
         setFormData({
           name: "",
           manufacturer: "",
@@ -133,7 +129,6 @@ const FormularioProdutos = () => {
           placeholder="Preço Fora"
           value={formData.priceOutside}
           onChange={handleChange}
-          required
           className="input-field input-priceOutside"
         />
         <select
