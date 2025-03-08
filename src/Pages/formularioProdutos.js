@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Typography } from "@mui/material";
 import "../Styles/Formulario.css";
 
 const FormularioProdutos = ({ setProducts }) => {
@@ -76,7 +77,9 @@ const FormularioProdutos = ({ setProducts }) => {
 
   return (
     <div className="formProducts-container">
-      <h3 className="title-form">Cadastrar Produto</h3>
+  <Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
+          Cadastrar Produtos
+        </Typography>
       <div className="warning-box">
         Este sistema permite cadastrar produtos, visualizar suas informações e
         converter os preços de Real (R$) para Dólar (USD) com base na cotação do dia.

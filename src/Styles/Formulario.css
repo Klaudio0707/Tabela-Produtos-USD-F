@@ -21,6 +21,10 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
 }
 
 .title-form {
@@ -31,7 +35,7 @@ body {
 .form-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 5 colunas por linha */
-  gap: 0.4rem; /* Espaçamento entre os campos */
+  gap: 0.4rem; 
   max-width: 90%;
   margin: 0 auto;
   padding: 0.5rem;
@@ -40,7 +44,7 @@ body {
 
 .input-field, .select-field, .input-field-IPI {
   font-size: 0.875rem; /* Tamanho da fonte */
-  padding: 0.4rem;
+  padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 0.25rem;
   box-sizing: border-box;
@@ -55,43 +59,14 @@ body {
   grid-column: span 1;
   justify-items: center;
   text-align: center;
-  width: 40%;
+  width: 100px;
 }
 
-.checkbox-label {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem; /* Espaçamento entre os elementos */
-  font-size: 1rem;
-}
-
-/* Contêiner do checkbox */
-.checkbox-container {
-  display: flex;
-  align-items: center;
-  gap: 0.25rem; /* Espaçamento entre o checkbox e o texto */
-}
-
-/* Estilo do checkbox */
-.checkbox {
-  width: 15px;
-  height: 20px;
-}
-
-/* Estilo para o input do IPI */
-.input-field-IPI {
-  width: 40px; /* Largura ajustada */
-  padding: 0.3rem;
-  font-size: 0.875rem;
-  border: 1px solid var(--border-color);
-  border-radius: 0.25rem;
-  text-align: center;
-}
 .submit-button {
   grid-column: span 4;
   padding: 0.5rem;
-  max-width: 40%;
-  font-size: 0.875rem;
+  max-width: 50%;
+  font-size: 0.975rem;
   text-align: center;
   justify-self: center;
   border: none;
