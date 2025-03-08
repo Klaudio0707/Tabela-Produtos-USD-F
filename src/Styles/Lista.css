@@ -3,6 +3,7 @@
 /* Estilo Geral da Tabela */
 .product-table {
   width: 100%;
+  max-width: 50%;
   border-collapse: collapse;
   font-family: Arial, sans-serif;
   font-size: 14px; /* Tamanho padrão para telas maiores */
@@ -145,12 +146,12 @@
 
   .product-table th,
   .product-table td {
-    padding: px; /* Espaçamento mínimo */
+    padding: 3px; /* Espaçamento mínimo */
   }
 
   .product-table input,
   .product-table select {
-    font-size: 10px; /* Tamanho mínimo para inputs */
+    font-size: 5px; /* Tamanho mínimo para inputs */
     padding: 3px; /* Espaçamento mínimo */
   }
 
