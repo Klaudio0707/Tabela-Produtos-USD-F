@@ -99,6 +99,7 @@ const App = () => {
     } catch (error) {
       console.error("Erro na requisição:", error);
     }
+    
   };
 
   return (

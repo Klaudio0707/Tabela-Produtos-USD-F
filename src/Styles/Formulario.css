@@ -86,16 +86,19 @@ body {
 .submit-button:active {
   transform: scale(0.98);
 }
-
+.container-msg{
+  grid-column: span 4;
+  justify-self: center;
+}
 .error-message,
 .success-message {
-  display: flex;
-  flex-direction: column;
+  text-align: center;
+  padding: 30px;
   font-size: 0.75rem;
   max-width: 100%;
   padding: 0.7rem;
-  text-align: center;
   border-radius: 4px;
+  opacity: 70%;
 }
 
 .error-message {
@@ -106,6 +109,7 @@ body {
 .success-message {
   background-color: var(--success-color);
   color: #fff;
+
 }
 
 /* Responsividade */

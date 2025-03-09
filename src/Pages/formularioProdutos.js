@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Typography } from "@mui/material";
 import "../Styles/Formulario.css";
 
-const FormularioProdutos = ({ setProducts }) => {
+const FormularioProdutos = ({ onAddProduct }) => {
   const [formData, setFormData] = useState({
     name: "",
     manufacturer: "",
@@ -54,7 +54,7 @@ const FormularioProdutos = ({ setProducts }) => {
 
       if (response.ok) {
         const addedProduct = await response.json();
-        setProducts((prevProducts) => [...prevProducts, addedProduct]);
+        onAddProduct(addedProduct);
         setFormData({
           name: "",
           manufacturer: "",
@@ -147,8 +147,11 @@ const FormularioProdutos = ({ setProducts }) => {
         <button type="submit" className="submit-button">
           Salvar Produto
         </button>
+        <div className="container-msg">
+
         {error && <p className="error-message">{error}</p>}
         {successMessage && <p className="success-message">{successMessage}</p>}
+        </div>
       </form>
     </div>
   );
