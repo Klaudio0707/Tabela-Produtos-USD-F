@@ -13,11 +13,12 @@ const ListaProdutos = () => {
   const [searchText, setSearchText] = useState("");
   const [editedProducts, setEditedProducts] = useState({});
 
-  // Função para buscar produtos
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products`);
+        const response = await fetch(
+          `${process.env.REACT_APP_API_BACKEND}/products`
+        );
         if (!response.ok) throw new Error("Erro ao buscar produtos.");
         const data = await response.json();
         setProducts(data);
@@ -43,12 +44,10 @@ const ListaProdutos = () => {
     return <div>Carregando...</div>;
   }
 
-  // Função para entrar no modo de edição
   const handleEditClick = (id) => {
     const productToEdit = products.find((product) => product._id === id);
     setEditingProductId(id);
 
-    // Preenche o estado `editedProducts` com os valores atuais do produto
     setEditedProducts((prev) => ({
       ...prev,
       [id]: { ...productToEdit },
@@ -59,15 +58,17 @@ const ListaProdutos = () => {
   const handleSaveClick = async (id) => {
     try {
       const updatedProduct = editedProducts[id];
-      const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedProduct),
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BACKEND}/products/${id}`,
+        {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(updatedProduct),
+        }
+      );
       if (!response.ok) throw new Error("Erro ao atualizar produto.");
       const data = await response.json();
 
-      // Atualiza o estado local
       setProducts((prevProducts) =>
         prevProducts.map((product) => (product._id === id ? data : product))
       );
@@ -77,20 +78,20 @@ const ListaProdutos = () => {
     }
   };
 
-  // Função para cancelar a edição
   const handleCancelClick = () => {
     setEditingProductId(null);
   };
 
-  // Função para excluir um produto
   const handleDeleteClick = async (id) => {
     try {
-      const response = await fetch(`${process.env.REACT_APP_API_BACKEND}/products/${id}`, {
-        method: "DELETE",
-      });
+      const response = await fetch(
+        `${process.env.REACT_APP_API_BACKEND}/products/${id}`,
+        {
+          method: "DELETE",
+        }
+      );
       if (!response.ok) throw new Error("Erro ao excluir produto.");
 
-      // Remove o produto do estado local
       setProducts((prevProducts) =>
         prevProducts.filter((product) => product._id !== id)
       );
@@ -105,14 +106,19 @@ const ListaProdutos = () => {
         <Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
           Lista de Produtos
         </Typography>
-        <Autocomplete 
+        <Autocomplete
           options={products.map((product) => product.name)}
           value={searchText}
           onInputChange={(e, value) => setSearchText(value)}
           renderInput={(params) => (
             <TextField {...params} label="Filtrar Produto" />
           )}
-          sx={{ mb: 2, width: "13rem", fontSize: "0.7rem", textAlign: "center" }}
+          sx={{
+            mb: 2,
+            width: "13rem",
+            fontSize: "0.7rem",
+            textAlign: "center",
+          }}
         />
         <Box sx={{ width: "100%", overflowX: "auto" }}>
           <table className="product-table">
@@ -135,7 +141,9 @@ const ListaProdutos = () => {
                     {editingProductId === product._id ? (
                       <input
                         type="text"
-                        value={editedProducts[product._id]?.name || product.name}
+                        value={
+                          editedProducts[product._id]?.name || product.name
+                        }
                         onChange={(e) =>
                           setEditedProducts({
                             ...editedProducts,
@@ -155,7 +163,8 @@ const ListaProdutos = () => {
                       <input
                         type="text"
                         value={
-                          editedProducts[product._id]?.manufacturer || product.manufacturer
+                          editedProducts[product._id]?.manufacturer ||
+                          product.manufacturer
                         }
                         onChange={(e) =>
                           setEditedProducts({
@@ -175,7 +184,9 @@ const ListaProdutos = () => {
                     {editingProductId === product._id ? (
                       <input
                         type="text"
-                        value={editedProducts[product._id]?.origin || product.origin}
+                        value={
+                          editedProducts[product._id]?.origin || product.origin
+                        }
                         onChange={(e) =>
                           setEditedProducts({
                             ...editedProducts,
@@ -194,7 +205,10 @@ const ListaProdutos = () => {
                     {editingProductId === product._id ? (
                       <input
                         type="text"
-                        value={editedProducts[product._id]?.package || product.package}
+                        value={
+                          editedProducts[product._id]?.package ||
+                          product.package
+                        }
                         onChange={(e) =>
                           setEditedProducts({
                             ...editedProducts,
@@ -212,7 +226,10 @@ const ListaProdutos = () => {
                   <td>
                     {editingProductId === product._id ? (
                       <select
-                        value={editedProducts[product._id]?.currency || product.currency}
+                        value={
+                          editedProducts[product._id]?.currency ||
+                          product.currency
+                        }
                         onChange={(e) =>
                           setEditedProducts({
                             ...editedProducts,
@@ -236,7 +253,8 @@ const ListaProdutos = () => {
                         type="number"
                         step="0.01"
                         value={
-                          editedProducts[product._id]?.priceInside || product.priceInside
+                          editedProducts[product._id]?.priceInside ||
+                          product.priceInside
                         }
                         onChange={(e) =>
                           setEditedProducts({
@@ -258,7 +276,8 @@ const ListaProdutos = () => {
                         type="number"
                         step="0.01"
                         value={
-                          editedProducts[product._id]?.priceOutside || product.priceOutside
+                          editedProducts[product._id]?.priceOutside ||
+                          product.priceOutside
                         }
                         onChange={(e) =>
                           setEditedProducts({

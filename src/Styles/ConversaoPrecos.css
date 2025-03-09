@@ -1,5 +1,5 @@
 :root {
-  font-size: 16px; 
+  font-size: 16px;
   font-family: "Roboto", sans-serif;
 }
 
@@ -17,15 +17,12 @@
   margin-bottom: 100px;
 }
 
-
-/* Controles da conversão */
 .conversion-controls {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 1.5rem;
 }
-
 
 .conversion-title-h3 {
   font-size: 0.8rem;
@@ -48,7 +45,7 @@
   box-shadow: 0 0 5px rgba(78, 89, 236, 0.3);
 }
 
-.conversion-input{
+.conversion-input {
   display: flex;
   width: 100%;
   max-width: 10rem;
@@ -85,10 +82,9 @@
   background-color: #dc3545;
   transform: translateY(-2px);
 }
-.print-btn{
+.print-btn {
   background-color: #110df5;
   transform: translateY(-2px);
-
 }
 
 .btn:hover {
@@ -113,7 +109,7 @@
   width: 80%;
   border-collapse: collapse;
   background-color: white;
-  border-radius: 8px; 
+  border-radius: 8px;
   overflow: hidden; /* Garante que o arredondamento funcione */
 }
 
@@ -123,11 +119,9 @@
   padding: 0.425rem; /* 10px */
   padding: 5px;
   text-align: center;
-
 }
-.conversion-table td{
+.conversion-table td {
   font-size: 12px;
-
 }
 .conversion-table th {
   background-color: #4e59ec;
@@ -145,7 +139,6 @@
 .conversion-table tbody tr:hover {
   background-color: #dddcdc;
 }
-
 
 @media (max-width: 768px) {
   .conversion-title,
@@ -167,11 +160,10 @@
     font-size: 0.8rem;
     padding: 8px;
   }
-  .conversion-container{
+  .conversion-container {
     justify-content: center;
     align-items: center;
     align-content: center;
-
   }
 }
 
@@ -179,7 +171,6 @@
   .conversion-title,
   .converted-title {
     font-size: 1.2rem;
-
   }
 
   .btn {

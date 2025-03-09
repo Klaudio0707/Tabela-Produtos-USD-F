@@ -1,5 +1,5 @@
-:root { 
-  font-size: 16px; /* Tamanho base para rem */
+:root {
+  font-size: 16px;
   --primary-color: #4a90e2;
   --success-color: #4caf50;
   --error-color: #f44336;
@@ -30,19 +30,20 @@ body {
   margin-bottom: 60px;
 }
 
-
 .form-container {
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* 5 colunas por linha */
-  gap: 0.4rem; 
+  gap: 0.4rem;
   max-width: 90%;
   margin: 0 auto;
   padding: 0.5rem;
   align-items: center;
 }
 
-.input-field, .select-field, .input-field-IPI {
-  font-size: 0.875rem; /* Tamanho da fonte */
+.input-field,
+.select-field,
+.input-field-IPI {
+  font-size: 0.875rem;
   padding: 10px;
   border: 1px solid var(--border-color);
   border-radius: 0.25rem;
@@ -86,11 +87,12 @@ body {
   transform: scale(0.98);
 }
 
-.error-message, .success-message {
+.error-message,
+.success-message {
   display: flex;
   flex-direction: column;
   font-size: 0.75rem;
- max-width: 100%;
+  max-width: 100%;
   padding: 0.7rem;
   text-align: center;
   border-radius: 4px;
@@ -114,15 +116,16 @@ body {
     justify-content: center;
   }
 
-  .input-field, .submit-button {
+  .input-field,
+  .submit-button {
     grid-column: span 2; /* Ocupa toda a largura da linha */
     width: 100%;
   }
-  .input-field-IPI{
-   width: 60px;
-
+  .input-field-IPI {
+    width: 60px;
   }
-  .error-message, .success-message {
+  .error-message,
+  .success-message {
     grid-column: span 2;
   }
 }
@@ -133,23 +136,24 @@ body {
     justify-items: center;
   }
 
-  .input-field,.submit-button {
+  .input-field,
+  .submit-button {
     grid-column: span 1; /* Ocupa toda a largura */
     width: 100%;
   }
-  .select-field{
+  .select-field {
     width: 50%;
     justify-content: center;
   }
 
-  .error-message, .success-message {
+  .error-message,
+  .success-message {
     grid-column: span 1;
   }
 
   .submit-button {
-    max-width: 70%; /* Botão ocupa a largura total */
-    margin: 1rem 0; /* Espaçamento superior e inferior */
+    max-width: 70%;
+    margin: 1rem 0;
     justify-content: center;
-
   }
 }

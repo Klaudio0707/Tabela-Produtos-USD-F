@@ -8,11 +8,14 @@ import Header from "./Components/Header";
 
 const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
-// Componente combinado para gerenciar produtos e conversão de preços
-const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct }) => {
+const ProdutosPage = ({
+  products,
+  onAddProduct,
+  onUpdateProduct,
+  onDeleteProduct,
+}) => {
   return (
     <div>
-      {/* Formulário de Produtos */}
       <FormularioProdutos
         products={products}
         onAddProduct={onAddProduct}
@@ -20,15 +23,12 @@ const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct
         onDeleteProduct={onDeleteProduct}
       />
 
-      {/* Tabela de Produtos */}
       <ListaProdutos
         products={products}
         onAddProduct={onAddProduct}
         onUpdateProduct={onUpdateProduct}
         onDeleteProduct={onDeleteProduct}
       />
-
-      {/* Conversão de Preços */}
       <ConversaoPrecos products={products} />
     </div>
   );
@@ -37,7 +37,6 @@ const ProdutosPage = ({ products, onAddProduct, onUpdateProduct, onDeleteProduct
 const App = () => {
   const [products, setProducts] = useState([]);
 
-  // Função para buscar produtos
   const fetchProducts = async () => {
     try {
       const response = await fetch(`${REACT_APP_API_BACKEND}/products`);
@@ -57,7 +56,6 @@ const App = () => {
     fetchProducts();
   }, []);
 
-  // Funções para manipulação de produtos
   const handleAddProduct = (newProduct) => {
     setProducts((prevProducts) => [...prevProducts, newProduct]);
   };
@@ -105,18 +103,13 @@ const App = () => {
 
   return (
     <div>
-      {/* Cabeçalho */}
       <Header />
-
-      {/* Página de Produtos */}
       <ProdutosPage
         products={products}
         onAddProduct={handleAddProduct}
         onUpdateProduct={handleUpdateProduct}
         onDeleteProduct={handleDeleteProduct}
       />
-
-      {/* Rodapé */}
       <Footer />
     </div>
   );

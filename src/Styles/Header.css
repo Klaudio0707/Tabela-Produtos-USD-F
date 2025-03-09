@@ -6,7 +6,7 @@
 }
 
 .logi-title {
-  color: #3498db; /* Azul para tecnologia */
+  color: #3498db;
   position: relative;
   display: inline-block;
   animation: slideLogi 3s ease-in-out infinite;
@@ -14,7 +14,7 @@
 
 /* Estilo para Box */
 .box-title {
-  color: #e74c3c; /* Vermelho para dinamismo */
+  color: #e74c3c;
   position: relative;
   display: inline-block;
   animation: bounceBox 3s ease-in-out infinite, boxGlow 3s ease-in-out infinite;
@@ -67,7 +67,8 @@
 }
 
 @keyframes bounceBox {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {

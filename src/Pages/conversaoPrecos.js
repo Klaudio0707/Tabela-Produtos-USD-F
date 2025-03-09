@@ -93,8 +93,8 @@ const ConversaoPrecos = ({ products }) => {
   };
 
   const handlePrintTable = () => {
-    const tableContent = document.querySelector(".conversion-table").outerHTML; 
-    const printWindow = window.open("Tabela de Produtos", "_blank"); // Abre uma nova janela
+    const tableContent = document.querySelector(".conversion-table").outerHTML;
+    const printWindow = window.open("Tabela de Produtos", "_blank");
 
     if (printWindow) {
       printWindow.document.write(`
@@ -238,7 +238,6 @@ const ConversaoPrecos = ({ products }) => {
               ))}
             </tbody>
           </table>
-          
         </>
       )}
     </div>

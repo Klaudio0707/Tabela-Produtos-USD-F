@@ -13,8 +13,8 @@ const FormularioProdutos = ({ setProducts }) => {
     priceOutside: "",
   });
 
-  const [error, setError] = useState(""); // Estado para mensagens de erro
-  const [successMessage, setSuccessMessage] = useState(""); // Estado para mensagens de sucesso
+  const [error, setError] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
   const REACT_APP_API_BACKEND = process.env.REACT_APP_API_BACKEND;
 
   // Função para lidar com mudanças nos campos de texto
@@ -26,11 +26,9 @@ const FormularioProdutos = ({ setProducts }) => {
     }));
   };
 
-  // Função para lidar com o envio do formulário
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Verifica se os campos obrigatórios foram preenchidos
     if (!formData.name || !formData.manufacturer || !formData.priceInside) {
       setError("Por favor, preencha todos os campos obrigatórios.");
       return;
@@ -39,7 +37,9 @@ const FormularioProdutos = ({ setProducts }) => {
     // Cria um novo produto com os dados formatados
     const newProduct = {
       ...formData,
-      priceInside: parseFloat(formData.priceInside.replace(",", ".")).toFixed(2),
+      priceInside: parseFloat(formData.priceInside.replace(",", ".")).toFixed(
+        2
+      ),
       priceOutside: formData.priceOutside
         ? parseFloat(formData.priceOutside.replace(",", ".")).toFixed(2)
         : null,
@@ -77,12 +77,13 @@ const FormularioProdutos = ({ setProducts }) => {
 
   return (
     <div className="formProducts-container">
-  <Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
-          Cadastrar Produtos
-        </Typography>
+      <Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
+        Cadastrar Produtos
+      </Typography>
       <div className="warning-box">
         Este sistema permite cadastrar produtos, visualizar suas informações e
-        converter os preços de Real (R$) para Dólar (USD) com base na cotação do dia.
+        converter os preços de Real (R$) para Dólar (USD) com base na cotação do
+        dia.
       </div>
       <form onSubmit={handleSubmit} className="form-container">
         <input
