@@ -18,41 +18,42 @@ const ConversaoPrecos = ({ products }) => {
   const isValidDate = (date) => {
     const today = new Date();
     const selected = new Date(date);
-    return selected < today && selected.getDay() !== 0 && selected.getDay() !== 6;
+    return (
+      selected < today && selected.getDay() !== 0 && selected.getDay() !== 6
+    );
   };
 
-
   const fetchDollarRate = async (date) => {
-  setLoading(true);
-  try {
-    const formattedDate = formatDate(date);
-    const response = await fetch(
-      `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%27${formattedDate}%27&$top=100&$format=json&$select=${selectedQuote}`
-    );
-    if (!response.ok) {
-      throw new Error(`HTTP status ${response.status}`);
-    }
-    const data = await response.json();
-    if (data.value && data.value.length > 0) {
-      const rate = data.value[0][selectedQuote];
-      setDollarRate(rate);
-      setError("");
-      return rate;
-    } else {
-      setError("Cotação do dólar não encontrada para a data selecionada.");
-      setDollarRate(null);
+    setLoading(true);
+    try {
+      const formattedDate = formatDate(date);
+      const response = await fetch(
+        `https://olinda.bcb.gov.br/olinda/servico/PTAX/versao/v1/odata/CotacaoDolarDia(dataCotacao=@dataCotacao)?@dataCotacao=%27${formattedDate}%27&$top=100&$format=json&$select=${selectedQuote}`
+      );
+      if (!response.ok) {
+        throw new Error(`HTTP status ${response.status}`);
+      }
+      const data = await response.json();
+      if (data.value && data.value.length > 0) {
+        const rate = data.value[0][selectedQuote];
+        setDollarRate(rate);
+        setError("");
+        return rate;
+      } else {
+        setError("Cotação do dólar não encontrada para a data selecionada.");
+        setDollarRate(null);
+        return null;
+      }
+    } catch (error) {
+      setError(
+        "Erro ao buscar cotação do dólar. Talvez o Banco Central esteja indisponível no momento. Tente mais tarde."
+      );
+      console.error("Erro ao buscar cotação do dólar:", error);
       return null;
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    setError(
-      "Erro ao buscar cotação do dólar. Talvez o Banco Central esteja indisponível no momento. Tente mais tarde."
-    );
-    console.error("Erro ao buscar cotação do dólar:", error);
-    return null;
-  } finally {
-    setLoading(false);
-  }
-};
+  };
 
   const handleConvertPrices = async () => {
     if (!selectedDate) {
@@ -91,13 +92,72 @@ const ConversaoPrecos = ({ products }) => {
     setSelectedQuote(e.target.value);
   };
 
+  const handlePrintTable = () => {
+    const tableContent = document.querySelector(".conversion-table").outerHTML; 
+    const printWindow = window.open("Tabela de Produtos", "_blank"); // Abre uma nova janela
+
+    if (printWindow) {
+      printWindow.document.write(`
+<html>
+  <head>
+       <title>Tabela de Produtos </title>
+    <style>
+       body{
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+        align-items: center;
+        margin-top: 100px;
+       }
+       h1{
+        text-align: center;
+       }
+
+       .conversion-table {
+         width: 100%;
+         border-collapse: collapse;
+         background-color: white;
+       }
+
+       .conversion-table th,
+       .conversion-table td {
+         border: 1px solid #ddd; 
+         padding: 0.425rem;
+         padding: 5px;
+         text-align: center;
+         font-size: 0.7rem;
+       }
+
+       .conversion-table th {
+         background-color: #4e59ec;
+         border-radius: 0.1rem;
+         color: white;
+         font-weight: bold;
+         text-transform: uppercase; /* Transforma o texto em maiúsculas */
+         letter-spacing: 0.5px; /* Espaçamento entre letras */
+         z-index: 2; /* Mantém os títulos acima dos dados */
+       }
+    </style>
+  </head> 
+    <body >
+      <div class= "container-print-table">
+      <h1> Tabela de Produtos </h1>
+          ${tableContent}
+      </div>
+    <body>
+</html>
+    `);
+      printWindow.document.close(); // Finaliza o conteúdo
+      printWindow.print(); // Dispara o comando de impressão
+    }
+  };
+
   return (
-    <section className="conversion-container">
-<Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
-          Conversão de Preços
-        </Typography>
+    <div className="conversion-container">
+      <Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
+        Conversão de Preços
+      </Typography>
       <div className="conversion-controls">
-      
         <div className="warning-box">
           Por favor, selecione uma data anterior à atual e que seja um dia útil.
           Lembre-se de que o Banco Central não realiza fechamento de câmbio nos
@@ -105,40 +165,43 @@ const ConversaoPrecos = ({ products }) => {
           para essas datas.
         </div>
         <div className="conversion-input-select">
-        <h3 className="conversion-title-h3">Data do Fechamento do Dólar</h3>
-        <input
-          type="date"
-          className="conversion-input"
-          value={selectedDate}
-          onChange={(e) => setSelectedDate(e.target.value)}
-        />
-      <h3 className="conversion-title-h3">Cotação</h3>
-        <select
-          name="currency"
-          value={selectedQuote}
-          onChange={handleChange}
-          className="conversion-select"
-        >
-          <option value="cotacaoVenda">Venda</option>
-          <option value="cotacaoCompra">Compra</option>
-        </select>
+          <h3 className="conversion-title-h3">Data do Fechamento do Dólar</h3>
+          <input
+            type="date"
+            className="conversion-input"
+            value={selectedDate}
+            onChange={(e) => setSelectedDate(e.target.value)}
+          />
+          <h3 className="conversion-title-h3">Cotação</h3>
+          <select
+            name="currency"
+            value={selectedQuote}
+            onChange={handleChange}
+            className="conversion-select"
+          >
+            <option value="cotacaoVenda">Venda</option>
+            <option value="cotacaoCompra">Compra</option>
+          </select>
         </div>
         <div className="conversion-buttons">
-        <button
+          <button
             className="btn convert-btn"
             onClick={handleConvertPrices}
             disabled={loading}
           >
-            {loading ? "Carregando..." : <>
-            <DollarSign size={12} />
-             Exibir Preços Convertidos</>}
+            {loading ? (
+              "Carregando..."
+            ) : (
+              <>
+                <DollarSign size={12} />
+                Exibir Preços Convertidos
+              </>
+            )}
           </button>
-          <button className="btn clean-btn"
-           onClick={handleCleanPrices}>
+          <button className="btn clean-btn" onClick={handleCleanPrices}>
             <Trash2 size={12} />
-             Limpar
+            Limpar
           </button>
-
         </div>
       </div>
       {error && <p className="error-message">{error}</p>}
@@ -149,30 +212,36 @@ const ConversaoPrecos = ({ products }) => {
       )}
 
       {convertedProducts.length > 0 && (
-        <table className="product-table">
-          <thead>
-            <tr>
-              <th>Nome</th>
-              <th>Fabricante</th>
-              <th>Origem</th>
-              <th>Preço Dentro</th>
-              <th>Preço Fora</th>
-            </tr>
-          </thead>
-          <tbody className="tbody-convertidos">
-            {convertedProducts.map((product) => (
-              <tr key={product._id || product.id}>
-                <td>{product.name}</td>
-                <td>{product.manufacturer}</td>
-                <td>{product.origin}</td>
-                <td>R$ {product.priceInside}</td>
-                <td>R$ {product.priceOutside}</td>
+        <>
+          <button className="btn print-btn" onClick={handlePrintTable}>
+            Imprimir Tabela
+          </button>
+          <table className="conversion-table">
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Fabricante</th>
+                <th>Origem</th>
+                <th>Preço Dentro</th>
+                <th>Preço Fora</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody className="tbody-convertidos">
+              {convertedProducts.map((product) => (
+                <tr key={product._id || product.id}>
+                  <td>{product.name}</td>
+                  <td>{product.manufacturer}</td>
+                  <td>{product.origin}</td>
+                  <td>R$ {product.priceInside}</td>
+                  <td>R$ {product.priceOutside}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          
+        </>
       )}
-    </section>
+    </div>
   );
 };
 

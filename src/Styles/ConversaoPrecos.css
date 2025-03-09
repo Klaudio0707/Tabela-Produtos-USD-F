@@ -8,7 +8,7 @@
   margin: 0 auto;
   padding: 2rem;
   display: flex;
-  background: #f9f9f9;
+  background: #f9f9f988;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   flex-direction: column;
@@ -42,7 +42,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: border-color 0.3s ease;
   border-color: #4e59ec;
   box-shadow: 0 0 5px rgba(78, 89, 236, 0.3);
@@ -56,7 +56,7 @@
   border: 1px solid #ddd;
   border-radius: 5px;
   text-align: center;
-  font-size: 1rem;
+  font-size: 0.9rem;
   transition: border-color 0.3s ease;
   border-color: #4e59ec;
   box-shadow: 0 0 5px rgba(78, 89, 236, 0.3);
@@ -68,7 +68,7 @@
 
 .btn {
   padding: 0.525rem 0.8rem;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   color: white;
   border: none;
   border-radius: 0.25rem; /* 4px */
@@ -85,12 +85,17 @@
   background-color: #dc3545;
   transform: translateY(-2px);
 }
+.print-btn{
+  background-color: #110df5;
+  transform: translateY(-2px);
+
+}
 
 .btn:hover {
-  transform: translateY(-2px);
+  transform: translateY(-4px);
 }
 .btn:active {
-  transform: scale(0.98);
+  transform: scale(1);
 }
 /* Mensagens */
 .error-message {
@@ -104,32 +109,40 @@
 }
 
 /* Tabela de produtos convertidos */
-.product-table {
+.conversion-table {
   width: 80%;
   border-collapse: collapse;
   background-color: white;
+  border-radius: 8px; 
+  overflow: hidden; /* Garante que o arredondamento funcione */
 }
 
-.product-table th,
-.product-table td {
+.conversion-table th,
+.conversion-table td {
   border: 0.0425rem solid #ddd; /* 1px */
   padding: 0.425rem; /* 10px */
   padding: 5px;
   text-align: center;
-  font-size: 0.7rem;
-}
 
-.product-table th {
+}
+.conversion-table td{
+  font-size: 12px;
+
+}
+.conversion-table th {
   background-color: #4e59ec;
   border-radius: 0.1rem;
+  font-size: 13px;
   color: white;
   font-weight: bold;
+  text-transform: uppercase; /* Transforma o texto em maiúsculas */
+  letter-spacing: 0.5px; /* Espaçamento entre letras */
   z-index: 2; /* Mantém os títulos acima dos dados */
 }
-.product-table tbody tr {
+.conversion-table tbody tr {
   transition: background-color 0.3s ease-in-out;
 }
-.product-table tbody tr:hover {
+.conversion-table tbody tr:hover {
   background-color: #dddcdc;
 }
 
@@ -149,8 +162,8 @@
     max-width: 100%;
   }
 
-  .product-table th,
-  .product-table td {
+  .conversion-table th,
+  .conversion-table td {
     font-size: 0.8rem;
     padding: 8px;
   }
@@ -179,8 +192,8 @@
     gap: 10px;
   }
 
-  .product-table th,
-  .product-table td {
+  .conversion-table th,
+  .conversion-table td {
     font-size: 0.5rem;
     padding: 0.5rem;
   }

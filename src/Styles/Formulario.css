@@ -17,20 +17,19 @@ body {
 }
 
 .formProducts-container {
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 2rem;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background: #f9f9f9;
+  background: #f9f9f993;
   border-radius: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  padding: 2rem;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-items: center;
+  margin-bottom: 60px;
 }
 
-.title-form {
-  text-align: center;
-  margin: 10px;
-}
 
 .form-container {
   display: grid;
@@ -80,6 +79,7 @@ body {
 
 .submit-button:hover {
   background-color: #3e8e41;
+  transform: translateY(-4px);
 }
 
 .submit-button:active {

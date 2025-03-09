@@ -101,18 +101,18 @@ const ListaProdutos = () => {
 
   return (
     <div className="container-Lista">
-      <Box sx={{ padding: 2 }}>
+      <Box sx={{ mb: 2, textAlign: "center" }} className="container-Box">
         <Typography variant="h5" sx={{ mb: 2, textAlign: "center" }}>
           Lista de Produtos
         </Typography>
-        <Autocomplete
+        <Autocomplete 
           options={products.map((product) => product.name)}
           value={searchText}
           onInputChange={(e, value) => setSearchText(value)}
           renderInput={(params) => (
-            <TextField {...params} label="Buscar produto" />
+            <TextField {...params} label="Filtrar Produto" />
           )}
-          sx={{ mb: 2, width: "10rem", fontSize: "1rem", textAlign: "center" }}
+          sx={{ mb: 2, width: "13rem", fontSize: "0.7rem", textAlign: "center" }}
         />
         <Box sx={{ width: "100%", overflowX: "auto" }}>
           <table className="product-table">
