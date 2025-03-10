@@ -129,8 +129,7 @@ const ListaProdutos = () => {
                 <th>Origem</th>
                 <th>Embalagem</th>
                 <th>Moeda</th>
-                <th>Preço Dentro</th>
-                <th>Preço Fora</th>
+                <th>Preço</th>
                 <th>Ações</th>
               </tr>
             </thead>
@@ -253,46 +252,24 @@ const ListaProdutos = () => {
                         type="number"
                         step="0.01"
                         value={
-                          editedProducts[product._id]?.priceInside ||
-                          product.priceInside
+                          editedProducts[product._id]?.price ||
+                          product.price
                         }
                         onChange={(e) =>
                           setEditedProducts({
                             ...editedProducts,
                             [product._id]: {
                               ...editedProducts[product._id],
-                              priceInside: parseFloat(e.target.value),
+                              price: parseFloat(e.target.value),
                             },
                           })
                         }
                       />
                     ) : (
-                      product.priceInside
+                      product.price
                     )}
                   </td>
-                  <td>
-                    {editingProductId === product._id ? (
-                      <input
-                        type="number"
-                        step="0.01"
-                        value={
-                          editedProducts[product._id]?.priceOutside ||
-                          product.priceOutside
-                        }
-                        onChange={(e) =>
-                          setEditedProducts({
-                            ...editedProducts,
-                            [product._id]: {
-                              ...editedProducts[product._id],
-                              priceOutside: parseFloat(e.target.value),
-                            },
-                          })
-                        }
-                      />
-                    ) : (
-                      product.priceOutside
-                    )}
-                  </td>
+                  
                   <td>
                     {editingProductId === product._id ? (
                       <>

@@ -9,8 +9,8 @@ const FormularioProdutos = ({ onAddProduct }) => {
     origin: "",
     package: "",
     currency: "BRL",
-    priceInside: "",
-    priceOutside: "",
+    price: "",
+
   });
 
   const [error, setError] = useState("");
@@ -29,7 +29,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!formData.name || !formData.manufacturer || !formData.priceInside) {
+    if (!formData.name || !formData.manufacturer || !formData.price) {
       setError("Por favor, preencha todos os campos obrigatórios.");
       return;
     }
@@ -37,12 +37,9 @@ const FormularioProdutos = ({ onAddProduct }) => {
     // Cria um novo produto com os dados formatados
     const newProduct = {
       ...formData,
-      priceInside: parseFloat(formData.priceInside.replace(",", ".")).toFixed(
+      price: parseFloat(formData.price.replace(",", ".")).toFixed(
         2
-      ),
-      priceOutside: formData.priceOutside
-        ? parseFloat(formData.priceOutside.replace(",", ".")).toFixed(2)
-        : null,
+      ),  
     };
 
     try {
@@ -61,8 +58,7 @@ const FormularioProdutos = ({ onAddProduct }) => {
           origin: "",
           package: "",
           currency: "BRL",
-          priceInside: "",
-          priceOutside: "",
+          price: "",
         });
         setError("");
         setSuccessMessage("Produto salvo com sucesso!");
@@ -119,22 +115,15 @@ const FormularioProdutos = ({ onAddProduct }) => {
           className="input-field input-package"
         />
         <input
-          name="priceInside"
+          name="price"
           type="number"
-          placeholder="Preço Dentro"
-          value={formData.priceInside}
+          placeholder="Preço"
+          value={formData.price}
           onChange={handleChange}
           required
           className="input-field input-priceInside"
         />
-        <input
-          name="priceOutside"
-          type="number"
-          placeholder="Preço Fora"
-          value={formData.priceOutside}
-          onChange={handleChange}
-          className="input-field input-priceOutside"
-        />
+      
         <select
           name="currency"
           value={formData.currency}

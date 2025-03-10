@@ -70,14 +70,10 @@ const ConversaoPrecos = ({ products }) => {
     if (rate) {
       const updatedProducts = products.map((product) => ({
         ...product,
-        priceInside:
+        price:
           product.currency === "USD"
-            ? (product.priceInside * rate).toFixed(2)
-            : product.priceInside,
-        priceOutside:
-          product.currency === "USD"
-            ? (product.priceOutside * rate).toFixed(2)
-            : product.priceOutside,
+            ? (product.price * rate).toFixed(2)
+            : product.price,
       }));
       setConvertedProducts(updatedProducts);
     }
@@ -222,8 +218,7 @@ const ConversaoPrecos = ({ products }) => {
                 <th>Nome</th>
                 <th>Fabricante</th>
                 <th>Origem</th>
-                <th>Preço Dentro</th>
-                <th>Preço Fora</th>
+                <th>Preço</th>
               </tr>
             </thead>
             <tbody className="tbody-convertidos">
@@ -232,8 +227,7 @@ const ConversaoPrecos = ({ products }) => {
                   <td>{product.name}</td>
                   <td>{product.manufacturer}</td>
                   <td>{product.origin}</td>
-                  <td>R$ {product.priceInside}</td>
-                  <td>R$ {product.priceOutside}</td>
+                  <td>R$ {product.price}</td>
                 </tr>
               ))}
             </tbody>
